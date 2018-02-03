@@ -3,6 +3,7 @@ using System.IO;
 
 namespace System.Data.HashFunction.Test
 {
+    using Xunit;
 
     public class HashAlgorithmWrapper_Tests
     {

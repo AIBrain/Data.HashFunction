@@ -2,6 +2,9 @@
 
 namespace System.Data.HashFunction.Test.Core.Utilities
 {
+    using Numerics;
+    using Xunit;
+
     public class BigintegerExtensionsTests
     {
         [Fact]

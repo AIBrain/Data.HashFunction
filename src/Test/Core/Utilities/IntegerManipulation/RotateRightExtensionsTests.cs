@@ -2,6 +2,8 @@
 
 namespace System.Data.HashFunction.Test.Core.Utilities.IntegerManipulation
 {
+    using Xunit;
+
     public class RotateRightExtensionsTests
     {
         [Fact]

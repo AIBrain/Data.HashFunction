@@ -2,6 +2,8 @@
 
 namespace System.Data.HashFunction.Test.Jenkins
 {
+    using Xunit;
+
     public class JenkinsLookup3Tests
     {
         [Fact]

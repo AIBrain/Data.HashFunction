@@ -3,6 +3,9 @@ using System.IO;
 
 namespace System.Data.HashFunction.Test.Core
 {
+    using Moq;
+    using Xunit;
+
     public class HashFunctionBaseTests
     {
         [Fact]

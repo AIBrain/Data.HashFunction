@@ -3,6 +3,8 @@ using System.Linq;
 
 namespace System.Data.HashFunction.Test.Pearson
 {
+    using Xunit;
+
     public class PearsonBaseTests
     {
         [Fact]

@@ -7,6 +7,9 @@ using System.Text;
 
 namespace System.Data.HashFunction.Test
 {
+    using Moq;
+    using Xunit;
+
     public class IHashFunction_Extensions_Tests
     {
         public class Sugar

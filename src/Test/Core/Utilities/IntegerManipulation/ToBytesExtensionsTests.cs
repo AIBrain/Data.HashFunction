@@ -4,6 +4,7 @@ using System.Linq;
 namespace System.Data.HashFunction.Test.Core.Utilities.IntegerManipulation
 {
     using System.Data.HashFunction.Utilities.IntegerManipulation;
+    using Xunit;
 
     public class ToBytesExtensionsTests
     {

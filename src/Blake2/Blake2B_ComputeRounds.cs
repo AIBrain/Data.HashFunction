@@ -1,4 +1,7 @@
-﻿namespace System.Data.HashFunction
+﻿using System;
+using System.IO;
+
+namespace System.Data.HashFunction
 {
 	public partial class Blake2B
 	{

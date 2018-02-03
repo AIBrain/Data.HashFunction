@@ -2,6 +2,8 @@
 
 namespace System.Data.HashFunction.Test.CRC_Tests
 {
+    using Xunit;
+
     public class SettingTests
     {
 

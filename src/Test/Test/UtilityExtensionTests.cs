@@ -2,6 +2,8 @@
 
 namespace System.Data.HashFunction.Test.Test
 {
+    using Xunit;
+
     public class UtilityExtensionTests
     {
         [Fact]

@@ -2,6 +2,10 @@
 
 namespace System.Data.HashFunction.Test.FNV
 {
+    using Moq;
+    using Numerics;
+    using Xunit;
+
     public class FNVBaseTests
     {
         [Fact]

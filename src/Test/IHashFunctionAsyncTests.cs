@@ -5,6 +5,8 @@ using System.Linq;
 
 namespace System.Data.HashFunction.Test
 {
+    using Xunit;
+
     public abstract class IHashFunctionAsyncTests<IHashFunctionAsyncT>
         : IHashFunctionTests<IHashFunctionAsyncT>
         where IHashFunctionAsyncT : class, IHashFunctionAsync

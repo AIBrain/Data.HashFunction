@@ -1,8 +1,14 @@
 ﻿//! Automatically generated from IHashFunctionTests_CRC.tt
 //! Direct modifications to this file will be lost.
 
+using Moq;
+using System;
 using System.Collections.Generic;
 using System.Data.HashFunction.CRCStandards;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Xunit;
 
 namespace System.Data.HashFunction.Test
 {
@@ -20,7 +26,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC3_ROHC CreateHashFunction(Int32 hashSize)
+        protected override CRC3_ROHC CreateHashFunction(int hashSize)
         {
             return new CRC3_ROHC();
         }
@@ -39,7 +45,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC4_ITU CreateHashFunction(Int32 hashSize)
+        protected override CRC4_ITU CreateHashFunction(int hashSize)
         {
             return new CRC4_ITU();
         }
@@ -58,7 +64,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC5_EPC CreateHashFunction(Int32 hashSize)
+        protected override CRC5_EPC CreateHashFunction(int hashSize)
         {
             return new CRC5_EPC();
         }
@@ -77,7 +83,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC5_ITU CreateHashFunction(Int32 hashSize)
+        protected override CRC5_ITU CreateHashFunction(int hashSize)
         {
             return new CRC5_ITU();
         }
@@ -96,7 +102,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC5_USB CreateHashFunction(Int32 hashSize)
+        protected override CRC5_USB CreateHashFunction(int hashSize)
         {
             return new CRC5_USB();
         }
@@ -115,7 +121,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC6_CDMA2000A CreateHashFunction(Int32 hashSize)
+        protected override CRC6_CDMA2000A CreateHashFunction(int hashSize)
         {
             return new CRC6_CDMA2000A();
         }
@@ -134,7 +140,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC6_CDMA2000B CreateHashFunction(Int32 hashSize)
+        protected override CRC6_CDMA2000B CreateHashFunction(int hashSize)
         {
             return new CRC6_CDMA2000B();
         }
@@ -153,7 +159,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC6_DARC CreateHashFunction(Int32 hashSize)
+        protected override CRC6_DARC CreateHashFunction(int hashSize)
         {
             return new CRC6_DARC();
         }
@@ -172,7 +178,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC6_ITU CreateHashFunction(Int32 hashSize)
+        protected override CRC6_ITU CreateHashFunction(int hashSize)
         {
             return new CRC6_ITU();
         }
@@ -191,7 +197,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC7 CreateHashFunction(Int32 hashSize)
+        protected override CRC7 CreateHashFunction(int hashSize)
         {
             return new CRC7();
         }
@@ -210,7 +216,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC7_ROHC CreateHashFunction(Int32 hashSize)
+        protected override CRC7_ROHC CreateHashFunction(int hashSize)
         {
             return new CRC7_ROHC();
         }
@@ -229,7 +235,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC8 CreateHashFunction(Int32 hashSize)
+        protected override CRC8 CreateHashFunction(int hashSize)
         {
             return new CRC8();
         }
@@ -248,7 +254,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC8_CDMA2000 CreateHashFunction(Int32 hashSize)
+        protected override CRC8_CDMA2000 CreateHashFunction(int hashSize)
         {
             return new CRC8_CDMA2000();
         }
@@ -267,7 +273,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC8_DARC CreateHashFunction(Int32 hashSize)
+        protected override CRC8_DARC CreateHashFunction(int hashSize)
         {
             return new CRC8_DARC();
         }
@@ -286,7 +292,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC8_DVBS2 CreateHashFunction(Int32 hashSize)
+        protected override CRC8_DVBS2 CreateHashFunction(int hashSize)
         {
             return new CRC8_DVBS2();
         }
@@ -305,7 +311,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC8_EBU CreateHashFunction(Int32 hashSize)
+        protected override CRC8_EBU CreateHashFunction(int hashSize)
         {
             return new CRC8_EBU();
         }
@@ -324,7 +330,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC8_ICODE CreateHashFunction(Int32 hashSize)
+        protected override CRC8_ICODE CreateHashFunction(int hashSize)
         {
             return new CRC8_ICODE();
         }
@@ -343,7 +349,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC8_ITU CreateHashFunction(Int32 hashSize)
+        protected override CRC8_ITU CreateHashFunction(int hashSize)
         {
             return new CRC8_ITU();
         }
@@ -362,7 +368,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC8_MAXIM CreateHashFunction(Int32 hashSize)
+        protected override CRC8_MAXIM CreateHashFunction(int hashSize)
         {
             return new CRC8_MAXIM();
         }
@@ -381,7 +387,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC8_ROHC CreateHashFunction(Int32 hashSize)
+        protected override CRC8_ROHC CreateHashFunction(int hashSize)
         {
             return new CRC8_ROHC();
         }
@@ -400,7 +406,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC8_WCDMA CreateHashFunction(Int32 hashSize)
+        protected override CRC8_WCDMA CreateHashFunction(int hashSize)
         {
             return new CRC8_WCDMA();
         }
@@ -419,7 +425,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC10 CreateHashFunction(Int32 hashSize)
+        protected override CRC10 CreateHashFunction(int hashSize)
         {
             return new CRC10();
         }
@@ -438,7 +444,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC10_CDMA2000 CreateHashFunction(Int32 hashSize)
+        protected override CRC10_CDMA2000 CreateHashFunction(int hashSize)
         {
             return new CRC10_CDMA2000();
         }
@@ -457,7 +463,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC11 CreateHashFunction(Int32 hashSize)
+        protected override CRC11 CreateHashFunction(int hashSize)
         {
             return new CRC11();
         }
@@ -476,7 +482,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC12_3GPP CreateHashFunction(Int32 hashSize)
+        protected override CRC12_3GPP CreateHashFunction(int hashSize)
         {
             return new CRC12_3GPP();
         }
@@ -495,7 +501,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC12_CDMA2000 CreateHashFunction(Int32 hashSize)
+        protected override CRC12_CDMA2000 CreateHashFunction(int hashSize)
         {
             return new CRC12_CDMA2000();
         }
@@ -514,7 +520,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC12_DECT CreateHashFunction(Int32 hashSize)
+        protected override CRC12_DECT CreateHashFunction(int hashSize)
         {
             return new CRC12_DECT();
         }
@@ -533,7 +539,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC13_BBC CreateHashFunction(Int32 hashSize)
+        protected override CRC13_BBC CreateHashFunction(int hashSize)
         {
             return new CRC13_BBC();
         }
@@ -552,7 +558,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC14_DARC CreateHashFunction(Int32 hashSize)
+        protected override CRC14_DARC CreateHashFunction(int hashSize)
         {
             return new CRC14_DARC();
         }
@@ -571,7 +577,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC15 CreateHashFunction(Int32 hashSize)
+        protected override CRC15 CreateHashFunction(int hashSize)
         {
             return new CRC15();
         }
@@ -590,7 +596,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC15_MPT1327 CreateHashFunction(Int32 hashSize)
+        protected override CRC15_MPT1327 CreateHashFunction(int hashSize)
         {
             return new CRC15_MPT1327();
         }
@@ -609,7 +615,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override ARC CreateHashFunction(Int32 hashSize)
+        protected override ARC CreateHashFunction(int hashSize)
         {
             return new ARC();
         }
@@ -628,7 +634,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC16_AUGCCITT CreateHashFunction(Int32 hashSize)
+        protected override CRC16_AUGCCITT CreateHashFunction(int hashSize)
         {
             return new CRC16_AUGCCITT();
         }
@@ -647,7 +653,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC16_BUYPASS CreateHashFunction(Int32 hashSize)
+        protected override CRC16_BUYPASS CreateHashFunction(int hashSize)
         {
             return new CRC16_BUYPASS();
         }
@@ -666,7 +672,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC16_CCITTFALSE CreateHashFunction(Int32 hashSize)
+        protected override CRC16_CCITTFALSE CreateHashFunction(int hashSize)
         {
             return new CRC16_CCITTFALSE();
         }
@@ -685,7 +691,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC16_CDMA2000 CreateHashFunction(Int32 hashSize)
+        protected override CRC16_CDMA2000 CreateHashFunction(int hashSize)
         {
             return new CRC16_CDMA2000();
         }
@@ -704,7 +710,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC16_DDS110 CreateHashFunction(Int32 hashSize)
+        protected override CRC16_DDS110 CreateHashFunction(int hashSize)
         {
             return new CRC16_DDS110();
         }
@@ -723,7 +729,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC16_DECTR CreateHashFunction(Int32 hashSize)
+        protected override CRC16_DECTR CreateHashFunction(int hashSize)
         {
             return new CRC16_DECTR();
         }
@@ -742,7 +748,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC16_DECTX CreateHashFunction(Int32 hashSize)
+        protected override CRC16_DECTX CreateHashFunction(int hashSize)
         {
             return new CRC16_DECTX();
         }
@@ -761,7 +767,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC16_DNP CreateHashFunction(Int32 hashSize)
+        protected override CRC16_DNP CreateHashFunction(int hashSize)
         {
             return new CRC16_DNP();
         }
@@ -780,7 +786,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC16_EN13757 CreateHashFunction(Int32 hashSize)
+        protected override CRC16_EN13757 CreateHashFunction(int hashSize)
         {
             return new CRC16_EN13757();
         }
@@ -799,7 +805,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC16_GENIBUS CreateHashFunction(Int32 hashSize)
+        protected override CRC16_GENIBUS CreateHashFunction(int hashSize)
         {
             return new CRC16_GENIBUS();
         }
@@ -818,7 +824,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC16_MAXIM CreateHashFunction(Int32 hashSize)
+        protected override CRC16_MAXIM CreateHashFunction(int hashSize)
         {
             return new CRC16_MAXIM();
         }
@@ -837,7 +843,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC16_MCRF4XX CreateHashFunction(Int32 hashSize)
+        protected override CRC16_MCRF4XX CreateHashFunction(int hashSize)
         {
             return new CRC16_MCRF4XX();
         }
@@ -856,7 +862,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC16_RIELLO CreateHashFunction(Int32 hashSize)
+        protected override CRC16_RIELLO CreateHashFunction(int hashSize)
         {
             return new CRC16_RIELLO();
         }
@@ -875,7 +881,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC16_T10DIF CreateHashFunction(Int32 hashSize)
+        protected override CRC16_T10DIF CreateHashFunction(int hashSize)
         {
             return new CRC16_T10DIF();
         }
@@ -894,7 +900,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC16_TELEDISK CreateHashFunction(Int32 hashSize)
+        protected override CRC16_TELEDISK CreateHashFunction(int hashSize)
         {
             return new CRC16_TELEDISK();
         }
@@ -913,7 +919,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC16_TMS37157 CreateHashFunction(Int32 hashSize)
+        protected override CRC16_TMS37157 CreateHashFunction(int hashSize)
         {
             return new CRC16_TMS37157();
         }
@@ -932,7 +938,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC16_USB CreateHashFunction(Int32 hashSize)
+        protected override CRC16_USB CreateHashFunction(int hashSize)
         {
             return new CRC16_USB();
         }
@@ -951,7 +957,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRCA CreateHashFunction(Int32 hashSize)
+        protected override CRCA CreateHashFunction(int hashSize)
         {
             return new CRCA();
         }
@@ -970,7 +976,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override KERMIT CreateHashFunction(Int32 hashSize)
+        protected override KERMIT CreateHashFunction(int hashSize)
         {
             return new KERMIT();
         }
@@ -989,7 +995,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override MODBUS CreateHashFunction(Int32 hashSize)
+        protected override MODBUS CreateHashFunction(int hashSize)
         {
             return new MODBUS();
         }
@@ -1008,7 +1014,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override X25 CreateHashFunction(Int32 hashSize)
+        protected override X25 CreateHashFunction(int hashSize)
         {
             return new X25();
         }
@@ -1027,7 +1033,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override XMODEM CreateHashFunction(Int32 hashSize)
+        protected override XMODEM CreateHashFunction(int hashSize)
         {
             return new XMODEM();
         }
@@ -1046,7 +1052,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC24 CreateHashFunction(Int32 hashSize)
+        protected override CRC24 CreateHashFunction(int hashSize)
         {
             return new CRC24();
         }
@@ -1065,7 +1071,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC24_FLEXRAYA CreateHashFunction(Int32 hashSize)
+        protected override CRC24_FLEXRAYA CreateHashFunction(int hashSize)
         {
             return new CRC24_FLEXRAYA();
         }
@@ -1084,7 +1090,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC24_FLEXRAYB CreateHashFunction(Int32 hashSize)
+        protected override CRC24_FLEXRAYB CreateHashFunction(int hashSize)
         {
             return new CRC24_FLEXRAYB();
         }
@@ -1103,7 +1109,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC31_PHILIPS CreateHashFunction(Int32 hashSize)
+        protected override CRC31_PHILIPS CreateHashFunction(int hashSize)
         {
             return new CRC31_PHILIPS();
         }
@@ -1122,7 +1128,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC32 CreateHashFunction(Int32 hashSize)
+        protected override CRC32 CreateHashFunction(int hashSize)
         {
             return new CRC32();
         }
@@ -1141,7 +1147,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC32_BZIP2 CreateHashFunction(Int32 hashSize)
+        protected override CRC32_BZIP2 CreateHashFunction(int hashSize)
         {
             return new CRC32_BZIP2();
         }
@@ -1160,7 +1166,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC32C CreateHashFunction(Int32 hashSize)
+        protected override CRC32C CreateHashFunction(int hashSize)
         {
             return new CRC32C();
         }
@@ -1179,7 +1185,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC32D CreateHashFunction(Int32 hashSize)
+        protected override CRC32D CreateHashFunction(int hashSize)
         {
             return new CRC32D();
         }
@@ -1198,7 +1204,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC32_MPEG2 CreateHashFunction(Int32 hashSize)
+        protected override CRC32_MPEG2 CreateHashFunction(int hashSize)
         {
             return new CRC32_MPEG2();
         }
@@ -1217,7 +1223,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC32_POSIX CreateHashFunction(Int32 hashSize)
+        protected override CRC32_POSIX CreateHashFunction(int hashSize)
         {
             return new CRC32_POSIX();
         }
@@ -1236,7 +1242,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC32Q CreateHashFunction(Int32 hashSize)
+        protected override CRC32Q CreateHashFunction(int hashSize)
         {
             return new CRC32Q();
         }
@@ -1255,7 +1261,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override JAMCRC CreateHashFunction(Int32 hashSize)
+        protected override JAMCRC CreateHashFunction(int hashSize)
         {
             return new JAMCRC();
         }
@@ -1274,7 +1280,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override XFER CreateHashFunction(Int32 hashSize)
+        protected override XFER CreateHashFunction(int hashSize)
         {
             return new XFER();
         }
@@ -1293,7 +1299,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC40_GSM CreateHashFunction(Int32 hashSize)
+        protected override CRC40_GSM CreateHashFunction(int hashSize)
         {
             return new CRC40_GSM();
         }
@@ -1312,7 +1318,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC64 CreateHashFunction(Int32 hashSize)
+        protected override CRC64 CreateHashFunction(int hashSize)
         {
             return new CRC64();
         }
@@ -1331,7 +1337,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC64_WE CreateHashFunction(Int32 hashSize)
+        protected override CRC64_WE CreateHashFunction(int hashSize)
         {
             return new CRC64_WE();
         }
@@ -1350,7 +1356,7 @@ namespace System.Data.HashFunction.Test
             }
         }
 
-        protected override CRC64_XZ CreateHashFunction(Int32 hashSize)
+        protected override CRC64_XZ CreateHashFunction(int hashSize)
         {
             return new CRC64_XZ();
         }

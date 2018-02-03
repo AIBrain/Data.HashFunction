@@ -6,6 +6,9 @@ using System.Threading;
 
 namespace System.Data.HashFunction.Test
 {
+    using Diagnostics;
+    using Xunit;
+
     public abstract class IHashFunction_SpeedTest
     {
         protected abstract IReadOnlyDictionary<String, IHashFunction> TestHashFunctions { get; }

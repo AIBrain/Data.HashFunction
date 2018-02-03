@@ -3,6 +3,8 @@ using System.Linq;
 
 namespace System.Data.HashFunction.Test.Core.Utilities.IntegerManipulation
 {
+    using Xunit;
+
     public class ReverseByteOrderExtensionsTests
     {
         [Fact]

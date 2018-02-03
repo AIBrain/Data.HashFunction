@@ -5,6 +5,7 @@ using System.Linq;
 
 namespace System.Data.HashFunction.Test.Core.Utilities
 {
+    using Xunit;
 
     public class UInt128Tests
     {

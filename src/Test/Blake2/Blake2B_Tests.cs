@@ -2,6 +2,8 @@
 
 namespace System.Data.HashFunction.Test.Blake2
 {
+    using Xunit;
+
     public class Blake2B_Tests
     {
 

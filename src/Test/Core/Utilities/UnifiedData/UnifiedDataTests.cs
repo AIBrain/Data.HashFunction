@@ -1,6 +1,7 @@
 ﻿namespace System.Data.HashFunction.Test.Core.Utilities.UnifiedData
 {
     using System.Data.HashFunction.Utilities.UnifiedData;
+    using Xunit;
 
     public abstract class UnifiedDataTests
     {

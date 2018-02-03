@@ -8,6 +8,8 @@ using System.Reflection;
 
 namespace System.Data.HashFunction.Test
 {
+    using Xunit;
+
     public abstract class IHashFunctionTests<IHashFunctionT>
         where IHashFunctionT : class, IHashFunction
     {
