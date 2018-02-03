@@ -1,14 +1,13 @@
 ﻿using System.Data.HashFunction.Utilities;
 
-namespace System.Data.HashFunction.Test.Core.Utilities
-{
+namespace System.Data.HashFunction.Test.Core.Utilities {
+
     using Xunit;
 
-    public class UInt32ExtensionsTests
-    {
+    public class UInt32ExtensionsTests {
+
         [Fact]
-        public void UInt32_IEnumerable_ToBytes_ComputesCorrectly()
-        {
+        public void UInt32_IEnumerable_ToBytes_ComputesCorrectly() {
             var testValues = new[] { 2382910298U, 0U, 32483910U, 231398239U };
 
             var expected = new Byte[] {
@@ -18,7 +17,7 @@ namespace System.Data.HashFunction.Test.Core.Utilities
                 0x5f, 0xdb, 0xca, 0x0d
             };
 
-            Assert.Equal(expected, testValues.ToBytes());
+            Assert.Equal( expected, testValues.ToBytes() );
         }
     }
 }

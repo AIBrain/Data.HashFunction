@@ -1,105 +1,110 @@
 ﻿using System.Runtime.CompilerServices;
 
-namespace System.Data.HashFunction.Utilities.IntegerManipulation
-{
-    /// <summary>Static class to provide RotateLeft extension functions.</summary>
-    internal static class RotateLeftExtensions
-    {
+namespace System.Data.HashFunction.Utilities.IntegerManipulation {
+
+    /// <summary>
+    /// Static class to provide RotateLeft extension functions.
+    /// </summary>
+    internal static class RotateLeftExtensions {
+
         /// <summary>
         /// Rotate bits of integer left by specified amount.
         /// </summary>
-        /// <param name="operand">8-bit integer that will have its bits rotated left.</param>
+        /// <param name="operand">   8-bit integer that will have its bits rotated left.</param>
         /// <param name="shiftCount">Number of bits to shift the integer by.</param>
         /// <returns>
-        /// Resulting 8-bit integer after rotating the operand integer's bits by the amount specified by the shiftCount parameter.
+        /// Resulting 8-bit integer after rotating the operand integer's bits by the amount specified
+        /// by the shiftCount parameter.
         /// </returns>
         /// <remarks>
-        /// The shift count is given by the low-order three bits of the shiftCount parameter.
-        /// That is, the actual shift count is 0 to 7 bits.
+        /// The shift count is given by the low-order three bits of the shiftCount parameter. That
+        /// is, the actual shift count is 0 to 7 bits.
         /// </remarks>
 #if !NET40
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+
+        [MethodImpl( MethodImplOptions.AggressiveInlining )]
 #endif
-        public static Byte RotateLeft(this Byte operand, Int32 shiftCount)
-        {
+        public static Byte RotateLeft( this Byte operand, Int32 shiftCount ) {
             shiftCount &= 0x07;
 
-            return (Byte)(
-                (operand << shiftCount) |
-                (operand >> (8 - shiftCount)));
+            return ( Byte )(
+                ( operand << shiftCount ) |
+                ( operand >> ( 8 - shiftCount ) ) );
         }
 
         /// <summary>
         /// Rotate bits of integer left by specified amount.
         /// </summary>
-        /// <param name="operand">16-bit integer that will have its bits rotated left.</param>
+        /// <param name="operand">   16-bit integer that will have its bits rotated left.</param>
         /// <param name="shiftCount">Number of bits to shift the integer by.</param>
         /// <returns>
-        /// Resulting 16-bit integer after rotating the operand integer's bits by the amount specified by the shiftCount parameter.
+        /// Resulting 16-bit integer after rotating the operand integer's bits by the amount
+        /// specified by the shiftCount parameter.
         /// </returns>
         /// <remarks>
-        /// The shift count is given by the low-order four bits of the shiftCount parameter.
-        /// That is, the actual shift count is 0 to 15 bits.
+        /// The shift count is given by the low-order four bits of the shiftCount parameter. That is,
+        /// the actual shift count is 0 to 15 bits.
         /// </remarks>
 #if !NET40
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+
+        [MethodImpl( MethodImplOptions.AggressiveInlining )]
 #endif
-        public static UInt16 RotateLeft(this UInt16 operand, Int32 shiftCount)
-        {
+        public static UInt16 RotateLeft( this UInt16 operand, Int32 shiftCount ) {
             shiftCount &= 0x0f;
 
-            return (UInt16) (
-                (operand << shiftCount) | 
-                (operand >> (16 - shiftCount)));
+            return ( UInt16 )(
+                ( operand << shiftCount ) |
+                ( operand >> ( 16 - shiftCount ) ) );
         }
 
         /// <summary>
         /// Rotate bits of integer left by specified amount.
         /// </summary>
-        /// <param name="operand">32-bit integer that will have its bits rotated left.</param>
+        /// <param name="operand">   32-bit integer that will have its bits rotated left.</param>
         /// <param name="shiftCount">Number of bits to shift the integer by.</param>
         /// <returns>
-        /// Resulting 32-bit integer after rotating the operand integer's bits by the amount specified by the shiftCount parameter.
+        /// Resulting 32-bit integer after rotating the operand integer's bits by the amount
+        /// specified by the shiftCount parameter.
         /// </returns>
         /// <remarks>
-        /// The shift count is given by the low-order five bits of the shiftCount parameter.
-        /// That is, the actual shift count is 0 to 31 bits.
+        /// The shift count is given by the low-order five bits of the shiftCount parameter. That is,
+        /// the actual shift count is 0 to 31 bits.
         /// </remarks>
 #if !NET40
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+
+        [MethodImpl( MethodImplOptions.AggressiveInlining )]
 #endif
-        public static UInt32 RotateLeft(this UInt32 operand, Int32 shiftCount)
-        {
+        public static UInt32 RotateLeft( this UInt32 operand, Int32 shiftCount ) {
             shiftCount &= 0x1f;
 
-            return 
-                (operand << shiftCount) | 
-                (operand >> (32 - shiftCount));
+            return
+                ( operand << shiftCount ) |
+                ( operand >> ( 32 - shiftCount ) );
         }
 
         /// <summary>
         /// Rotate bits of integer left by specified amount.
         /// </summary>
-        /// <param name="operand">64-bit integer that will have its bits rotated left.</param>
+        /// <param name="operand">   64-bit integer that will have its bits rotated left.</param>
         /// <param name="shiftCount">Number of bits to shift the integer by.</param>
         /// <returns>
-        /// Resulting 64-bit integer after rotating the operand integer's bits by the amount specified by the shiftCount parameter.
+        /// Resulting 64-bit integer after rotating the operand integer's bits by the amount
+        /// specified by the shiftCount parameter.
         /// </returns>
         /// <remarks>
-        /// The shift count is given by the low-order six bits of the shiftCount parameter.
-        /// That is, the actual shift count is 0 to 63 bits.
+        /// The shift count is given by the low-order six bits of the shiftCount parameter. That is,
+        /// the actual shift count is 0 to 63 bits.
         /// </remarks>
 #if !NET40
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+
+        [MethodImpl( MethodImplOptions.AggressiveInlining )]
 #endif
-        public static UInt64 RotateLeft(this UInt64 operand, Int32 shiftCount)
-        {
+        public static UInt64 RotateLeft( this UInt64 operand, Int32 shiftCount ) {
             shiftCount &= 0x3f;
 
             return
-                (operand << shiftCount) |
-                (operand >> (64 - shiftCount));
+                ( operand << shiftCount ) |
+                ( operand >> ( 64 - shiftCount ) );
         }
-
     }
 }

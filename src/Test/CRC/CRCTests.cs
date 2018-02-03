@@ -1,56 +1,48 @@
-﻿namespace System.Data.HashFunction.Test.CRC_Tests
-{
+﻿namespace System.Data.HashFunction.Test.CRC_Tests {
+
     using System.Data.HashFunction;
     using Xunit;
 
-    public class CRCTests
-    {
+    public class CRCTests {
+
         [Fact]
-        public void CRC_DefaultSettings_Null_Throws()
-        {
+        public void CRC_Consturctor_Null_Throws() {
             Assert.Equal(
-                "value",
-                Assert.Throws<ArgumentNullException>(() =>
-                    CRC.DefaultSettings = null)
-                .ParamName);
+                "settings",
+                Assert.Throws<ArgumentNullException>( () =>
+                     new CRC( null ) )
+                .ParamName );
         }
 
         [Fact]
-        public void CRC_DefaultSettings_Works()
-        {
+        public void CRC_DefaultSettings_Null_Throws() {
+            Assert.Equal(
+                "value",
+                Assert.Throws<ArgumentNullException>( () =>
+                     CRC.DefaultSettings = null )
+                .ParamName );
+        }
+
+        [Fact]
+        public void CRC_DefaultSettings_Works() {
             var testSettings = CRC.Standards[CRC.Standard.CRC24];
 
             // Ensure we're actually testing something
             Assert.NotEqual(
                 testSettings,
-                CRC.DefaultSettings);
-
-
+                CRC.DefaultSettings );
 
             CRC.DefaultSettings = testSettings;
 
             Assert.Equal(
                 testSettings,
-                CRC.DefaultSettings);
-
+                CRC.DefaultSettings );
 
             var crc = new CRC();
 
             Assert.Equal(
                 testSettings,
-                crc.Settings);
+                crc.Settings );
         }
-
-
-        [Fact]
-        public void CRC_Consturctor_Null_Throws()
-        {
-            Assert.Equal(
-                "settings",
-                Assert.Throws<ArgumentNullException>(() => 
-                    new CRC(null))
-                .ParamName);
-        }
-
     }
 }

@@ -1,20 +1,21 @@
 ﻿using System.Collections.Generic;
 
-namespace System.Data.HashFunction
-{
+namespace System.Data.HashFunction {
+
     /// <summary>
     /// Implementation of Pearson hashing using the lookup table given in the article at
     /// http://en.wikipedia.org/wiki/Pearson_hashing as of 2014-04-21.
-    /// 
-    /// The implementation was modified to allow whole-byte outputs between 8 and 2040 bits (provided by <see cref="PearsonBase"/>).
+    ///
+    /// The implementation was modified to allow whole-byte outputs between 8 and 2040 bits (provided
+    /// by <see cref="PearsonBase"/>).
     /// </summary>
     /// <remarks>
     /// There is nothing special about this implementation's lookup table that makes it explicitly
     /// better or worse than other valid lookup tables.
     /// </remarks>
     public class WikipediaPearson
-        : PearsonBase
-    {
+        : PearsonBase {
+
         private static readonly Byte[] _T = new Byte[] {
              98,   6,  85, 150,  36,  23, 112, 164, 135, 207, 169,   5,  26,  64, 165, 219, //  1
              61,  20,  68,  89, 130,  63,  52, 102,  24, 229, 132, 245,  80, 216, 195, 115, //  2
@@ -35,25 +36,27 @@ namespace System.Data.HashFunction
         };
 
 #if !NET40
-        /// <inheritdoc cref="PearsonBase(IReadOnlyList{byte})" />
-#else
-        /// <inheritdoc cref="PearsonBase(IList{byte})" />
-#endif
-        public WikipediaPearson()
-            : base(_T)
-        {
 
+        /// <inheritdoc cref="PearsonBase(IReadOnlyList{byte})"/>
+#else
+
+        /// <inheritdoc cref="PearsonBase(IList{byte})"/>
+#endif
+
+        public WikipediaPearson()
+            : base( _T ) {
         }
 
 #if !NET40
-        /// <inheritdoc cref="PearsonBase(IReadOnlyList{byte}, int)" />
+
+        /// <inheritdoc cref="PearsonBase(IReadOnlyList{byte}, int)"/>
 #else
-        /// <inheritdoc cref="PearsonBase(IList{byte}, int)" />
+
+        /// <inheritdoc cref="PearsonBase(IList{byte}, int)"/>
 #endif
-        public WikipediaPearson(Int32 hashSize)
-            : base(_T, hashSize)
-        { 
-        
+
+        public WikipediaPearson( Int32 hashSize )
+            : base( _T, hashSize ) {
         }
     }
 }

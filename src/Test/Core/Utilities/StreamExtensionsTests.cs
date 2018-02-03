@@ -1,7 +1,5 @@
-﻿namespace System.Data.HashFunction.Test.Core.Utilities
-{
-    public class StreamExtensionsTests
-    {
+﻿namespace System.Data.HashFunction.Test.Core.Utilities {
 
+    public class StreamExtensionsTests {
     }
 }

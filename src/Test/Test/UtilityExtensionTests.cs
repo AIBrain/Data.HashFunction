@@ -1,44 +1,13 @@
 ﻿using System.Linq;
 
-namespace System.Data.HashFunction.Test.Test
-{
+namespace System.Data.HashFunction.Test.Test {
+
     using Xunit;
 
-    public class UtilityExtensionTests
-    {
-        [Fact]
-        public void UtilityExtension_HexToBytes_InvalidHexLength_Throws()
-        {
-            foreach (var invalidLength in Enumerable.Range(0, 32).Select(i => (i * 2) + 1))
-            {
-                Assert.Equal("hexString", 
-                    Assert.Throws<ArgumentException>(() =>
-                        (new String('a', invalidLength)).HexToBytes())
-                    .ParamName);
-            }
-            
-        }
+    public class UtilityExtensionTests {
 
         [Fact]
-        public void UtilityExtension_HexToBytes_InvalidCharacters_Throws()
-        {
-            var testValues = new[] {
-                "!012", "0=12", "01^2", "012|",
-                  "//",   "::",   "@@",   "GG",   "``",   "gg"
-            };
-
-            foreach (var testValue in testValues)
-            {
-                Assert.Equal("hexString",
-                    Assert.Throws<ArgumentException>(() =>
-                        testValue.HexToBytes())
-                    .ParamName);
-            }
-        }
-
-        [Fact]
-        public void UtilityExtension_HexToBytes_All_Permutations_Work()
-        {
+        public void UtilityExtension_HexToBytes_All_Permutations_Work() {
             var expected = new Byte[] {
                 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f,
                 0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0x1a, 0x1b, 0x1c, 0x1d, 0x1e, 0x1f,
@@ -74,7 +43,7 @@ namespace System.Data.HashFunction.Test.Test
                 0xf0, 0xf1, 0xf2, 0xf3, 0xf4, 0xf5, 0xf6, 0xf7, 0xf8, 0xf9, 0xfa, 0xfb, 0xfc, 0xfd, 0xfe, 0xff,
             };
 
-            var testString = 
+            var testString =
                 "000102030405060708090a0b0c0d0e0f" +
                 "101112131415161718191a1b1c1d1e1f" +
                 "202122232425262728292a2b2c2d2e2f" +
@@ -90,7 +59,7 @@ namespace System.Data.HashFunction.Test.Test
                 "c0c1c2c3c4c5c6c7c8c9cacbcccdcecf" +
                 "d0d1d2d3d4d5d6d7d8d9dadbdcdddedf" +
                 "e0e1e2e3e4e5e6e7e8e9eaebecedeeef" +
-                "f0f1f2f3f4f5f6f7f8f9fafbfcfdfeff" + 
+                "f0f1f2f3f4f5f6f7f8f9fafbfcfdfeff" +
                 "-_ -_ -_ -_ -_ -_ -_ -_ -_ -_ -_ " +
                 "000102030405060708090A0B0C0D0E0F" +
                 "101112131415161718191A1B1C1D1E1F" +
@@ -109,12 +78,36 @@ namespace System.Data.HashFunction.Test.Test
                 "E0E1E2E3E4E5E6E7E8E9EAEBECEDEEEF" +
                 "F0F1F2F3F4F5F6F7F8F9FAFBFCFDFEFF";
 
-            Assert.Equal(expected, testString.HexToBytes());
+            Assert.Equal( expected, testString.HexToBytes() );
         }
 
-        public void UtilityExtension_HexToBytes_EmptyString_Works()
-        {
-            Assert.Equal(new Byte[0], "".HexToBytes());
+        public void UtilityExtension_HexToBytes_EmptyString_Works() {
+            Assert.Equal( new Byte[0], "".HexToBytes() );
+        }
+
+        [Fact]
+        public void UtilityExtension_HexToBytes_InvalidCharacters_Throws() {
+            var testValues = new[] {
+                "!012", "0=12", "01^2", "012|",
+                  "//",   "::",   "@@",   "GG",   "``",   "gg"
+            };
+
+            foreach ( var testValue in testValues ) {
+                Assert.Equal( "hexString",
+                    Assert.Throws<ArgumentException>( () =>
+                         testValue.HexToBytes() )
+                    .ParamName );
+            }
+        }
+
+        [Fact]
+        public void UtilityExtension_HexToBytes_InvalidHexLength_Throws() {
+            foreach ( var invalidLength in Enumerable.Range( 0, 32 ).Select( i => ( i * 2 ) + 1 ) ) {
+                Assert.Equal( "hexString",
+                    Assert.Throws<ArgumentException>( () =>
+                         ( new String( 'a', invalidLength ) ).HexToBytes() )
+                    .ParamName );
+            }
         }
     }
 }

@@ -1,29 +1,26 @@
 ﻿using System.Collections.Generic;
 
-namespace System.Data.HashFunction.Test.Core.Utilities.IntegerManipulation
-{
+namespace System.Data.HashFunction.Test.Core.Utilities.IntegerManipulation {
+
     using System.Data.HashFunction.Utilities.IntegerManipulation;
     using Xunit;
 
-    public class ReflectBitsExtensionsTests
-    {
+    public class ReflectBitsExtensionsTests {
+
         [Fact]
-        public void ReflectBits_Byte_InvalidBitLength_Throws()
-        {
+        public void ReflectBits_Byte_InvalidBitLength_Throws() {
             Byte value = 0;
 
-            foreach (var invalidBitLength in new[] { Int32.MinValue, Int16.MinValue, -1, 0, 9, Int16.MaxValue, Int32.MaxValue })
-            {
-                Assert.Equal("bitLength",
-                    Assert.Throws<ArgumentOutOfRangeException>(() =>
-                        value.ReflectBits(invalidBitLength))
-                    .ParamName);
+            foreach ( var invalidBitLength in new[] { Int32.MinValue, Int16.MinValue, -1, 0, 9, Int16.MaxValue, Int32.MaxValue } ) {
+                Assert.Equal( "bitLength",
+                    Assert.Throws<ArgumentOutOfRangeException>( () =>
+                         value.ReflectBits( invalidBitLength ) )
+                    .ParamName );
             }
         }
 
         [Fact]
-        public void ReflectBits_Byte_Works()
-        {
+        public void ReflectBits_Byte_Works() {
             Byte value = 0xcb;
             var expectedValues = new Dictionary<Int32, Byte>() {
                 { 1, 0x01 },
@@ -36,32 +33,27 @@ namespace System.Data.HashFunction.Test.Core.Utilities.IntegerManipulation
                 { 8, 0xd3 },
             };
 
-            foreach (var expectedValue in expectedValues)
-            {
+            foreach ( var expectedValue in expectedValues ) {
                 Assert.Equal(
-                    expectedValue.Value, 
-                    value.ReflectBits(expectedValue.Key));
+                    expectedValue.Value,
+                    value.ReflectBits( expectedValue.Key ) );
             }
         }
 
-
         [Fact]
-        public void ReflectBits_UInt16_InvalidBitLength_Throws()
-        {
+        public void ReflectBits_UInt16_InvalidBitLength_Throws() {
             UInt16 value = 0;
 
-            foreach (var invalidBitLength in new[] { Int32.MinValue, Int16.MinValue, -1, 0, 17, Int16.MaxValue, Int32.MaxValue })
-            {
-                Assert.Equal("bitLength",
-                    Assert.Throws<ArgumentOutOfRangeException>(() =>
-                        value.ReflectBits(invalidBitLength))
-                    .ParamName);
+            foreach ( var invalidBitLength in new[] { Int32.MinValue, Int16.MinValue, -1, 0, 17, Int16.MaxValue, Int32.MaxValue } ) {
+                Assert.Equal( "bitLength",
+                    Assert.Throws<ArgumentOutOfRangeException>( () =>
+                         value.ReflectBits( invalidBitLength ) )
+                    .ParamName );
             }
         }
 
         [Fact]
-        public void ReflectBits_UInt16_Works()
-        {
+        public void ReflectBits_UInt16_Works() {
             UInt16 value = 0x5bc1;
             var expectedValues = new Dictionary<Int32, UInt16>() {
                 {  1, 0x0001 },       {  9, 0x0107 },
@@ -74,32 +66,27 @@ namespace System.Data.HashFunction.Test.Core.Utilities.IntegerManipulation
                 {  8, 0x0083 },       { 16, 0x83da },
             };
 
-            foreach (var expectedValue in expectedValues)
-            {
+            foreach ( var expectedValue in expectedValues ) {
                 Assert.Equal(
                     expectedValue.Value,
-                    value.ReflectBits(expectedValue.Key));
+                    value.ReflectBits( expectedValue.Key ) );
             }
         }
 
-
         [Fact]
-        public void ReflectBits_UInt32_InvalidBitLength_Throws()
-        {
+        public void ReflectBits_UInt32_InvalidBitLength_Throws() {
             UInt32 value = 0;
 
-            foreach (var invalidBitLength in new[] { Int32.MinValue, Int16.MinValue, -1, 0, 33, Int16.MaxValue, Int32.MaxValue })
-            {
-                Assert.Equal("bitLength",
-                    Assert.Throws<ArgumentOutOfRangeException>(() =>
-                        value.ReflectBits(invalidBitLength))
-                    .ParamName);
+            foreach ( var invalidBitLength in new[] { Int32.MinValue, Int16.MinValue, -1, 0, 33, Int16.MaxValue, Int32.MaxValue } ) {
+                Assert.Equal( "bitLength",
+                    Assert.Throws<ArgumentOutOfRangeException>( () =>
+                         value.ReflectBits( invalidBitLength ) )
+                    .ParamName );
             }
         }
 
         [Fact]
-        public void ReflectBits_UInt32_Works()
-        {
+        public void ReflectBits_UInt32_Works() {
             UInt32 value = 0x9df3404c;
             var expectedValues = new Dictionary<Int32, UInt32>() {
                 {  1, 0x0000 },       { 17, 0x00006405 },
@@ -120,32 +107,27 @@ namespace System.Data.HashFunction.Test.Core.Utilities.IntegerManipulation
                 { 16, 0x3202 },       { 32, 0x3202cfb9 },
             };
 
-            foreach (var expectedValue in expectedValues)
-            {
+            foreach ( var expectedValue in expectedValues ) {
                 Assert.Equal(
                     expectedValue.Value,
-                    value.ReflectBits(expectedValue.Key));
+                    value.ReflectBits( expectedValue.Key ) );
             }
         }
 
-
         [Fact]
-        public void ReflectBits_UInt64_InvalidBitLength_Throws()
-        {
+        public void ReflectBits_UInt64_InvalidBitLength_Throws() {
             UInt64 value = 0;
 
-            foreach (var invalidBitLength in new[] { Int32.MinValue, Int16.MinValue, -1, 0, 65, Int16.MaxValue, Int32.MaxValue })
-            {
-                Assert.Equal("bitLength",
-                    Assert.Throws<ArgumentOutOfRangeException>(() =>
-                        value.ReflectBits(invalidBitLength))
-                    .ParamName);
+            foreach ( var invalidBitLength in new[] { Int32.MinValue, Int16.MinValue, -1, 0, 65, Int16.MaxValue, Int32.MaxValue } ) {
+                Assert.Equal( "bitLength",
+                    Assert.Throws<ArgumentOutOfRangeException>( () =>
+                         value.ReflectBits( invalidBitLength ) )
+                    .ParamName );
             }
         }
 
         [Fact]
-        public void ReflectBits_UInt64_Works()
-        {
+        public void ReflectBits_UInt64_Works() {
             UInt64 value = 0xf2faab56cb0b277f;
             var expectedValues = new Dictionary<Int32, UInt64>() {
                 {  1, 0x0001 },       { 17, 0x0001fdc9 },       { 33, 0x0001fdc9a1a6 },       { 49, 0x0001fdc9a1a6d5aa },
@@ -166,13 +148,11 @@ namespace System.Data.HashFunction.Test.Core.Utilities.IntegerManipulation
                 { 16, 0xfee4 },       { 32, 0xfee4d0d3 },       { 48, 0xfee4d0d36ad5 },       { 64, 0xfee4d0d36ad55f4f },
             };
 
-            foreach (var expectedValue in expectedValues)
-            {
+            foreach ( var expectedValue in expectedValues ) {
                 Assert.Equal(
                     expectedValue.Value,
-                    value.ReflectBits(expectedValue.Key));
+                    value.ReflectBits( expectedValue.Key ) );
             }
         }
-
     }
 }

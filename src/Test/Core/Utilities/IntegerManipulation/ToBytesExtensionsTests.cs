@@ -1,30 +1,27 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace System.Data.HashFunction.Test.Core.Utilities.IntegerManipulation
-{
+namespace System.Data.HashFunction.Test.Core.Utilities.IntegerManipulation {
+
     using System.Data.HashFunction.Utilities.IntegerManipulation;
     using Xunit;
 
-    public class ToBytesExtensionsTests
-    {
+    public class ToBytesExtensionsTests {
+
         [Fact]
-        public void ToBytes_Byte_InvalidBitLength_Throws()
-        {
+        public void ToBytes_Byte_InvalidBitLength_Throws() {
             Byte value = 0;
 
-            foreach (var invalidBitLength in new[] { Int32.MinValue, Int16.MinValue, -1, 0, 9, Int16.MaxValue, Int32.MaxValue })
-            {
-                Assert.Equal("bitLength",
-                    Assert.Throws<ArgumentOutOfRangeException>(() =>
-                        value.ToBytes(invalidBitLength))
-                    .ParamName);
+            foreach ( var invalidBitLength in new[] { Int32.MinValue, Int16.MinValue, -1, 0, 9, Int16.MaxValue, Int32.MaxValue } ) {
+                Assert.Equal( "bitLength",
+                    Assert.Throws<ArgumentOutOfRangeException>( () =>
+                         value.ToBytes( invalidBitLength ) )
+                    .ParamName );
             }
         }
 
         [Fact]
-        public void ToBytes_Byte_Works()
-        {
+        public void ToBytes_Byte_Works() {
             Byte value = 0xD2;
             var expectedValues = new Dictionary<Int32, Byte>() {
                 { 1, 0x00 },
@@ -37,32 +34,27 @@ namespace System.Data.HashFunction.Test.Core.Utilities.IntegerManipulation
                 { 8, 0xd2 },
             };
 
-            foreach (var expectedValue in expectedValues)
-            {
+            foreach ( var expectedValue in expectedValues ) {
                 Assert.Equal(
-                    new[] { expectedValue.Value }, 
-                    value.ToBytes(expectedValue.Key));
+                    new[] { expectedValue.Value },
+                    value.ToBytes( expectedValue.Key ) );
             }
         }
 
-
         [Fact]
-        public void ToBytes_UInt16_InvalidBitLength_Throws()
-        {
+        public void ToBytes_UInt16_InvalidBitLength_Throws() {
             UInt16 value = 0;
 
-            foreach (var invalidBitLength in new[] { Int32.MinValue, Int16.MinValue, -1, 0, 17, Int16.MaxValue, Int32.MaxValue })
-            {
-                Assert.Equal("bitLength",
-                    Assert.Throws<ArgumentOutOfRangeException>(() =>
-                        value.ToBytes(invalidBitLength))
-                    .ParamName);
+            foreach ( var invalidBitLength in new[] { Int32.MinValue, Int16.MinValue, -1, 0, 17, Int16.MaxValue, Int32.MaxValue } ) {
+                Assert.Equal( "bitLength",
+                    Assert.Throws<ArgumentOutOfRangeException>( () =>
+                         value.ToBytes( invalidBitLength ) )
+                    .ParamName );
             }
         }
 
         [Fact]
-        public void ToBytes_UInt16_Works()
-        {
+        public void ToBytes_UInt16_Works() {
             UInt16 value = 0xf6e1;
             var expectedValues = new Dictionary<Int32, UInt16>() {
                 {  1, 0x01 },       {  9, 0x00e1 },
@@ -75,32 +67,27 @@ namespace System.Data.HashFunction.Test.Core.Utilities.IntegerManipulation
                 {  8, 0xe1 },       { 16, 0xf6e1 },
             };
 
-            foreach (var expectedValue in expectedValues)
-            {
+            foreach ( var expectedValue in expectedValues ) {
                 Assert.Equal(
-                    BitConverter.GetBytes(expectedValue.Value).Take((expectedValue.Key + 7) / 8), 
-                    value.ToBytes(expectedValue.Key));
+                    BitConverter.GetBytes( expectedValue.Value ).Take( ( expectedValue.Key + 7 ) / 8 ),
+                    value.ToBytes( expectedValue.Key ) );
             }
         }
 
-
         [Fact]
-        public void ToBytes_UInt32_InvalidBitLength_Throws()
-        {
+        public void ToBytes_UInt32_InvalidBitLength_Throws() {
             UInt32 value = 0;
 
-            foreach (var invalidBitLength in new[] { Int32.MinValue, Int16.MinValue, -1, 0, 33, Int16.MaxValue, Int32.MaxValue })
-            {
-                Assert.Equal("bitLength",
-                    Assert.Throws<ArgumentOutOfRangeException>(() =>
-                        value.ToBytes(invalidBitLength))
-                    .ParamName);
+            foreach ( var invalidBitLength in new[] { Int32.MinValue, Int16.MinValue, -1, 0, 33, Int16.MaxValue, Int32.MaxValue } ) {
+                Assert.Equal( "bitLength",
+                    Assert.Throws<ArgumentOutOfRangeException>( () =>
+                         value.ToBytes( invalidBitLength ) )
+                    .ParamName );
             }
         }
 
         [Fact]
-        public void ToBytes_UInt32_Works()
-        {
+        public void ToBytes_UInt32_Works() {
             UInt32 value = 0x9df3404c;
             var expectedValues = new Dictionary<Int32, UInt32>() {
                 {  1, 0x0000 },       { 17, 0x0001404c },
@@ -121,32 +108,27 @@ namespace System.Data.HashFunction.Test.Core.Utilities.IntegerManipulation
                 { 16, 0x404c },       { 32, 0x9df3404c },
             };
 
-            foreach (var expectedValue in expectedValues)
-            {
+            foreach ( var expectedValue in expectedValues ) {
                 Assert.Equal(
-                    BitConverter.GetBytes(expectedValue.Value).Take((expectedValue.Key + 7) / 8), 
-                    value.ToBytes(expectedValue.Key));
+                    BitConverter.GetBytes( expectedValue.Value ).Take( ( expectedValue.Key + 7 ) / 8 ),
+                    value.ToBytes( expectedValue.Key ) );
             }
         }
 
-
         [Fact]
-        public void ToBytes_UInt64_InvalidBitLength_Throws()
-        {
+        public void ToBytes_UInt64_InvalidBitLength_Throws() {
             UInt64 value = 0;
 
-            foreach (var invalidBitLength in new[] { Int32.MinValue, Int16.MinValue, -1, 0, 65, Int16.MaxValue, Int32.MaxValue })
-            {
-                Assert.Equal("bitLength",
-                    Assert.Throws<ArgumentOutOfRangeException>(() =>
-                        value.ToBytes(invalidBitLength))
-                    .ParamName);
+            foreach ( var invalidBitLength in new[] { Int32.MinValue, Int16.MinValue, -1, 0, 65, Int16.MaxValue, Int32.MaxValue } ) {
+                Assert.Equal( "bitLength",
+                    Assert.Throws<ArgumentOutOfRangeException>( () =>
+                         value.ToBytes( invalidBitLength ) )
+                    .ParamName );
             }
         }
 
         [Fact]
-        public void ToBytes_UInt64_Works()
-        {
+        public void ToBytes_UInt64_Works() {
             UInt64 value = 0xaf9363cc7e0d89eb;
             var expectedValues = new Dictionary<Int32, UInt64>() {
                 {  1, 0x0001 },       { 17, 0x000189eb },       { 33, 0x00007e0d89eb },       { 49, 0x000163cc7e0d89eb },
@@ -167,13 +149,11 @@ namespace System.Data.HashFunction.Test.Core.Utilities.IntegerManipulation
                 { 16, 0x89eb },       { 32, 0x7e0d89eb },       { 48, 0x63cc7e0d89eb },       { 64, 0xaf9363cc7e0d89eb },
             };
 
-            foreach (var expectedValue in expectedValues)
-            {
+            foreach ( var expectedValue in expectedValues ) {
                 Assert.Equal(
-                    BitConverter.GetBytes(expectedValue.Value).Take((expectedValue.Key + 7) / 8), 
-                    value.ToBytes(expectedValue.Key));
+                    BitConverter.GetBytes( expectedValue.Value ).Take( ( expectedValue.Key + 7 ) / 8 ),
+                    value.ToBytes( expectedValue.Key ) );
             }
         }
-
     }
 }

@@ -1,10 +1,8 @@
-﻿namespace System.Data.HashFunction
-{
+﻿namespace System.Data.HashFunction {
+
     /// <summary>
     /// Namespace containing all supported HashFunctions provided by Data.HashFunction.
     /// </summary>
-    internal static class NamespaceDoc
-    {
-
+    internal static class NamespaceDoc {
     }
 }

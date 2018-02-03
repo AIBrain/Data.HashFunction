@@ -1,41 +1,37 @@
 ﻿using System.Data.HashFunction.Utilities.IntegerManipulation;
 
-namespace System.Data.HashFunction.Test.Core.Utilities.IntegerManipulation
-{
+namespace System.Data.HashFunction.Test.Core.Utilities.IntegerManipulation {
+
     using Xunit;
 
-    public class RotateRightExtensionsTests
-    {
-        [Fact]
-        public void RotateRight_byte_RotatesCorrectly()
-        {
-            var operand = (Byte) 198;
+    public class RotateRightExtensionsTests {
 
-            Assert.Equal((Byte) 108, operand.RotateRight(4));
+        [Fact]
+        public void RotateRight_byte_RotatesCorrectly() {
+            var operand = ( Byte )198;
+
+            Assert.Equal( ( Byte )108, operand.RotateRight( 4 ) );
         }
 
         [Fact]
-        public void RotateRight_UInt16_RotatesCorrectly()
-        {
-            var operand = (UInt16) 38291;
+        public void RotateRight_UInt16_RotatesCorrectly() {
+            var operand = ( UInt16 )38291;
 
-            Assert.Equal((UInt16) 14681, operand.RotateRight(4));
+            Assert.Equal( ( UInt16 )14681, operand.RotateRight( 4 ) );
         }
 
         [Fact]
-        public void RotateRight_UInt32_RotatesCorrectly()
-        {
+        public void RotateRight_UInt32_RotatesCorrectly() {
             var operand = 2916644410U;
 
-            Assert.Equal(2866644835U, operand.RotateRight(4));
+            Assert.Equal( 2866644835U, operand.RotateRight( 4 ) );
         }
 
         [Fact]
-        public void RotateRight_UInt64_RotatesCorrectly()
-        {
+        public void RotateRight_UInt64_RotatesCorrectly() {
             var operand = 3421843292831082394UL;
 
-            Assert.Equal(11743080251870412409UL, operand.RotateRight(4));
+            Assert.Equal( 11743080251870412409UL, operand.RotateRight( 4 ) );
         }
     }
 }

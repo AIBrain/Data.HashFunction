@@ -1,9 +1,9 @@
-﻿namespace System.Data.HashFunction.Utilities.IntegerManipulation
-{
+﻿namespace System.Data.HashFunction.Utilities.IntegerManipulation {
+
     /// <summary>
-    /// Contains extension functions for manipulating integer to be shared only within Data.HashFunction.* assemblies.
+    /// Contains extension functions for manipulating integer to be shared only within
+    /// Data.HashFunction.* assemblies.
     /// </summary>
-    internal static class NamespaceDoc
-    {
+    internal static class NamespaceDoc {
     }
 }

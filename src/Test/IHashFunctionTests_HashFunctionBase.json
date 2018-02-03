@@ -816,7 +816,6 @@
                     { "Bits": 128, "TestValue": "TestConstants.RandomShort",  "ExpectedValue": "\"67cbf6f803487e7e09bffce371172c13\"" },
                     { "Bits": 128, "TestValue": "TestConstants.RandomLong",   "ExpectedValue": "\"98999f077f446a5ee962148d86279ea0\"" },
 
-
                     { "Bits":  32, "TestValue": "TestConstants.LoremIpsum.Take(3)", "ExpectedValue": "0xd83c2fa0" },
                     { "Bits":  64, "TestValue": "TestConstants.LoremIpsum.Take(3)", "ExpectedValue": "0xfa10ac780bf932dd" },
                     { "Bits": 128, "TestValue": "TestConstants.LoremIpsum.Take(3)", "ExpectedValue": "\"8b5529b80301a1c414cc313959fd5255\"" },
@@ -824,7 +823,6 @@
                     { "Bits":  32, "TestValue": "TestConstants.LoremIpsum.Take(23)", "ExpectedValue": "0xa6480aae" },
                     { "Bits":  64, "TestValue": "TestConstants.LoremIpsum.Take(23)", "ExpectedValue": "0x3a03aa21105c4286" },
                     { "Bits": 128, "TestValue": "TestConstants.LoremIpsum.Take(23)", "ExpectedValue": "\"658f52c24d66d71d844823de90c3d9ac\"" },
-
 
                     { "Bits":  32, "TestValue": "TestConstants.LoremIpsum.Take(64)", "ExpectedValue": "0x8ace2a1a" },
                     { "Bits":  64, "TestValue": "TestConstants.LoremIpsum.Take(64)", "ExpectedValue": "0x2167be8daa61f94d" },
@@ -852,7 +850,6 @@
         ]
     },
 
-    
     {
         "Name": "Data.HashFunction.Core",
         "Tests":  [
@@ -864,7 +861,6 @@
                     { "Bits": 0, "TestValue": "TestConstants.Empty", "ExpectedValue": "new byte[0]" }
                 ]
             },
-
 
             {
                 "IHashFunctionT": "HashAlgorithmWrapper",
@@ -923,7 +919,6 @@
                     { "Bits": 160, "TestValue": "TestConstants.FooBar", "ExpectedValue": "\"a06e327ea7388c18e4740e350ed4e60f2e04fc41\"" }
                 ]
             },
-
 
             {
                 "IHashFunctionT": "HashAlgorithmWrapper<SHA1Managed>",
@@ -995,7 +990,6 @@
         ]
     },
 
-    
     {
         "Name": "Data.HashFunction.FNV",
         "Tests":  [
@@ -1089,7 +1083,6 @@
                 ]
             },
 
-            
             {
                 "IHashFunctionT": "JenkinsLookup2",
                 "Async": true,
@@ -1108,10 +1101,8 @@
                     { "Bits": 32, "TestValue": "TestConstants.FooBar", "ExpectedValue": "0xaeb72b0c" },
                     { "Bits": 64, "TestValue": "TestConstants.FooBar", "ExpectedValue": "0xacf2fd4caeb72b0c" },
 
-                    
                     { "Bits": 32, "TestValue": "TestConstants.LoremIpsum.Take(12)", "ExpectedValue": "0x8e663aee" },
                     { "Bits": 64, "TestValue": "TestConstants.LoremIpsum.Take(12)", "ExpectedValue": "0xb6d69c8c8e663aee" },
-                    
 
                     { "Bits": 32, "TestValue": "TestConstants.LoremIpsum.Take(15)", "ExpectedValue": "0x9b484ed5" },
                     { "Bits": 64, "TestValue": "TestConstants.LoremIpsum.Take(15)", "ExpectedValue": "0x14b71e4d9b484ed5" },
@@ -1134,7 +1125,7 @@
                 "ConstructionParameters": [ "" ],
                 "KnownValues":  [
                     { "Bits": 32, "TestValue": "TestConstants.FooBar", "ExpectedValue": "0xaeb72b0c" },
-                    
+
                     { "Bits": 32, "TestValue": "TestConstants.LoremIpsum.Take(12)", "ExpectedValue": "0x8e663aee" },
                     { "Bits": 32, "TestValue": "TestConstants.LoremIpsum.Take(15)", "ExpectedValue": "0x9b484ed5" },
                     { "Bits": 32, "TestValue": "TestConstants.LoremIpsum.Take(19)", "ExpectedValue": "0xad9cba6f" },
@@ -1142,7 +1133,6 @@
                     { "Bits": 32, "TestValue": "TestConstants.LoremIpsum.Take(24)", "ExpectedValue": "0xf2b662ef" }
                 ]
             },
-
 
             {
                 "IHashFunctionT": "JenkinsLookup3",
@@ -1176,7 +1166,7 @@
                 "ConstructionParameters": [ "" ],
                 "KnownValues":  [
                     { "Bits": 32, "TestValue": "TestConstants.FooBar", "ExpectedValue": "0x5c45f49b" },
-                    
+
                     { "Bits": 32, "TestValue": "TestConstants.LoremIpsum.Take(7)", "ExpectedValue": "0xff3a37aa" }
                 ]
             },
@@ -1188,7 +1178,6 @@
                 "KnownValues":  [
                     { "Bits": 32, "TestValue": "TestConstants.FooBar", "ExpectedValue": "0x6715a92e" },
                     { "Bits": 64, "TestValue": "TestConstants.FooBar", "ExpectedValue": "0xd49f461720d7a196" },
-
 
                     { "Bits": 32, "TestValue": "TestConstants.LoremIpsum.Take(15)", "ExpectedValue": "0x384025b5" },
                     { "Bits": 64, "TestValue": "TestConstants.LoremIpsum.Take(11)", "ExpectedValue": "0xa4d1d1c83f3125d2" },
@@ -1204,7 +1193,7 @@
                 "ConstructionParameters": [ "" ],
                 "KnownValues":  [
                     { "Bits": 64, "TestValue": "TestConstants.FooBar", "ExpectedValue": "0xd49f461720d7a196" },
-                    
+
                     { "Bits": 64, "TestValue": "TestConstants.LoremIpsum.Take(15)", "ExpectedValue": "0xfa38fed50a3dc771" }
                 ]
             },
@@ -1358,7 +1347,6 @@
                     { "Bits": 128, "TestValue": "TestConstants.FooBar", "ExpectedValue": "\"2ffa3a68544614fc258f142b35dfb07a\"" }
                 ]
             },
-
 
             {
                 "IHashFunctionT": "SpookyHashV2",

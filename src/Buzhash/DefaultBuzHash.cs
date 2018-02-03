@@ -1,20 +1,21 @@
 ﻿using System.Collections.Generic;
 
-namespace System.Data.HashFunction
-{
+namespace System.Data.HashFunction {
+
     /// <summary>
-    /// Basic implementation of <see cref="BuzHashBase" /> class.  
-    /// 
+    /// Basic implementation of <see cref="BuzHashBase"/> class.
+    ///
     /// Uses randomly generated table and left circular shift.
     /// </summary>
     public class DefaultBuzHash
-        : BuzHashBase
-    {
+        : BuzHashBase {
+
         /// <summary>
         /// Array of 256 random and distinct UInt64 values.
         /// </summary>
 #if !NET40
-        private static readonly IReadOnlyList<UInt64> _Rtab = 
+
+        private static readonly IReadOnlyList<UInt64> _Rtab =
 #else
         private static readonly IList<UInt64> _Rtab =
 #endif
@@ -85,72 +86,58 @@ namespace System.Data.HashFunction
                 0x7B79E1EC83874C2A, 0x6B2FFD2662DA5E68, 0xCF3EEBA20B383BCE, 0x4503C00A838F9989
             };
 
-
-        
         /// <remarks>
-        /// Defaults <see cref="BuzHashBase.ShiftDirection" /> to <see cref="BuzHashBase.CircularShiftDirection.Left" />.
-        /// <inheritdoc cref="DefaultBuzHash(CircularShiftDirection)" />
+        /// Defaults <see cref="BuzHashBase.ShiftDirection"/> to
+        /// <see cref="BuzHashBase.CircularShiftDirection.Left"/>. <inheritdoc cref="DefaultBuzHash(BuzHashBase.CircularShiftDirection)"/>
         /// </remarks>
-        /// <inheritdoc cref="DefaultBuzHash(CircularShiftDirection)" />
+        /// <inheritdoc cref="DefaultBuzHash(BuzHashBase.CircularShiftDirection)"/>
         public DefaultBuzHash()
-            : this(CircularShiftDirection.Left)
-        {
-
+            : this( CircularShiftDirection.Left ) {
         }
 
 #if !NET40
-        /// <param name="shiftDirection">The shift direction.</param>
-        /// <remarks>
-        /// Defaults <see cref="BuzHashBase.InitVal" /> to 0x3CD05367FD0337D3.
-        /// <inheritdoc cref="BuzHashBase(IReadOnlyList{UInt64}, CircularShiftDirection, UInt64)" />
-        /// </remarks>
-        /// <inheritdoc cref="BuzHashBase(IReadOnlyList{UInt64}, CircularShiftDirection, UInt64)" />
-#else
-        /// <param name="shiftDirection">The shift direction.</param>
-        /// <remarks>
-        /// Defaults <see cref="BuzHashBase.InitVal" /> to 0x3CD05367FD0337D3.
-        /// <inheritdoc cref="BuzHashBase(IList{UInt64}, CircularShiftDirection, UInt64)" />
-        /// </remarks>
-        /// <inheritdoc cref="BuzHashBase(IList{UInt64}, CircularShiftDirection, UInt64)" />
-#endif
-        public DefaultBuzHash(CircularShiftDirection shiftDirection)
-            : base(_Rtab, shiftDirection, 0x3CD05367FD0337D3)
-        {
 
+        /// <param name="shiftDirection">The shift direction.</param>
+        /// <remarks>Defaults <see cref="BuzHashBase.InitVal"/> to 0x3CD05367FD0337D3. <inheritdoc cref="BuzHashBase(IReadOnlyList{UInt64}, BuzHashBase.CircularShiftDirection, UInt64)"/></remarks>
+        /// <inheritdoc cref="BuzHashBase(IReadOnlyList{UInt64}, BuzHashBase.CircularShiftDirection, UInt64)"/>
+#else
+
+        /// <param name="shiftDirection">The shift direction.</param>
+        /// <remarks>Defaults <see cref="BuzHashBase.InitVal"/> to 0x3CD05367FD0337D3. <inheritdoc cref="BuzHashBase(IList{UInt64}, CircularShiftDirection, UInt64)"/></remarks>
+        /// <inheritdoc cref="BuzHashBase(IList{UInt64}, CircularShiftDirection, UInt64)"/>
+#endif
+
+        public DefaultBuzHash( CircularShiftDirection shiftDirection )
+            : base( _Rtab, shiftDirection, 0x3CD05367FD0337D3 ) {
         }
 
         /// <remarks>
-        /// Defaults <see cref="BuzHashBase.ShiftDirection" /> to <see cref="BuzHashBase.CircularShiftDirection.Left" />.
-        /// <inheritdoc cref="DefaultBuzHash(CircularShiftDirection, int)" />
+        /// Defaults <see cref="BuzHashBase.ShiftDirection"/> to
+        /// <see cref="BuzHashBase.CircularShiftDirection.Left"/>. <inheritdoc cref="DefaultBuzHash(BuzHashBase.CircularShiftDirection, int)"/>
         /// </remarks>
-        /// <inheritdoc cref="DefaultBuzHash(CircularShiftDirection, int)" />
-        public DefaultBuzHash(Int32 hashSize)
-            : this(CircularShiftDirection.Left, hashSize)
-        {
-
+        /// <inheritdoc cref="DefaultBuzHash(BuzHashBase.CircularShiftDirection, int)"/>
+        public DefaultBuzHash( Int32 hashSize )
+            : this( CircularShiftDirection.Left, hashSize ) {
         }
 
 #if !NET40
-        /// <summary>
-        /// Initializes a new instance of the <see cref="DefaultBuzHash"/> class.
-        /// </summary>
-        /// <remarks>
-        /// Defaults <see cref="BuzHashBase.InitVal" /> to 0x3CD05367FD0337D3.
-        /// </remarks>
-        /// <inheritdoc cref="BuzHashBase(IReadOnlyList{UInt64}, CircularShiftDirection, UInt64, int)" />
-#else
-        /// <summary>
-        /// Initializes a new instance of the <see cref="DefaultBuzHash"/> class.
-        /// </summary>
-        /// <remarks>
-        /// Defaults <see cref="BuzHashBase.InitVal" /> to 0x3CD05367FD0337D3.
-        /// </remarks>
-        /// <inheritdoc cref="BuzHashBase(IList{UInt64}, CircularShiftDirection, UInt64, int)" />
-#endif
-        public DefaultBuzHash(CircularShiftDirection shiftDirection, Int32 hashSize)
-            : base(_Rtab, shiftDirection, 0x3CD05367FD0337D3, hashSize)
-        {
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DefaultBuzHash"/> class.
+        /// </summary>
+        /// <remarks>Defaults <see cref="BuzHashBase.InitVal"/> to 0x3CD05367FD0337D3.</remarks>
+        /// <inheritdoc cref="BuzHashBase(IReadOnlyList{UInt64}, BuzHashBase.CircularShiftDirection, UInt64, int)"/>
+#else
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DefaultBuzHash"/> class.
+        /// </summary>
+        /// <remarks>Defaults <see cref="BuzHashBase.InitVal"/> to 0x3CD05367FD0337D3.</remarks>
+        /// <inheritdoc cref="BuzHashBase(IList{UInt64}, CircularShiftDirection, UInt64, int)"/>
+#endif
+
+        public DefaultBuzHash( CircularShiftDirection shiftDirection, Int32 hashSize )
+            : base( _Rtab, shiftDirection, 0x3CD05367FD0337D3, hashSize ) {
         }
     }
 }

@@ -1,100 +1,82 @@
-﻿using System.Security.Cryptography;
-using System.IO;
+﻿using System.IO;
+using System.Security.Cryptography;
 
-namespace System.Data.HashFunction.Test
-{
+namespace System.Data.HashFunction.Test {
+
     using Xunit;
 
-    public class HashAlgorithmWrapper_Tests
-    {
-        [Fact]
-        public void HashAlgorithmWrapper_Dispose_Owner_DoesNotThrow()
-        {
-            var haw = new HashAlgorithmWrapper(new SHA1Managed(), true);
+    public class HashAlgorithmWrapper_Tests {
 
+        [Fact]
+        public void HashAlgorithmWrapper_Dispose_NonOwner_DoesNotThrow() {
+            var haw = new HashAlgorithmWrapper( new SHA1Managed(), false );
 
             haw.Dispose();
         }
 
         [Fact]
-        public void HashAlgorithmWrapper_Dispose_Owner_Invalidates()
-        {
+        public void HashAlgorithmWrapper_Dispose_NonOwner_Preserves_HashAlgorithm() {
             var ha = new SHA1Managed();
-            var haw = new HashAlgorithmWrapper(ha, true);
-
-
-            haw.Dispose();
-
-
-            // HashAlgorithm shouldn't be usable anymore.
-            Assert.Throws<ObjectDisposedException>(() =>
-                ha.ComputeHash(new Byte[0]));
-
-            Assert.Throws<ObjectDisposedException>(() =>
-                ha.ComputeHash(new MemoryStream()));
-
-
-            // HashAlgorithmWrapper should not be usable anymore either.
-            Assert.Throws<ObjectDisposedException>(() =>
-                haw.ComputeHash(new Byte[0]));
-
-            Assert.Throws<ObjectDisposedException>(() =>
-                haw.ComputeHash(new MemoryStream()));
-        }
-
-
-        [Fact]
-        public void HashAlgorithmWrapper_Dispose_NonOwner_DoesNotThrow()
-        {
-            var haw = new HashAlgorithmWrapper(new SHA1Managed(), false);
-
+            var haw = new HashAlgorithmWrapper( ha, false );
 
             haw.Dispose();
-        }
-
-        [Fact]
-        public void HashAlgorithmWrapper_Dispose_NonOwner_Preserves_HashAlgorithm()
-        {
-            var ha = new SHA1Managed();
-            var haw = new HashAlgorithmWrapper(ha, false);
-
-
-            haw.Dispose();
-
 
             // HashAlgorithm should still be usable.
-            ha.ComputeHash(new Byte[0]);
-            ha.ComputeHash(new MemoryStream());
+            ha.ComputeHash( new Byte[0] );
+            ha.ComputeHash( new MemoryStream() );
 
-
-            // HashAlgorithmWrapper's usability afterwards is an implementation detail 
-            //   and shouldn't be tested.
+            // HashAlgorithmWrapper's usability afterwards is an implementation detail and shouldn't
+            // be tested.
         }
 
+        [Fact]
+        public void HashAlgorithmWrapper_Dispose_Owner_DoesNotThrow() {
+            var haw = new HashAlgorithmWrapper( new SHA1Managed(), true );
 
+            haw.Dispose();
+        }
 
         [Fact]
-        public void HashAlgorithmWrapper_Generic_Dispose_DoesNotThrow()
-        {
+        public void HashAlgorithmWrapper_Dispose_Owner_Invalidates() {
+            var ha = new SHA1Managed();
+            var haw = new HashAlgorithmWrapper( ha, true );
+
+            haw.Dispose();
+
+            // HashAlgorithm shouldn't be usable anymore.
+            Assert.Throws<ObjectDisposedException>( () =>
+                 ha.ComputeHash( new Byte[0] ) );
+
+            Assert.Throws<ObjectDisposedException>( () =>
+                 ha.ComputeHash( new MemoryStream() ) );
+
+            // HashAlgorithmWrapper should not be usable anymore either.
+            Assert.Throws<ObjectDisposedException>( () =>
+                 haw.ComputeHash( new Byte[0] ) );
+
+            Assert.Throws<ObjectDisposedException>( () =>
+                 haw.ComputeHash( new MemoryStream() ) );
+        }
+
+        [Fact]
+        public void HashAlgorithmWrapper_Generic_Dispose_DoesNotThrow() {
             var haw = new HashAlgorithmWrapper<SHA1Managed>();
 
             haw.Dispose();
         }
 
         [Fact]
-        public void HashAlgorithmWrapper_Generic_Dispose_Invalidates()
-        {
+        public void HashAlgorithmWrapper_Generic_Dispose_Invalidates() {
             var haw = new HashAlgorithmWrapper<SHA1Managed>();
 
             haw.Dispose();
-
 
             // HashAlgorithmWrapper should no longer be usable.
-            Assert.Throws<ObjectDisposedException>(() =>
-                haw.ComputeHash(new Byte[0]));
+            Assert.Throws<ObjectDisposedException>( () =>
+                 haw.ComputeHash( new Byte[0] ) );
 
-            Assert.Throws<ObjectDisposedException>(() =>
-                haw.ComputeHash(new MemoryStream()));
+            Assert.Throws<ObjectDisposedException>( () =>
+                 haw.ComputeHash( new MemoryStream() ) );
         }
     }
 }

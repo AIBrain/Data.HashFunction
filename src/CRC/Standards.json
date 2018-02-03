@@ -69,12 +69,12 @@
     { "Name": "JAMCRC",           "Bits": 32, "Polynomial": "0x04c11db7", "InitialValue": "0xffffffff", "ReflectIn": true , "ReflectOut": true , "XOrOut": "0x00000000", "Check": "0x340bc6d9" },
     { "Name": "XFER",             "Bits": 32, "Polynomial": "0x000000af", "InitialValue": "0x00000000", "ReflectIn": false, "ReflectOut": false, "XOrOut": "0x00000000", "Check": "0xbd0be338" },
 
-    { "Name": "CRC40_GSM",      
+    { "Name": "CRC40_GSM",
       "Bits": 40, "Polynomial":       "0x0004820009", "InitialValue":       "0x0000000000", "ReflectIn": false, "ReflectOut": false, "XOrOut":       "0xffffffffff", "Check":       "0xd4164fc646" },
-    { "Name": "CRC64",          
+    { "Name": "CRC64",
       "Bits": 64, "Polynomial": "0x42f0e1eba9ea3693", "InitialValue": "0x0000000000000000", "ReflectIn": false, "ReflectOut": false, "XOrOut": "0x0000000000000000", "Check": "0x6c40df5f0b497347" },
-    { "Name": "CRC64_WE",       
+    { "Name": "CRC64_WE",
       "Bits": 64, "Polynomial": "0x42f0e1eba9ea3693", "InitialValue": "0xffffffffffffffff", "ReflectIn": false, "ReflectOut": false, "XOrOut": "0xffffffffffffffff", "Check": "0x62ec59e3f1a4f00a" },
-    { "Name": "CRC64_XZ",       
+    { "Name": "CRC64_XZ",
       "Bits": 64, "Polynomial": "0x42f0e1eba9ea3693", "InitialValue": "0xffffffffffffffff", "ReflectIn":  true, "ReflectOut":  true, "XOrOut": "0xffffffffffffffff", "Check": "0x995dc9bbdf1939fa" }
 ]
