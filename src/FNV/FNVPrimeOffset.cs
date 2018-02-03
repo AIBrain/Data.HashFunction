@@ -59,7 +59,7 @@ namespace System.Data.HashFunction
         /// <param name="bitSize">Number of bits the prime and offset use each.</param>
         /// <param name="prime">Prime integer to be represented.</param>
         /// <param name="offset">Offset integer to be represented.</param>
-        public FNVPrimeOffset(int bitSize, BigInteger prime, BigInteger offset)
+        public FNVPrimeOffset(Int32 bitSize, BigInteger prime, BigInteger offset)
         {
             Prime = prime.ToUInt32Array(bitSize);
             Offset = offset.ToUInt32Array(bitSize);

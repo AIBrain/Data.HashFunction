@@ -15,9 +15,9 @@ namespace System.Data.HashFunction.Test.Core.Utilities.IntegerManipulation
         {
             var testValues = new[] { 
                 0UL, 
-                (UInt64) ushort.MaxValue - 1, (UInt64) ushort.MaxValue, (UInt64) ushort.MaxValue + 1,
-                (UInt64) uint.MaxValue - 1, (UInt64) uint.MaxValue, (UInt64) uint.MaxValue + 1,
-                (UInt64) ulong.MaxValue - 1, (UInt64) ulong.MaxValue,
+                (UInt64) UInt16.MaxValue - 1, (UInt64) UInt16.MaxValue, (UInt64) UInt16.MaxValue + 1,
+                (UInt64) UInt32.MaxValue - 1, (UInt64) UInt32.MaxValue, (UInt64) UInt32.MaxValue + 1,
+                (UInt64) UInt64.MaxValue - 1, (UInt64) UInt64.MaxValue,
                 3421783489UL, 23891920398UL
             };
 

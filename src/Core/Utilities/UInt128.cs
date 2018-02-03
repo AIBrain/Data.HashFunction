@@ -26,13 +26,13 @@ namespace System.Data.HashFunction.Utilities
         /// <summary>Determines whether the specified <see cref="UInt128"/> is equal to the current <see cref="UInt128"/>.</summary>
         /// <param name="obj">The value to compare with the current value.</param>
         /// <returns>true if the specified value is equal to the current value; otherwise, false.</returns>
-        public override bool Equals(object obj)
+        public override Boolean Equals(Object obj)
         {
             return obj is UInt128 && this == (UInt128) obj;
         }
 
         /// <inheritdoc/>
-        public override int GetHashCode()
+        public override Int32 GetHashCode()
         {
             return Low.GetHashCode() ^
                 High.GetHashCode();
@@ -44,9 +44,9 @@ namespace System.Data.HashFunction.Utilities
         /// <returns>
         /// A <see cref="System.String" /> that represents this instance.
         /// </returns>
-        public override string ToString()
+        public override String ToString()
         {
-            return string.Format(
+            return String.Format(
                 "{{ High = {0}, Low = {1} }}",
                 High,
                 Low);
@@ -75,7 +75,7 @@ namespace System.Data.HashFunction.Utilities
         /// This instance is greater than <paramref name="value" />.-or- <paramref name="value" /> is null.
         /// </returns>
         /// <exception cref="System.ArgumentException"><paramref name="value" /> is not a <see cref="UInt128" />.;value</exception>
-        public int CompareTo(object value)
+        public Int32 CompareTo(Object value)
         {
             if (value == null)
                 return 1;
@@ -107,7 +107,7 @@ namespace System.Data.HashFunction.Utilities
         /// Greater than zero 
         /// This instance is greater than <paramref name="value" />.
         /// </returns>
-        public int CompareTo(UInt128 value)
+        public Int32 CompareTo(UInt128 value)
         {
             if (value < this)
                 return -1;
@@ -129,7 +129,7 @@ namespace System.Data.HashFunction.Utilities
         /// <returns>
         /// true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.
         /// </returns>
-        public bool Equals(UInt128 other)
+        public Boolean Equals(UInt128 other)
         {
             return this == other;
         }
@@ -231,7 +231,7 @@ namespace System.Data.HashFunction.Utilities
         /// <param name="a">The first value to compare.</param>
         /// <param name="b">The second value to compare.</param>
         /// <returns>true if the specified value is equal to the current value; otherwise, false.</returns>
-        public static bool operator ==(UInt128 a, UInt128 b)
+        public static Boolean operator ==(UInt128 a, UInt128 b)
         {
             return a.High == b.High && a.Low == b.Low;
         }
@@ -240,7 +240,7 @@ namespace System.Data.HashFunction.Utilities
         /// <param name="a">The first object to compare.</param>
         /// <param name="b">The second object to compare.</param>
         /// <returns>true if the specified value is not equal to the current value; otherwise, false.</returns>
-        public static bool operator !=(UInt128 a, UInt128 b) 
+        public static Boolean operator !=(UInt128 a, UInt128 b) 
         { 
             return !(a == b); 
         }
@@ -317,7 +317,7 @@ namespace System.Data.HashFunction.Utilities
         /// <param name="a">The instance to compare.</param>
         /// <param name="b">The instance to compare with.</param>
         /// <returns><c>true</c> if <paramref name="a"/> is greater than <paramref name="b"/>; otherwise <c>false</c>.</returns>
-        public static bool operator >(UInt128 a, UInt128 b)
+        public static Boolean operator >(UInt128 a, UInt128 b)
         {
             return a.High > b.High ||
                 (a.High == b.High && a.Low > b.Low);
@@ -329,7 +329,7 @@ namespace System.Data.HashFunction.Utilities
         /// <param name="a">The instance to compare.</param>
         /// <param name="b">The instance to compare with.</param>
         /// <returns><c>true</c> if <paramref name="a"/> is greater than or equal to <paramref name="b"/>; otherwise <c>false</c>.</returns>
-        public static bool operator >=(UInt128 a, UInt128 b)
+        public static Boolean operator >=(UInt128 a, UInt128 b)
         {
             return a.High > b.High ||
                 (a.High == b.High && a.Low >= b.Low);
@@ -341,7 +341,7 @@ namespace System.Data.HashFunction.Utilities
         /// <param name="a">The instance to compare.</param>
         /// <param name="b">The instance to compare with.</param>
         /// <returns><c>true</c> if <paramref name="a"/> is less than <paramref name="b"/>; otherwise <c>false</c>.</returns>
-        public static bool operator <(UInt128 a, UInt128 b)
+        public static Boolean operator <(UInt128 a, UInt128 b)
         {
             return !(a >= b);
         }
@@ -352,7 +352,7 @@ namespace System.Data.HashFunction.Utilities
         /// <param name="a">The instance to compare.</param>
         /// <param name="b">The instance to compare with.</param>
         /// <returns><c>true</c> if <paramref name="a"/> is less than or equal to <paramref name="b"/>; otherwise <c>false</c>.</returns>
-        public static bool operator <=(UInt128 a, UInt128 b)
+        public static Boolean operator <=(UInt128 a, UInt128 b)
         {
             return !(a > b);
         }

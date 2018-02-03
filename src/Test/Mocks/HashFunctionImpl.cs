@@ -12,21 +12,21 @@ namespace System.Data.HashFunction.Test.Mocks
     public class HashFunctionImpl
             : HashFunctionAsyncBase
     {
-        public HashFunctionImpl(int hashSize)
+        public HashFunctionImpl(Int32 hashSize)
             : base(hashSize)
         {
 
         }
 
 
-        protected override byte[] ComputeHashInternal(UnifiedData data)
+        protected override Byte[] ComputeHashInternal(UnifiedData data)
         {
-            return new byte[0];
+            return new Byte[0];
         }
         
-        protected override async Task<byte[]> ComputeHashAsyncInternal(UnifiedData data)
+        protected override async Task<Byte[]> ComputeHashAsyncInternal(UnifiedData data)
         {
-            return await Task.FromResult(new byte[0])
+            return await Task.FromResult(new Byte[0])
                 .ConfigureAwait(false);
         }
     }

@@ -31,7 +31,7 @@ namespace System.Data.HashFunction.Test.FNV
                     new FNV1(224))
                 .ParamName);
 
-            (FNV1.HashParameters as IDictionary<int, FNVPrimeOffset>).Remove(224);
+            (FNV1.HashParameters as IDictionary<Int32, FNVPrimeOffset>).Remove(224);
         }
 
         [Fact]

@@ -14,9 +14,9 @@ namespace System.Data.HashFunction.Test.Core.Utilities.IntegerManipulation
         [Fact]
         public void ToBytes_Byte_InvalidBitLength_Throws()
         {
-            byte value = 0;
+            Byte value = 0;
 
-            foreach (var invalidBitLength in new[] { int.MinValue, short.MinValue, -1, 0, 9, short.MaxValue, int.MaxValue })
+            foreach (var invalidBitLength in new[] { Int32.MinValue, Int16.MinValue, -1, 0, 9, Int16.MaxValue, Int32.MaxValue })
             {
                 Assert.Equal("bitLength",
                     Assert.Throws<ArgumentOutOfRangeException>(() =>
@@ -28,8 +28,8 @@ namespace System.Data.HashFunction.Test.Core.Utilities.IntegerManipulation
         [Fact]
         public void ToBytes_Byte_Works()
         {
-            byte value = 0xD2;
-            var expectedValues = new Dictionary<int, byte>() {
+            Byte value = 0xD2;
+            var expectedValues = new Dictionary<Int32, Byte>() {
                 { 1, 0x00 },
                 { 2, 0x02 },
                 { 3, 0x02 },
@@ -54,7 +54,7 @@ namespace System.Data.HashFunction.Test.Core.Utilities.IntegerManipulation
         {
             UInt16 value = 0;
 
-            foreach (var invalidBitLength in new[] { int.MinValue, short.MinValue, -1, 0, 17, short.MaxValue, int.MaxValue })
+            foreach (var invalidBitLength in new[] { Int32.MinValue, Int16.MinValue, -1, 0, 17, Int16.MaxValue, Int32.MaxValue })
             {
                 Assert.Equal("bitLength",
                     Assert.Throws<ArgumentOutOfRangeException>(() =>
@@ -67,7 +67,7 @@ namespace System.Data.HashFunction.Test.Core.Utilities.IntegerManipulation
         public void ToBytes_UInt16_Works()
         {
             UInt16 value = 0xf6e1;
-            var expectedValues = new Dictionary<int, UInt16>() {
+            var expectedValues = new Dictionary<Int32, UInt16>() {
                 {  1, 0x01 },       {  9, 0x00e1 },
                 {  2, 0x01 },       { 10, 0x02e1 },
                 {  3, 0x01 },       { 11, 0x06e1 },
@@ -92,7 +92,7 @@ namespace System.Data.HashFunction.Test.Core.Utilities.IntegerManipulation
         {
             UInt32 value = 0;
 
-            foreach (var invalidBitLength in new[] { int.MinValue, short.MinValue, -1, 0, 33, short.MaxValue, int.MaxValue })
+            foreach (var invalidBitLength in new[] { Int32.MinValue, Int16.MinValue, -1, 0, 33, Int16.MaxValue, Int32.MaxValue })
             {
                 Assert.Equal("bitLength",
                     Assert.Throws<ArgumentOutOfRangeException>(() =>
@@ -105,7 +105,7 @@ namespace System.Data.HashFunction.Test.Core.Utilities.IntegerManipulation
         public void ToBytes_UInt32_Works()
         {
             UInt32 value = 0x9df3404c;
-            var expectedValues = new Dictionary<int, UInt32>() {
+            var expectedValues = new Dictionary<Int32, UInt32>() {
                 {  1, 0x0000 },       { 17, 0x0001404c },
                 {  2, 0x0000 },       { 18, 0x0003404c },
                 {  3, 0x0004 },       { 19, 0x0003404c },
@@ -138,7 +138,7 @@ namespace System.Data.HashFunction.Test.Core.Utilities.IntegerManipulation
         {
             UInt64 value = 0;
 
-            foreach (var invalidBitLength in new[] { int.MinValue, short.MinValue, -1, 0, 65, short.MaxValue, int.MaxValue })
+            foreach (var invalidBitLength in new[] { Int32.MinValue, Int16.MinValue, -1, 0, 65, Int16.MaxValue, Int32.MaxValue })
             {
                 Assert.Equal("bitLength",
                     Assert.Throws<ArgumentOutOfRangeException>(() =>
@@ -151,7 +151,7 @@ namespace System.Data.HashFunction.Test.Core.Utilities.IntegerManipulation
         public void ToBytes_UInt64_Works()
         {
             UInt64 value = 0xaf9363cc7e0d89eb;
-            var expectedValues = new Dictionary<int, UInt64>() {
+            var expectedValues = new Dictionary<Int32, UInt64>() {
                 {  1, 0x0001 },       { 17, 0x000189eb },       { 33, 0x00007e0d89eb },       { 49, 0x000163cc7e0d89eb },
                 {  2, 0x0003 },       { 18, 0x000189eb },       { 34, 0x00007e0d89eb },       { 50, 0x000363cc7e0d89eb },
                 {  3, 0x0003 },       { 19, 0x000589eb },       { 35, 0x00047e0d89eb },       { 51, 0x000363cc7e0d89eb },

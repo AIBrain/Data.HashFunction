@@ -23,7 +23,7 @@ namespace System.Data.HashFunction.Test.Core.Utilities
         {
             var baseValue = new UInt128() { High = 1, Low = 2 };
 
-            var testValues = new object[] {
+            var testValues = new Object[] {
                 null, 
                 "", 
                 new UInt128() { Low = 2 }, 
@@ -43,7 +43,7 @@ namespace System.Data.HashFunction.Test.Core.Utilities
         {
             var baseValue = new UInt128() { High = 1, Low = 2 };
 
-            var testValues = new object[] { 
+            var testValues = new Object[] { 
                 baseValue, 
                 new UInt128() { High = 1, Low = 2 } 
             };
@@ -63,10 +63,10 @@ namespace System.Data.HashFunction.Test.Core.Utilities
         public void UInt128_GetHashCode_ProducesDistinctValues()
         {
             var values = Enumerable.Range(1, 256)
-                .Select(i => new UInt128() { High = 0, Low = (ulong) i });
+                .Select(i => new UInt128() { High = 0, Low = (UInt64) i });
 
 
-            var hashCodeSet = new HashSet<int>();
+            var hashCodeSet = new HashSet<Int32>();
 
 
             foreach (var value in values)
@@ -132,7 +132,7 @@ namespace System.Data.HashFunction.Test.Core.Utilities
 
 
             Assert.True(
-                baseValue.CompareTo((object) null) > 0);
+                baseValue.CompareTo((Object) null) > 0);
         }
         
         [Fact]
@@ -142,17 +142,17 @@ namespace System.Data.HashFunction.Test.Core.Utilities
 
 
             Assert.Throws<ArgumentException>(() => 
-                baseValue.CompareTo((object) 0));
+                baseValue.CompareTo((Object) 0));
 
             Assert.Throws<ArgumentException>(() =>
-                baseValue.CompareTo(new object()));
+                baseValue.CompareTo(new Object()));
         }
 
         [Fact]
         public void UInt128_CompareTo_InequivalentLess_ReturnsLessThanZero()
         {
             var baseValue = new UInt128() { High = 1, Low = 2 };
-            var testValue = (object) new UInt128() { High = 0, Low = 0 };
+            var testValue = (Object) new UInt128() { High = 0, Low = 0 };
 
 
             Assert.True(
@@ -163,7 +163,7 @@ namespace System.Data.HashFunction.Test.Core.Utilities
         public void UInt128_CompareTo_InequivalentGreater_ReturnsGreaterThanZero()
         {
             var baseValue = new UInt128() { High = 1, Low = 2 };
-            var testValue = (object) new UInt128() { High = 2, Low = 0 };
+            var testValue = (Object) new UInt128() { High = 2, Low = 0 };
 
 
             Assert.True(
@@ -175,7 +175,7 @@ namespace System.Data.HashFunction.Test.Core.Utilities
         {
             var baseValue = new UInt128() { High = 1, Low = 2 };
 
-            var testValues = new object[] { 
+            var testValues = new Object[] { 
                 baseValue,
                 new UInt128() { High = 1, Low = 2 }
             };

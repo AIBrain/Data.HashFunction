@@ -34,7 +34,7 @@ namespace System.Data.HashFunction
 
 
         /// <inheritdoc />
-        protected override bool RequiresSeekableStream { get { return true; } }
+        protected override Boolean RequiresSeekableStream { get { return true; } }
 
         /// <summary>
         /// Constant m as defined by MurmurHash1 specification.
@@ -65,7 +65,7 @@ namespace System.Data.HashFunction
 
 
         /// <inheritdoc />
-        protected override byte[] ComputeHashInternal(UnifiedData data)
+        protected override Byte[] ComputeHashInternal(UnifiedData data)
         {
             UInt32 h = Seed ^ ((UInt32) data.Length * m);
 
@@ -87,7 +87,7 @@ namespace System.Data.HashFunction
         
 #if !NET40 || INCLUDE_ASYNC
         /// <inheritdoc />
-        protected override async Task<byte[]> ComputeHashAsyncInternal(UnifiedData data)
+        protected override async Task<Byte[]> ComputeHashAsyncInternal(UnifiedData data)
         {
             UInt32 h = Seed ^ ((UInt32) data.Length * m);
 
@@ -112,7 +112,7 @@ namespace System.Data.HashFunction
 #if !NET40
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        private static void ProcessGroup(ref UInt32 h, byte[] dataGroup, int position, int length)
+        private static void ProcessGroup(ref UInt32 h, Byte[] dataGroup, Int32 position, Int32 length)
         {
             for (var x = position; x < position + length; x += 4)
             {
@@ -125,7 +125,7 @@ namespace System.Data.HashFunction
 #if !NET40
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        private static void ProcessRemainder(ref UInt32 h, byte[] remainder, int position, int length)
+        private static void ProcessRemainder(ref UInt32 h, Byte[] remainder, Int32 position, Int32 length)
         {
             switch (length)
             {

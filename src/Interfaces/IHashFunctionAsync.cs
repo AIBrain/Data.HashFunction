@@ -20,6 +20,6 @@ namespace System.Data.HashFunction
         /// <remarks>
         /// All stream IO is done via ReadAsync.
         /// </remarks>
-        Task<byte[]> ComputeHashAsync(Stream data);
+        Task<Byte[]> ComputeHashAsync(Stream data);
     }
 }

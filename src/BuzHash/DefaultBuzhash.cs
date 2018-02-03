@@ -128,7 +128,7 @@ namespace System.Data.HashFunction
         /// <inheritdoc cref="DefaultBuzHash(CircularShiftDirection, int)" />
         /// </remarks>
         /// <inheritdoc cref="DefaultBuzHash(CircularShiftDirection, int)" />
-        public DefaultBuzHash(int hashSize)
+        public DefaultBuzHash(Int32 hashSize)
             : this(CircularShiftDirection.Left, hashSize)
         {
 
@@ -151,7 +151,7 @@ namespace System.Data.HashFunction
         /// </remarks>
         /// <inheritdoc cref="BuzHashBase(IList{UInt64}, CircularShiftDirection, UInt64, int)" />
 #endif
-        public DefaultBuzHash(CircularShiftDirection shiftDirection, int hashSize)
+        public DefaultBuzHash(CircularShiftDirection shiftDirection, Int32 hashSize)
             : base(_Rtab, shiftDirection, 0x3CD05367FD0337D3, hashSize)
         {
 

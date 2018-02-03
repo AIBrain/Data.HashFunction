@@ -52,14 +52,14 @@ namespace System.Data.HashFunction
         /// <value>
         /// The list of valid hash sizes.
         /// </value>
-        public static IEnumerable<int> ValidHashSizes { get { return _ValidHashSizes; } }
+        public static IEnumerable<Int32> ValidHashSizes { get { return _ValidHashSizes; } }
 
 
 
         private readonly UInt64 _InitVal1;
         private readonly UInt64 _InitVal2;
 
-        private static readonly IEnumerable<int> _ValidHashSizes = new[] { 32, 64, 128 };
+        private static readonly IEnumerable<Int32> _ValidHashSizes = new[] { 32, 64, 128 };
 
 
 
@@ -77,7 +77,7 @@ namespace System.Data.HashFunction
         /// Defaults <see cref="InitVal1" /> to 0. <inheritdoc cref="SpookyHashV1(int, UInt64)" />
         /// </remarks>
         /// <inheritdoc cref="SpookyHashV1(int, UInt64)" />
-        public SpookyHashV1(int hashSize)
+        public SpookyHashV1(Int32 hashSize)
             : this(hashSize, 0U)
         {
 
@@ -107,7 +107,7 @@ namespace System.Data.HashFunction
         /// Defaults <see cref="InitVal2" /> to 0.
         /// </remarks>
         /// <inheritdoc cref="SpookyHashV1(int, UInt64, UInt64)" />
-        public SpookyHashV1(int hashSize, UInt64 initVal1)
+        public SpookyHashV1(Int32 hashSize, UInt64 initVal1)
             : this(hashSize, initVal1, 0U)
         {
 
@@ -121,7 +121,7 @@ namespace System.Data.HashFunction
         /// <param name="initVal2"><inheritdoc cref="InitVal2" /></param>
         /// <exception cref="System.ArgumentOutOfRangeException">hashSize;hashSize must be contained within SpookyHashV1.ValidHashSizes.</exception>
         /// <inheritdoc cref="HashFunctionBase(int)" />
-        public SpookyHashV1(int hashSize, UInt64 initVal1, UInt64 initVal2)
+        public SpookyHashV1(Int32 hashSize, UInt64 initVal1, UInt64 initVal2)
             : base(hashSize)
         {
             if (!ValidHashSizes.Contains(hashSize))
@@ -136,7 +136,7 @@ namespace System.Data.HashFunction
 
         /// <exception cref="System.InvalidOperationException">HashSize set to an invalid value.</exception>
         /// <inheritdoc />
-        protected override byte[] ComputeHashInternal(UnifiedData data)
+        protected override Byte[] ComputeHashInternal(UnifiedData data)
         {
             UInt64[] h = new UInt64[12];
             
@@ -145,7 +145,7 @@ namespace System.Data.HashFunction
             h[2]=h[5]=h[8]=h[11] = 0XDEADBEEFDEADBEEF;
 
 
-            var remainderData = new byte[96];
+            var remainderData = new Byte[96];
 
             data.ForEachGroup(96, 
                 (dataGroup, position, length) => {
@@ -153,14 +153,14 @@ namespace System.Data.HashFunction
                 },
                 (remainder, position, length) => {
                     Array.Copy(remainder, position, remainderData, 0, length);
-                    remainderData[95] = (byte) length;
+                    remainderData[95] = (Byte) length;
                 });
 
             Mix(h, remainderData, 0, remainderData.Length);
             End(h);
 
 
-            byte[] hash = null;
+            Byte[] hash = null;
 
             switch (HashSize)
             {
@@ -173,7 +173,7 @@ namespace System.Data.HashFunction
                     break;
 
                 case 128:
-                    hash = new byte[16];
+                    hash = new Byte[16];
                     
                     BitConverter.GetBytes(h[0])
                         .CopyTo(hash, 0);
@@ -190,7 +190,7 @@ namespace System.Data.HashFunction
 #if !NET40 || INCLUDE_ASYNC
         /// <exception cref="System.InvalidOperationException">HashSize set to an invalid value.</exception>
         /// <inheritdoc />
-        protected override async Task<byte[]> ComputeHashAsyncInternal(UnifiedData data)
+        protected override async Task<Byte[]> ComputeHashAsyncInternal(UnifiedData data)
         {
             UInt64[] h = new UInt64[12];
             
@@ -199,7 +199,7 @@ namespace System.Data.HashFunction
             h[2]=h[5]=h[8]=h[11] = 0XDEADBEEFDEADBEEF;
 
 
-            var remainderData = new byte[96];
+            var remainderData = new Byte[96];
 
             await data.ForEachGroupAsync(96, 
                 (dataGroup, position, length) => {
@@ -207,14 +207,14 @@ namespace System.Data.HashFunction
                 },
                 (remainder, position, length) => {
                     Array.Copy(remainder, position, remainderData, 0, length);
-                    remainderData[95] = (byte) length;
+                    remainderData[95] = (Byte) length;
                 }).ConfigureAwait(false);
 
             Mix(h, remainderData, 0, remainderData.Length);
             End(h);
 
 
-            byte[] hash = null;
+            Byte[] hash = null;
 
             switch (HashSize)
             {
@@ -227,7 +227,7 @@ namespace System.Data.HashFunction
                     break;
 
                 case 128:
-                    hash = new byte[16];
+                    hash = new Byte[16];
 
                     BitConverter.GetBytes(h[0])
                         .CopyTo(hash, 0);
@@ -244,7 +244,7 @@ namespace System.Data.HashFunction
 
 
 #if !NET40
-        private static readonly IReadOnlyList<int> _MixRotationParameters = 
+        private static readonly IReadOnlyList<Int32> _MixRotationParameters = 
 #else
         private static readonly IList<int> _MixRotationParameters = 
 #endif
@@ -255,9 +255,9 @@ namespace System.Data.HashFunction
 #if !NET40
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        private static void Mix(UInt64[] h, byte[] data, int position, int length)
+        private static void Mix(UInt64[] h, Byte[] data, Int32 position, Int32 length)
         {
-            for (int x = position; x < position + length; x += 96)
+            for (Int32 x = position; x < position + length; x += 96)
             {
                 for (var i = 0; i < 12; ++i)
                 {
@@ -272,7 +272,7 @@ namespace System.Data.HashFunction
 
 
 #if !NET40
-        private static readonly IReadOnlyList<int> _EndPartialRotationParameters = 
+        private static readonly IReadOnlyList<Int32> _EndPartialRotationParameters = 
 #else
         private static readonly IList<int> _EndPartialRotationParameters = 
 #endif
@@ -285,7 +285,7 @@ namespace System.Data.HashFunction
 #endif
         private static void EndPartial(UInt64[] h)
         {
-            for (int i = 0; i < 12; ++i)
+            for (Int32 i = 0; i < 12; ++i)
             {
                 h[(i + 11) % 12] += h[(i + 1) % 12];
                 h[(i +  2) % 12] ^= h[(i + 11) % 12];

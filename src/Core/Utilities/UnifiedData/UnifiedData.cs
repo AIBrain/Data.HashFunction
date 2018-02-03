@@ -18,7 +18,7 @@ namespace System.Data.HashFunction.Utilities.UnifiedData
         /// <remarks>
         /// Implementors are allowed throw an exception if it is not possible to resolve the length of the data.
         /// </remarks>
-        public abstract long Length { get; }
+        public abstract Int64 Length { get; }
 
         /// <summary>
         /// Length of temporary buffers used, if they are needed.
@@ -26,7 +26,7 @@ namespace System.Data.HashFunction.Utilities.UnifiedData
         /// <remarks>
         /// Implementors are not required to use this value.
         /// </remarks>
-        public virtual int BufferSize 
+        public virtual Int32 BufferSize 
         {
             get { return _BufferSize; }
             set
@@ -39,7 +39,7 @@ namespace System.Data.HashFunction.Utilities.UnifiedData
         }
 
 
-        private int _BufferSize = 4096;
+        private Int32 _BufferSize = 4096;
 
 
 
@@ -47,13 +47,13 @@ namespace System.Data.HashFunction.Utilities.UnifiedData
         /// Executes an action each time a chunk is read.
         /// </summary>
         /// <param name="action">Function to execute.</param>
-        public abstract void ForEachRead(Action<byte[], int, int> action);
+        public abstract void ForEachRead(Action<Byte[], Int32, Int32> action);
 
 
 #if !NET40 || INCLUDE_ASYNC
         /// <inheritdoc cref="ForEachRead(Action{byte[], int, int})" />
         /// <returns>Task representing the asynchronous operation.</returns>
-        public abstract Task ForEachReadAsync(Action<byte[], int, int> action);
+        public abstract Task ForEachReadAsync(Action<Byte[], Int32, Int32> action);
 #endif
 
 
@@ -66,12 +66,12 @@ namespace System.Data.HashFunction.Utilities.UnifiedData
         /// <param name="action">Action to execute for each full group read.</param>
         /// <param name="remainderAction">Action to execute if the final group is less than groupSize.  Null values are allowed.</param>
         /// <remarks>remainderAction will not be run if the length of the data is a multiple of groupSize.</remarks>
-        public abstract void ForEachGroup(int groupSize, Action<byte[], int, int> action, Action<byte[], int, int> remainderAction);
+        public abstract void ForEachGroup(Int32 groupSize, Action<Byte[], Int32, Int32> action, Action<Byte[], Int32, Int32> remainderAction);
         
 #if !NET40 || INCLUDE_ASYNC
         /// <inheritdoc cref="ForEachGroup(int, Action{byte[], int, int}, Action{byte[], int, int})" />
         /// <returns>Task representing the asynchronous operation.</returns>
-        public abstract Task ForEachGroupAsync(int groupSize, Action<byte[], int, int> action, Action<byte[], int, int> remainderAction);
+        public abstract Task ForEachGroupAsync(Int32 groupSize, Action<Byte[], Int32, Int32> action, Action<Byte[], Int32, Int32> remainderAction);
 #endif
 
 
@@ -80,11 +80,11 @@ namespace System.Data.HashFunction.Utilities.UnifiedData
         /// Reads all data and converts it to an in-memory array.
         /// </summary>
         /// <returns>Array of bytes read from the data provider.</returns>
-        public abstract byte[] ToArray();
+        public abstract Byte[] ToArray();
         
 #if !NET40 || INCLUDE_ASYNC
         /// <inheritdoc cref="ToArray()" />
-        public abstract Task<byte[]> ToArrayAsync();
+        public abstract Task<Byte[]> ToArrayAsync();
 #endif
     }
 }

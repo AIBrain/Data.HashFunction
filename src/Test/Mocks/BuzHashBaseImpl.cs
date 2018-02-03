@@ -36,7 +36,7 @@ namespace System.Data.HashFunction.Test.Mocks
 
         }
 
-        public BuzHashBaseImpl(int hashSize)
+        public BuzHashBaseImpl(Int32 hashSize)
             : base(_Rtab, CircularShiftDirection.Left, hashSize)
         {
 

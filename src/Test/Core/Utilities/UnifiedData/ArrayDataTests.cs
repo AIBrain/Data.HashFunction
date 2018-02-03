@@ -15,7 +15,7 @@ namespace System.Data.HashFunction.Test.Core.Utilities.UnifiedData
         [Fact]
         public async void ArrayData_ToArrayAsync_ThrowsAggregateExceptions()
         {
-            var testData = new ArrayData_ThrowNonAsync(new byte[0]);
+            var testData = new ArrayData_ThrowNonAsync(new Byte[0]);
 
             Assert.Equal("Mock Exception", 
                 (await Assert.ThrowsAsync<InvalidOperationException>(async () => 
@@ -27,11 +27,11 @@ namespace System.Data.HashFunction.Test.Core.Utilities.UnifiedData
         public class UnifiedDataTests_ArrayData
             : UnifiedDataTests
         {
-            protected override UnifiedData CreateTestData(int length)
+            protected override UnifiedData CreateTestData(Int32 length)
             {
                 var r = new Random();
 
-                var data = new byte[length];
+                var data = new Byte[length];
                 r.NextBytes(data);
 
                 return new ArrayData(data);

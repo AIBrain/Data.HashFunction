@@ -19,19 +19,19 @@ namespace System.Data.HashFunction.Utilities.IntegerManipulation
         /// <returns>New integer whose low-order bitLength number of bits have been reflected.</returns>
         /// <remarks>Any non-included high orders bits will be zeroed out in the returned integer.</remarks>
         /// <exception cref="System.ArgumentOutOfRangeException">bitLength;bitLength must be in the range [1, 8].</exception>
-        public static byte ReflectBits(this byte value, int bitLength)
+        public static Byte ReflectBits(this Byte value, Int32 bitLength)
         {
             if (bitLength <= 0 || bitLength > 8)
                 throw new ArgumentOutOfRangeException("bitLength", "bitLength must be in the range [1, 8].");
 
 
-            byte reflectedValue = 0;
+            Byte reflectedValue = 0;
 
-            for (int x = 0; x < bitLength; ++x)
+            for (Int32 x = 0; x < bitLength; ++x)
             {
                 reflectedValue <<= 1;
                 
-                reflectedValue |= (byte) (value & 1);
+                reflectedValue |= (Byte) (value & 1);
 
                 value >>= 1;
             }
@@ -41,7 +41,7 @@ namespace System.Data.HashFunction.Utilities.IntegerManipulation
 
         /// <exception cref="System.ArgumentOutOfRangeException">bitLength;bitLength must be in the range [1, 16].</exception>
         /// <inheritdoc cref="ReflectBits(byte, int)" />
-        public static UInt16 ReflectBits(this UInt16 value, int bitLength)
+        public static UInt16 ReflectBits(this UInt16 value, Int32 bitLength)
         {
             if (bitLength <= 0 || bitLength > 16)
                 throw new ArgumentOutOfRangeException("bitLength", "bitLength must be in the range [1, 16].");
@@ -49,7 +49,7 @@ namespace System.Data.HashFunction.Utilities.IntegerManipulation
 
             UInt16 reflectedValue = 0;
 
-            for (int x = 0; x < bitLength; ++x)
+            for (Int32 x = 0; x < bitLength; ++x)
             {
                 reflectedValue <<= 1;
 
@@ -63,7 +63,7 @@ namespace System.Data.HashFunction.Utilities.IntegerManipulation
 
         /// <exception cref="System.ArgumentOutOfRangeException">bitLength;bitLength must be in the range [1, 32]</exception>
         /// <inheritdoc cref="ReflectBits(byte, int)" />
-        public static UInt32 ReflectBits(this UInt32 value, int bitLength)
+        public static UInt32 ReflectBits(this UInt32 value, Int32 bitLength)
         {
             if (bitLength <= 0 || bitLength > 32)
                 throw new ArgumentOutOfRangeException("bitLength", "bitLength must be in the range [1, 32].");
@@ -71,7 +71,7 @@ namespace System.Data.HashFunction.Utilities.IntegerManipulation
 
             UInt32 reflectedValue = 0U;
 
-            for (int x = 0; x < bitLength; ++x)
+            for (Int32 x = 0; x < bitLength; ++x)
             {
                 reflectedValue <<= 1;
 
@@ -85,14 +85,14 @@ namespace System.Data.HashFunction.Utilities.IntegerManipulation
 
         /// <exception cref="System.ArgumentOutOfRangeException">bitLength;bitLength must be in the range [1, 64]</exception>
         /// <inheritdoc cref="ReflectBits(byte, int)" />
-        public static UInt64 ReflectBits(this UInt64 value, int bitLength)
+        public static UInt64 ReflectBits(this UInt64 value, Int32 bitLength)
         {
             if (bitLength <= 0 || bitLength > 64)
                 throw new ArgumentOutOfRangeException("bitLength", "bitLength must be in the range [1, 64].");
 
             UInt64 reflectedValue = 0UL;
 
-            for (int x = 0; x < bitLength; ++x)
+            for (Int32 x = 0; x < bitLength; ++x)
             {
                 reflectedValue <<= 1;
 

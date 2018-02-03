@@ -19,7 +19,7 @@ namespace System.Data.HashFunction.Test.Core.Utilities.UnifiedData
         {
             var testLengths = new[] {
                 0, 1, 2, 4, 8, 16, 32, 64,
-                short.MaxValue, ushort.MaxValue, 0x10000, 0x80000
+                Int16.MaxValue, UInt16.MaxValue, 0x10000, 0x80000
             };
 
             foreach (var testLength in testLengths)
@@ -38,7 +38,7 @@ namespace System.Data.HashFunction.Test.Core.Utilities.UnifiedData
             var testData = CreateTestData(0);
 
             var invalidBufferSizes = new[] {
-                int.MinValue, short.MinValue, -1, 0
+                Int32.MinValue, Int16.MinValue, -1, 0
             };
 
 
@@ -58,7 +58,7 @@ namespace System.Data.HashFunction.Test.Core.Utilities.UnifiedData
 
             var validBufferSizes = new[] {
                 1, 2, 4, 8, 9, 16, 32, 64, 128, 4096,
-                short.MaxValue, ushort.MaxValue, 0x10000, 0x80000
+                Int16.MaxValue, UInt16.MaxValue, 0x10000, 0x80000
             };
 
 
@@ -91,7 +91,7 @@ namespace System.Data.HashFunction.Test.Core.Utilities.UnifiedData
         {
             var validBufferSizes = new[] {
                 1, 2, 4, 8, 9, 16, 32, 64, 128, 4096,
-                short.MaxValue, ushort.MaxValue, 0x10000, 0x80000
+                Int16.MaxValue, UInt16.MaxValue, 0x10000, 0x80000
             };
 
 
@@ -132,7 +132,7 @@ namespace System.Data.HashFunction.Test.Core.Utilities.UnifiedData
         {
             var validBufferSizes = new[] {
                 1, 2, 4, 8, 9, 16, 32, 64, 128, 4096,
-                short.MaxValue, ushort.MaxValue, 0x10000, 0x80000
+                Int16.MaxValue, UInt16.MaxValue, 0x10000, 0x80000
             };
 
 
@@ -164,7 +164,7 @@ namespace System.Data.HashFunction.Test.Core.Utilities.UnifiedData
             var testData = CreateTestData(0);
 
             var invalidGroupSizes = new[] {
-                int.MinValue, short.MinValue, -1, 0
+                Int32.MinValue, Int16.MinValue, -1, 0
             };
 
 
@@ -184,7 +184,7 @@ namespace System.Data.HashFunction.Test.Core.Utilities.UnifiedData
 
             Assert.Equal("action",
                 Assert.Throws<ArgumentNullException>(() =>
-                    testData.ForEachGroup(1, (Action<byte[], int, int>) null, (a, b, c) => { }))
+                    testData.ForEachGroup(1, (Action<Byte[], Int32, Int32>) null, (a, b, c) => { }))
                 .ParamName);
         }
 
@@ -204,14 +204,14 @@ namespace System.Data.HashFunction.Test.Core.Utilities.UnifiedData
 
             var validGroupSizes = new[] {
                 1, 2, 4, 8, 16, 32, 64, 
-                short.MaxValue, ushort.MaxValue, 0x10000, 0x80000
+                Int16.MaxValue, UInt16.MaxValue, 0x10000, 0x80000
             };
 
             
             foreach (var validGroupSize in validGroupSizes)
             {
                 // Test correct functioning when value is a multiple of groupSize
-                for (int x = 0; x < 10; ++x)
+                for (Int32 x = 0; x < 10; ++x)
                 {
                     var dataLength = validGroupSize * (r.Next(0, 20) + 1);
                     var testData = CreateTestData(dataLength);
@@ -232,7 +232,7 @@ namespace System.Data.HashFunction.Test.Core.Utilities.UnifiedData
                 if (validGroupSize > 1)
                 {
                     // Test correct functioning when value is not a multiple of groupSize
-                    for (int x = 0; x < 10; ++x)
+                    for (Int32 x = 0; x < 10; ++x)
                     {
                         var groupLength = validGroupSize * (r.Next(0, 20) + 1);
                         var remainderLength = r.Next(1, validGroupSize);
@@ -270,7 +270,7 @@ namespace System.Data.HashFunction.Test.Core.Utilities.UnifiedData
             var testData = CreateTestData(0);
 
             var invalidGroupSizes = new[] {
-                int.MinValue, short.MinValue, -1, 0
+                Int32.MinValue, Int16.MinValue, -1, 0
             };
 
 
@@ -310,14 +310,14 @@ namespace System.Data.HashFunction.Test.Core.Utilities.UnifiedData
 
             var validGroupSizes = new[] {
                 1, 2, 4, 8, 16, 32, 64, 
-                short.MaxValue, ushort.MaxValue, 0x10000, 0x80000
+                Int16.MaxValue, UInt16.MaxValue, 0x10000, 0x80000
             };
 
             
             foreach (var validGroupSize in validGroupSizes)
             {
                 // Test correct functioning when value is a multiple of groupSize
-                for (int x = 0; x < 10; ++x)
+                for (Int32 x = 0; x < 10; ++x)
                 {
                     var dataLength = validGroupSize * (r.Next(0, 20) + 1);
                     var testData = CreateTestData(dataLength);
@@ -338,7 +338,7 @@ namespace System.Data.HashFunction.Test.Core.Utilities.UnifiedData
                 if (validGroupSize > 1)
                 {
                     // Test correct functioning when value is not a multiple of groupSize
-                    for (int x = 0; x < 10; ++x)
+                    for (Int32 x = 0; x < 10; ++x)
                     {
                         var groupLength = validGroupSize * (r.Next(0, 20) + 1);
                         var remainderLength = r.Next(1, validGroupSize);
@@ -376,7 +376,7 @@ namespace System.Data.HashFunction.Test.Core.Utilities.UnifiedData
         {
             var testLengths = new[] {
                 0, 1, 2, 4, 8, 16, 32, 64,
-                short.MaxValue, ushort.MaxValue, 0x10000, 0x80000
+                Int16.MaxValue, UInt16.MaxValue, 0x10000, 0x80000
             };
 
 
@@ -399,7 +399,7 @@ namespace System.Data.HashFunction.Test.Core.Utilities.UnifiedData
         {
             var testLengths = new[] {
                 0, 1, 2, 4, 8, 16, 32, 64,
-                short.MaxValue, ushort.MaxValue, 0x10000, 0x80000
+                Int16.MaxValue, UInt16.MaxValue, 0x10000, 0x80000
             };
 
 
@@ -416,6 +416,6 @@ namespace System.Data.HashFunction.Test.Core.Utilities.UnifiedData
         #endregion
 
 
-        protected abstract UnifiedData CreateTestData(int length);
+        protected abstract UnifiedData CreateTestData(Int32 length);
     }
 }

@@ -21,7 +21,7 @@ namespace System.Data.HashFunction
         /// Initializes a new instance of the <see cref="HashFunctionAsyncBase"/> class.
         /// </summary>
         /// <param name="hashSize"><inheritdoc cref="HashFunctionBase.HashSize" /></param>
-        protected HashFunctionAsyncBase(int hashSize)
+        protected HashFunctionAsyncBase(Int32 hashSize)
             : base(hashSize)
         {
             
@@ -29,7 +29,7 @@ namespace System.Data.HashFunction
 
         /// <exception cref="System.ArgumentException">Stream \data\ must be readable.;data</exception>
         /// <inheritdoc />
-        public virtual async Task<byte[]> ComputeHashAsync(Stream data)
+        public virtual async Task<Byte[]> ComputeHashAsync(Stream data)
         {
             if (!data.CanRead)
                 throw new ArgumentException("Stream \"data\" must be readable.", "data");
@@ -37,7 +37,7 @@ namespace System.Data.HashFunction
 
             if (!data.CanSeek && RequiresSeekableStream)
             {
-                byte[] buffer;
+                Byte[] buffer;
 
                 using (var ms = new MemoryStream())
                 {
@@ -64,7 +64,7 @@ namespace System.Data.HashFunction
         /// <returns>
         /// Hash value of data as byte array.
         /// </returns>
-        protected abstract Task<byte[]> ComputeHashAsyncInternal(UnifiedData data);
+        protected abstract Task<Byte[]> ComputeHashAsyncInternal(UnifiedData data);
     }
 }
 #endif

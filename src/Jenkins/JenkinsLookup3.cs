@@ -51,17 +51,17 @@ namespace System.Data.HashFunction
         /// <value>
         /// The list of valid hash sizes.
         /// </value>
-        public static IEnumerable<int> ValidHashSizes { get { return _ValidHashSizes; } }
+        public static IEnumerable<Int32> ValidHashSizes { get { return _ValidHashSizes; } }
 
 
         /// <inheritdoc />
-        protected override bool RequiresSeekableStream { get { return true; } }
+        protected override Boolean RequiresSeekableStream { get { return true; } }
 
 
         private readonly UInt32 _InitVal1;
         private readonly UInt32 _InitVal2;
 
-        private static readonly IEnumerable<int> _ValidHashSizes = new[] { 32, 64 };
+        private static readonly IEnumerable<Int32> _ValidHashSizes = new[] { 32, 64 };
 
 
 
@@ -99,7 +99,7 @@ namespace System.Data.HashFunction
         /// Defaults <see cref="InitVal1" /> to 0. <inheritdoc cref="JenkinsLookup3(int, UInt32)" />
         /// </remarks>
         /// <inheritdoc cref="JenkinsLookup3(int, UInt32)" />
-        public JenkinsLookup3(int hashSize)
+        public JenkinsLookup3(Int32 hashSize)
             : this(hashSize, 0U)
         {
 
@@ -109,7 +109,7 @@ namespace System.Data.HashFunction
         /// Defaults <see cref="InitVal2" /> to 0.
         /// </remarks>
         /// <inheritdoc cref="JenkinsLookup3(int, UInt32, UInt32)" />
-        public JenkinsLookup3(int hashSize, UInt32 initVal1)
+        public JenkinsLookup3(Int32 hashSize, UInt32 initVal1)
             : this(hashSize, initVal1, 0U)
         {
 
@@ -123,7 +123,7 @@ namespace System.Data.HashFunction
         /// <param name="initVal2"><inheritdoc cref="InitVal2"/></param>
         /// <exception cref="System.ArgumentOutOfRangeException">hashSize;hashSize must be contained within SpookyHashV2.ValidHashSizes.</exception>
         /// <inheritdoc cref="HashFunctionBase(int)"/>
-        public JenkinsLookup3(int hashSize, UInt32 initVal1, UInt32 initVal2)
+        public JenkinsLookup3(Int32 hashSize, UInt32 initVal1, UInt32 initVal2)
             : base(hashSize)
         {
             if (!ValidHashSizes.Contains(hashSize))
@@ -137,7 +137,7 @@ namespace System.Data.HashFunction
 
         /// <exception cref="System.InvalidOperationException">HashSize set to an invalid value.</exception>
         /// <inheritdoc />
-        protected override byte[] ComputeHashInternal(UnifiedData data)
+        protected override Byte[] ComputeHashInternal(UnifiedData data)
         {
             UInt32 a = 0xdeadbeef + (UInt32) data.Length + InitVal1;
             UInt32 b = 0xdeadbeef + (UInt32) data.Length + InitVal1;
@@ -147,7 +147,7 @@ namespace System.Data.HashFunction
                 c += InitVal2;
 
 
-            int dataCount = 0;
+            Int32 dataCount = 0;
 
             data.ForEachGroup(12, 
                 (dataGroup, position, length) => {
@@ -161,7 +161,7 @@ namespace System.Data.HashFunction
                 Final(ref a, ref b, ref c);
 
 
-            byte[] hash = null;
+            Byte[] hash = null;
 
             switch (HashSize)
             {
@@ -180,7 +180,7 @@ namespace System.Data.HashFunction
 #if !NET40 || INCLUDE_ASYNC
         /// <exception cref="System.InvalidOperationException">HashSize set to an invalid value.</exception>
         /// <inheritdoc />
-        protected override async Task<byte[]> ComputeHashAsyncInternal(UnifiedData data)
+        protected override async Task<Byte[]> ComputeHashAsyncInternal(UnifiedData data)
         {
             UInt32 a = 0xdeadbeef + (UInt32) data.Length + InitVal1;
             UInt32 b = 0xdeadbeef + (UInt32) data.Length + InitVal1;
@@ -190,7 +190,7 @@ namespace System.Data.HashFunction
                 c += InitVal2;
 
 
-            int dataCount = 0;
+            Int32 dataCount = 0;
 
             await data.ForEachGroupAsync(12, 
                 (dataGroup, position, length) => {
@@ -204,7 +204,7 @@ namespace System.Data.HashFunction
                 Final(ref a, ref b, ref c);
 
 
-            byte[] hash = null;
+            Byte[] hash = null;
 
             switch (HashSize)
             {
@@ -225,9 +225,9 @@ namespace System.Data.HashFunction
 #if !NET40
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        private static void ProcessGroup(ref UInt32 a, ref UInt32 b, ref UInt32 c, ref int dataCount, byte[] dataGroup, int position, int length)
+        private static void ProcessGroup(ref UInt32 a, ref UInt32 b, ref UInt32 c, ref Int32 dataCount, Byte[] dataGroup, Int32 position, Int32 length)
         {
-            for (int x = position; x < position + length; x += 12)
+            for (Int32 x = position; x < position + length; x += 12)
             {
                 // Mix at beginning of subsequent group to handle special case of length <= 12
                 if (dataCount > 0 || x > position)
@@ -244,7 +244,7 @@ namespace System.Data.HashFunction
 #if !NET40
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        private static void ProcessRemainder(ref UInt32 a, ref UInt32 b, ref UInt32 c, ref int dataCount, byte[] remainder, int position, int length)
+        private static void ProcessRemainder(ref UInt32 a, ref UInt32 b, ref UInt32 c, ref Int32 dataCount, Byte[] remainder, Int32 position, Int32 length)
         {
             // Mix at beginning of subsequent group to handle special case of length <= 12
             if (dataCount > 0)

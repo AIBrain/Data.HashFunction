@@ -29,11 +29,11 @@ namespace System.Data.HashFunction.Test.Core.Utilities.UnifiedData
         public class UnifiedDataTests_StreamData
             : UnifiedDataTests
         {
-            protected override UnifiedData CreateTestData(int length)
+            protected override UnifiedData CreateTestData(Int32 length)
             {
                 var r = new Random();
 
-                var data = new byte[length];
+                var data = new Byte[length];
                 r.NextBytes(data);
 
                 return new StreamData(new MemoryStream(data));

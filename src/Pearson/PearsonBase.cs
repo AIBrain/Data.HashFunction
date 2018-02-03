@@ -30,14 +30,14 @@ namespace System.Data.HashFunction
         /// The 256-item read only collection of bytes.
         /// </value>
 #if !NET40
-        public IReadOnlyList<byte> T { get { return _T; } }
+        public IReadOnlyList<Byte> T { get { return _T; } }
 #else
         public IList<byte> T { get { return _T; } }
 #endif
 
 
 #if !NET40
-        private readonly IReadOnlyList<byte> _T;
+        private readonly IReadOnlyList<Byte> _T;
 #else
         private readonly IList<byte> _T;
 #endif
@@ -49,7 +49,7 @@ namespace System.Data.HashFunction
         /// Defaults <see cref="HashFunctionBase.HashSize" /> to 8.
         /// </remarks>
         /// <inheritdoc cref="PearsonBase(IReadOnlyList{byte}, int)" />
-        public PearsonBase(IReadOnlyList<byte> t)
+        public PearsonBase(IReadOnlyList<Byte> t)
 #else
         /// <remarks>
         /// Defaults <see cref="HashFunctionBase.HashSize" /> to 8.
@@ -72,7 +72,7 @@ namespace System.Data.HashFunction
         /// <exception cref="System.ArgumentOutOfRangeException">hashSize;hashSize must be a positive integer that is divisible by 8.</exception>
         /// <inheritdoc cref="HashFunctionBase(int)" />
 #if !NET40
-        public PearsonBase(IReadOnlyList<byte> t, int hashSize)
+        public PearsonBase(IReadOnlyList<Byte> t, Int32 hashSize)
 #else
         public PearsonBase(IList<byte> t, int hashSize)
 #endif
@@ -96,10 +96,10 @@ namespace System.Data.HashFunction
 
 
         /// <inheritdoc />
-        protected override byte[] ComputeHashInternal(UnifiedData data)
+        protected override Byte[] ComputeHashInternal(UnifiedData data)
         {
-            var h = new byte[HashSize / 8];
-            bool firstByte = true;
+            var h = new Byte[HashSize / 8];
+            Boolean firstByte = true;
 
             data.ForEachRead((dataBytes, position, length) => {
                 ProcessBytes(ref h, ref firstByte, dataBytes, position, length);
@@ -110,10 +110,10 @@ namespace System.Data.HashFunction
         
 #if !NET40 || INCLUDE_ASYNC
         /// <inheritdoc />
-        protected override async Task<byte[]> ComputeHashAsyncInternal(UnifiedData data)
+        protected override async Task<Byte[]> ComputeHashAsyncInternal(UnifiedData data)
         {
-            var h = new byte[HashSize / 8];
-            bool firstByte = true;
+            var h = new Byte[HashSize / 8];
+            Boolean firstByte = true;
 
             await data.ForEachReadAsync((dataBytes, position, length) => {
                 ProcessBytes(ref h, ref firstByte, dataBytes, position, length);
@@ -124,11 +124,11 @@ namespace System.Data.HashFunction
 #endif
 
 
-        private void ProcessBytes(ref byte[] h, ref bool firstByte, byte[] dataBytes, int position, int length)
+        private void ProcessBytes(ref Byte[] h, ref Boolean firstByte, Byte[] dataBytes, Int32 position, Int32 length)
         {
             for (var x = position; x < position + length; ++x)
             {
-                for (int y = 0; y < HashSize / 8; ++y)
+                for (Int32 y = 0; y < HashSize / 8; ++y)
                 {
                     if (!firstByte)
                         h[y] = T[h[y] ^ dataBytes[x]];

@@ -14,16 +14,16 @@ namespace System.Data.HashFunction.Test
 {
     public abstract class IHashFunction_SpeedTest
     {
-        protected abstract IReadOnlyDictionary<string, IHashFunction> TestHashFunctions { get; }
+        protected abstract IReadOnlyDictionary<String, IHashFunction> TestHashFunctions { get; }
 
-        private const int SINGLE_BLOCK_SIZE = 12000000; // 32 MB
+        private const Int32 SINGLE_BLOCK_SIZE = 12000000; // 32 MB
 
-        private const int MULTIPLE_ITEMS_SIZE = 0x80; // 128 B
-        private const int MULTIPLE_ITEMS_COUNT = 0x10000; // 64 K
+        private const Int32 MULTIPLE_ITEMS_SIZE = 0x80; // 128 B
+        private const Int32 MULTIPLE_ITEMS_COUNT = 0x10000; // 64 K
 
 
         // xUnit doesn't have a better way to do this
-        private readonly bool _SkipAllTests = true;
+        private readonly Boolean _SkipAllTests = true;
 
         #region SingleBlock
 
@@ -134,7 +134,7 @@ namespace System.Data.HashFunction.Test
 
         #endregion
 
-        private void IHashFunction_SpeedTest_SingleBlock(Func<Stopwatch, IHashFunction, byte[], bool> computeHash)
+        private void IHashFunction_SpeedTest_SingleBlock(Func<Stopwatch, IHashFunction, Byte[], Boolean> computeHash)
         {
             if (_SkipAllTests)
             {
@@ -143,7 +143,7 @@ namespace System.Data.HashFunction.Test
             }
 
 
-            var testBytes = new byte[SINGLE_BLOCK_SIZE];
+            var testBytes = new Byte[SINGLE_BLOCK_SIZE];
 
             (new Random())
                 .NextBytes(testBytes);
@@ -176,7 +176,7 @@ namespace System.Data.HashFunction.Test
                 Thread.CurrentThread.Priority = ThreadPriority.Normal;
 
 
-                var totalBytesComputedAgainst = ((long) testBytes.Length) * computeCount;
+                var totalBytesComputedAgainst = ((Int64) testBytes.Length) * computeCount;
 
                 Console.WriteLine("{0, -40} {1:F2} MB/s ({2} B in {3:F3} ms)",
                     testHashFunction.Key + ":",
@@ -201,7 +201,7 @@ namespace System.Data.HashFunction.Test
             {
                 sw.Start();
 
-                for (int x = 0; x < count; ++x)
+                for (Int32 x = 0; x < count; ++x)
                     testHashFunction.ComputeHash(testBytes);
 
                 sw.Stop();
@@ -220,7 +220,7 @@ namespace System.Data.HashFunction.Test
                 {
                     sw.Start();
                     
-                    for (int x = 0; x < count; ++x)
+                    for (Int32 x = 0; x < count; ++x)
                     {
                         testHashFunction.ComputeHash(ms);
 
@@ -243,7 +243,7 @@ namespace System.Data.HashFunction.Test
                 {
                     sw.Start();
                     
-                    for (int x = 0; x < count; ++x)
+                    for (Int32 x = 0; x < count; ++x)
                     {
                         testHashFunction.ComputeHash(ms);
 
@@ -276,7 +276,7 @@ namespace System.Data.HashFunction.Test
                 {
                     sw.Start();
                     
-                    for (int x = 0; x < count; ++x)
+                    for (Int32 x = 0; x < count; ++x)
                     {
                         testHashFunctionAsync.ComputeHashAsync(ms)
                             .Wait();
@@ -305,7 +305,7 @@ namespace System.Data.HashFunction.Test
                 {
                     sw.Start();
                     
-                    for (int x = 0; x < count; ++x)
+                    for (Int32 x = 0; x < count; ++x)
                     {
                         testHashFunctionAsync.ComputeHashAsync(ms)
                             .Wait();
@@ -323,7 +323,7 @@ namespace System.Data.HashFunction.Test
         #endregion
 
 
-        protected void IHashFunction_SpeedTest_MultipleItems(Func<Stopwatch, IHashFunction, int, byte[], bool> computeHash)
+        protected void IHashFunction_SpeedTest_MultipleItems(Func<Stopwatch, IHashFunction, Int32, Byte[], Boolean> computeHash)
         {
             if (_SkipAllTests)
             {
@@ -331,7 +331,7 @@ namespace System.Data.HashFunction.Test
                 return;
             }
 
-            var testBytes = new byte[MULTIPLE_ITEMS_SIZE];
+            var testBytes = new Byte[MULTIPLE_ITEMS_SIZE];
 
             (new Random())
                 .NextBytes(testBytes);
@@ -354,9 +354,9 @@ namespace System.Data.HashFunction.Test
                 
                 Console.WriteLine("{0, -40} {1:F2} MB/s ({2} B in {3:F3} ms)",
                     testHashFunction.Key + ":",
-                    (testBytes.Length * MULTIPLE_ITEMS_COUNT) / (1048510.0d) / ((double) sw.ElapsedTicks / TimeSpan.TicksPerSecond),
+                    (testBytes.Length * MULTIPLE_ITEMS_COUNT) / (1048510.0d) / ((Double) sw.ElapsedTicks / TimeSpan.TicksPerSecond),
                     testBytes.Length * MULTIPLE_ITEMS_COUNT,
-                    ((double)sw.ElapsedTicks / TimeSpan.TicksPerMillisecond));
+                    ((Double)sw.ElapsedTicks / TimeSpan.TicksPerMillisecond));
                 
                 sw.Reset();
             }

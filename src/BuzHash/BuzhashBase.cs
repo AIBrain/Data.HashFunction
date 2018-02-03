@@ -39,7 +39,7 @@ namespace System.Data.HashFunction
 
 
         /// <summary>The list of possible hash sizes that can be provided to the <see cref="BuzHashBase"/> constructor.</summary>
-        public static IEnumerable<int> ValidHashSizes { get { return _ValidHashSizes; } }
+        public static IEnumerable<Int32> ValidHashSizes { get { return _ValidHashSizes; } }
 
 
         /// <summary>Enumeration of possible directions a circular shift can be defined for.</summary>
@@ -60,7 +60,7 @@ namespace System.Data.HashFunction
         private readonly CircularShiftDirection _ShiftDirection;
         private readonly UInt64 _InitVal;
 
-        private static readonly IEnumerable<int> _ValidHashSizes = new[] { 8, 16, 32, 64 };
+        private static readonly IEnumerable<Int32> _ValidHashSizes = new[] { 8, 16, 32, 64 };
 
 
 
@@ -87,7 +87,7 @@ namespace System.Data.HashFunction
         /// Defaults <see cref="InitVal"/> to 0. <inheritdoc cref="BuzHashBase(IReadOnlyList{UInt64}, CircularShiftDirection, UInt64, int)"/>
         /// </remarks>
         /// <inheritdoc cref="BuzHashBase(IReadOnlyList{UInt64}, CircularShiftDirection, UInt64, int)"/>
-        protected BuzHashBase(IReadOnlyList<UInt64> rtab, CircularShiftDirection shiftDirection, int hashSize)
+        protected BuzHashBase(IReadOnlyList<UInt64> rtab, CircularShiftDirection shiftDirection, Int32 hashSize)
 #else
         /// <remarks>
         /// Defaults <see cref="InitVal"/> to 0. <inheritdoc cref="BuzHashBase(IList{UInt64}, CircularShiftDirection, UInt64, int)"/>
@@ -128,7 +128,7 @@ namespace System.Data.HashFunction
         /// <exception cref="System.ArgumentOutOfRangeException">hashSize;hashSize must be contained within <see cref="ValidHashSizes" />.</exception>
         /// <inheritdoc cref="HashFunctionBase(int)" />
 #if !NET40
-        protected BuzHashBase(IReadOnlyList<UInt64> rtab, CircularShiftDirection shiftDirection, UInt64 initVal, int hashSize)
+        protected BuzHashBase(IReadOnlyList<UInt64> rtab, CircularShiftDirection shiftDirection, UInt64 initVal, Int32 hashSize)
 #else
         protected BuzHashBase(IList<UInt64> rtab, CircularShiftDirection shiftDirection, UInt64 initVal, int hashSize)
 #endif
@@ -147,21 +147,21 @@ namespace System.Data.HashFunction
 
         /// <exception cref="System.InvalidOperationException">HashSize set to an invalid value.</exception>
         /// <inheritdoc />
-        protected override byte[] ComputeHashInternal(UnifiedData data)
+        protected override Byte[] ComputeHashInternal(UnifiedData data)
         {
-            byte[] hash = null;
+            Byte[] hash = null;
 
             switch (HashSize)
             {
                 case 8:
                 {
-                    byte h = (byte) InitVal;
+                    Byte h = (Byte) InitVal;
             
                     data.ForEachRead((dataBytes, position, length) => {
                         ProcessBytes(ref h, dataBytes, position, length);
                     });
             
-                    hash = new byte[] { h };
+                    hash = new Byte[] { h };
                     break;
                 }
 
@@ -208,21 +208,21 @@ namespace System.Data.HashFunction
 #if !NET40 || INCLUDE_ASYNC
         /// <exception cref="System.InvalidOperationException">HashSize set to an invalid value.</exception>
         /// <inheritdoc />
-        protected override async Task<byte[]> ComputeHashAsyncInternal(UnifiedData data)
+        protected override async Task<Byte[]> ComputeHashAsyncInternal(UnifiedData data)
         {
-            byte[] hash = null;
+            Byte[] hash = null;
 
             switch (HashSize)
             {
                 case 8:
                 {
-                    byte h = (byte) InitVal;
+                    Byte h = (Byte) InitVal;
             
                     await data.ForEachReadAsync((dataBytes, position, length) => {
                         ProcessBytes(ref h, dataBytes, position, length);
                     }).ConfigureAwait(false);
 
-                    hash = new byte[] { h };
+                    hash = new Byte[] { h };
                     break;
                 }
 
@@ -269,25 +269,25 @@ namespace System.Data.HashFunction
 
 
 
-        private void ProcessBytes(ref byte h, byte[] dataBytes, int position, int length)
+        private void ProcessBytes(ref Byte h, Byte[] dataBytes, Int32 position, Int32 length)
         {
             for (var x = position; x < position + length; ++x)
-                h = (byte) (CShift(h, 1) ^ (byte) Rtab[dataBytes[x]]);
+                h = (Byte) (CShift(h, 1) ^ (Byte) Rtab[dataBytes[x]]);
         }
 
-        private void ProcessBytes(ref UInt16 h, byte[] dataBytes, int position, int length)
+        private void ProcessBytes(ref UInt16 h, Byte[] dataBytes, Int32 position, Int32 length)
         {
             for (var x = position; x < position + length; ++x)
                 h = (UInt16) (CShift(h, 1) ^ (UInt16) Rtab[dataBytes[x]]);
         }
 
-        private void ProcessBytes(ref UInt32 h, byte[] dataBytes, int position, int length)
+        private void ProcessBytes(ref UInt32 h, Byte[] dataBytes, Int32 position, Int32 length)
         {
             for (var x = position; x < position + length; ++x)
                 h = CShift(h, 1) ^ (UInt32) Rtab[dataBytes[x]];
         }
 
-        private void ProcessBytes(ref UInt64 h, byte[] dataBytes, int position, int length)
+        private void ProcessBytes(ref UInt64 h, Byte[] dataBytes, Int32 position, Int32 length)
         {
             for (var x = position; x < position + length; ++x)
                 h = CShift(h, 1) ^ Rtab[dataBytes[x]];
@@ -305,7 +305,7 @@ namespace System.Data.HashFunction
 #if !NET40
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        private byte CShift(byte n, int shiftCount)
+        private Byte CShift(Byte n, Int32 shiftCount)
         {
             if (ShiftDirection == CircularShiftDirection.Right)
                 return n.RotateRight(shiftCount);
@@ -324,7 +324,7 @@ namespace System.Data.HashFunction
 #if !NET40
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        private UInt16 CShift(UInt16 n, int shiftCount)
+        private UInt16 CShift(UInt16 n, Int32 shiftCount)
         {
             if (ShiftDirection == CircularShiftDirection.Right)
                 return n.RotateRight(shiftCount);
@@ -343,7 +343,7 @@ namespace System.Data.HashFunction
 #if !NET40
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        private UInt32 CShift(UInt32 n, int shiftCount)
+        private UInt32 CShift(UInt32 n, Int32 shiftCount)
         {
             if (ShiftDirection == CircularShiftDirection.Right)
                 return n.RotateRight(shiftCount);
@@ -362,7 +362,7 @@ namespace System.Data.HashFunction
 #if !NET40
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        private UInt64 CShift(UInt64 n, int shiftCount)
+        private UInt64 CShift(UInt64 n, Int32 shiftCount)
         {
             if (ShiftDirection == CircularShiftDirection.Right)
                 return n.RotateRight(shiftCount);

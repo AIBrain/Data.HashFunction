@@ -21,21 +21,21 @@ namespace System.Data.HashFunction
 		: HashFunctionBase
 #endif
 	{
-        private readonly uint _originalKeyLength;
-        private readonly byte[] _key;
-        private readonly byte[] _salt;
-        private readonly byte[] _personalization;
+        private readonly UInt32 _originalKeyLength;
+        private readonly Byte[] _key;
+        private readonly Byte[] _salt;
+        private readonly Byte[] _personalization;
 
 
-		private const int MinHashSizeBits = 8;
-		private const int MaxHashSizeBits = 512;
-		private const int DefaultHashSizeBits = 512;
+		private const Int32 MinHashSizeBits = 8;
+		private const Int32 MaxHashSizeBits = 512;
+		private const Int32 DefaultHashSizeBits = 512;
 
-		private const int MaxKeySizeBytes = 64;
-		private const int SaltSizeBytes = 16;
-		private const int PersonalizationSizeBytes = 16;
+		private const Int32 MaxKeySizeBytes = 64;
+		private const Int32 SaltSizeBytes = 16;
+		private const Int32 PersonalizationSizeBytes = 16;
 
-		private const int BlockSizeBytes = 128;
+		private const Int32 BlockSizeBytes = 128;
 
         private static readonly UInt64[] IVs = new[] { 
             0x6A09E667F3BCC908UL,
@@ -52,20 +52,20 @@ namespace System.Data.HashFunction
 
         private class InternalState
         {
-            public int BufferFilled = 0;
-            public readonly byte[] Buffer = new byte[128];
+            public Int32 BufferFilled = 0;
+            public readonly Byte[] Buffer = new Byte[128];
 
             public readonly UInt64[] H = new UInt64[8];
             public UInt128 Counter;
             public readonly UInt64[] FinalizationFlags = new UInt64[2];
 
 
-            public InternalState(int hashSize, uint originalKeyLength, byte[] salt, byte[] personalization)
+            public InternalState(Int32 hashSize, UInt32 originalKeyLength, Byte[] salt, Byte[] personalization)
             {
                 Array.Copy(IVs, H, IVs.Length);
 
                 H[0] ^= 0x01010000U |
-                    ((uint) hashSize / 8) |
+                    ((UInt32) hashSize / 8) |
                     (originalKeyLength << 8);
 
 
@@ -100,7 +100,7 @@ namespace System.Data.HashFunction
 		/// <exception cref="ArgumentOutOfRangeException">
 		/// The provided <paramref name="hashSize"/> is invalid.
 		/// </exception>
-		public Blake2B(int hashSize)
+		public Blake2B(Int32 hashSize)
             : this(hashSize, null, null, null)
 		{
 
@@ -125,7 +125,7 @@ namespace System.Data.HashFunction
         /// or <paramref name="personalization"/> length is invalid.
 		/// </exception>
         [SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed", Justification = "Default values only for named parameter usage.")]
-        public Blake2B(byte[] key = null, byte[] salt = null, byte[] personalization = null)
+        public Blake2B(Byte[] key = null, Byte[] salt = null, Byte[] personalization = null)
             : this(DefaultHashSizeBits, key, salt, personalization)
         {
 
@@ -153,7 +153,7 @@ namespace System.Data.HashFunction
 		/// <paramref name="salt"/> length, or <paramref name="personalization"/> length is invalid.
 		/// </exception>
         [SuppressMessage("Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed", Justification = "Default values only for named parameter usage.")]
-        public Blake2B(int hashSize, IEnumerable<byte> key = null, IEnumerable<byte> salt = null, IEnumerable<byte> personalization = null)
+        public Blake2B(Int32 hashSize, IEnumerable<Byte> key = null, IEnumerable<Byte> salt = null, IEnumerable<Byte> personalization = null)
 			: base(hashSize)
         {
             if (hashSize < MinHashSizeBits || hashSize > MaxHashSizeBits)
@@ -162,9 +162,9 @@ namespace System.Data.HashFunction
 			if (hashSize % 8 != 0)
 				throw new ArgumentOutOfRangeException("hashSize", hashSize, "The hash size must be a multiple of 8");
 
-            var keyArray = (key ?? new byte[0]).ToArray();
-            var saltArray = (salt ?? new byte[16]).ToArray();
-            var personalizationArray = (personalization ?? new byte[16]).ToArray();
+            var keyArray = (key ?? new Byte[0]).ToArray();
+            var saltArray = (salt ?? new Byte[16]).ToArray();
+            var personalizationArray = (personalization ?? new Byte[16]).ToArray();
 
 			if (keyArray.Length > MaxKeySizeBytes)
 				throw new ArgumentOutOfRangeException("key", key, String.Format("Expected: key.Length <= {0}", MaxKeySizeBytes));
@@ -177,9 +177,9 @@ namespace System.Data.HashFunction
 
 
 
-            _originalKeyLength = (uint) keyArray.Length;
+            _originalKeyLength = (UInt32) keyArray.Length;
 
-            _key = new byte[128];
+            _key = new Byte[128];
             Array.Copy(keyArray, _key, keyArray.Length);
 
 			_salt = saltArray;
@@ -188,7 +188,7 @@ namespace System.Data.HashFunction
 
 
 		/// <inheritdoc />
-		protected override byte[] ComputeHashInternal(UnifiedData data)
+		protected override Byte[] ComputeHashInternal(UnifiedData data)
 		{
             var internalState = new InternalState(HashSize, _originalKeyLength, _salt, _personalization);
 
@@ -208,7 +208,7 @@ namespace System.Data.HashFunction
 #if !NET40 || INCLUDE_ASYNC
 
 		/// <inheritdoc />
-		protected override async Task<byte[]> ComputeHashAsyncInternal(UnifiedData data)
+		protected override async Task<Byte[]> ComputeHashAsyncInternal(UnifiedData data)
 		{
             var internalState = new InternalState(HashSize, _originalKeyLength, _salt, _personalization);
 
@@ -227,9 +227,9 @@ namespace System.Data.HashFunction
 #endif
 
 
-        private static void ProcessBytes(InternalState internalState, byte[] array, int start, int count)
+        private static void ProcessBytes(InternalState internalState, Byte[] array, Int32 start, Int32 count)
         {
-			int bufferRemaining = BlockSizeBytes - internalState.BufferFilled;
+			Int32 bufferRemaining = BlockSizeBytes - internalState.BufferFilled;
 
 			if (internalState.BufferFilled > 0 && count > bufferRemaining)
 			{
@@ -270,21 +270,21 @@ namespace System.Data.HashFunction
 		}
 
 
-		private static byte[] Final(int hashSize, InternalState internalState)
+		private static Byte[] Final(Int32 hashSize, InternalState internalState)
 		{
 			//Last compression
 			internalState.Counter += (UInt32) internalState.BufferFilled;
 			internalState.FinalizationFlags[0] = UInt64.MaxValue;
 
-			for (int i = internalState.BufferFilled; i < internalState.Buffer.Length; i++)
+			for (Int32 i = internalState.BufferFilled; i < internalState.Buffer.Length; i++)
 				internalState.Buffer[i] = 0;
 
 			Compress(internalState, internalState.Buffer, 0);
 
 
-			byte[] hash = new byte[64];
+			Byte[] hash = new Byte[64];
 
-            for (int i = 0; i < 8; ++i)
+            for (Int32 i = 0; i < 8; ++i)
             {
                 Array.Copy(
                     BitConverter.GetBytes(internalState.H[i]), 0, 
@@ -295,7 +295,7 @@ namespace System.Data.HashFunction
 
             if (hash.Length != hashSize / 8)
 			{
-                var result = new byte[hashSize / 8];
+                var result = new Byte[hashSize / 8];
 
 				Array.Copy(
                     hash, 
@@ -308,7 +308,7 @@ namespace System.Data.HashFunction
 			return hash;
 		}
 
-		private static void Compress(InternalState internalState, byte[] block, int start)
+		private static void Compress(InternalState internalState, Byte[] block, Int32 start)
 		{
             var m = new UInt64[16];
 		    Buffer.BlockCopy(block, start, m, 0, BlockSizeBytes);

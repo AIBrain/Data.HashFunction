@@ -14,7 +14,7 @@ namespace System.Data.HashFunction
         /// <value>
         /// The size of the hash, in bits.
         /// </value>
-        int HashSize { get; }
+        Int32 HashSize { get; }
 
 
         /// <summary>
@@ -24,7 +24,7 @@ namespace System.Data.HashFunction
         /// <returns>
         /// Hash value of the data as byte array.
         /// </returns>
-        byte[] ComputeHash(byte[] data);
+        Byte[] ComputeHash(Byte[] data);
 
         /// <summary>
         /// Computes hash value for given stream.
@@ -33,6 +33,6 @@ namespace System.Data.HashFunction
         /// <returns>
         /// Hash value of data as byte array.
         /// </returns>
-        byte[] ComputeHash(Stream data);
+        Byte[] ComputeHash(Stream data);
     }
 }

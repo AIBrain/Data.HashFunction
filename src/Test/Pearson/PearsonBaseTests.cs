@@ -55,7 +55,7 @@ namespace System.Data.HashFunction.Test.Pearson
             : PearsonBase
         {
             public PearsonBase_T_Small()
-                : base(new byte[255])
+                : base(new Byte[255])
             {
 
             }
@@ -64,10 +64,10 @@ namespace System.Data.HashFunction.Test.Pearson
         private class PearsonBase_T_NonDistinct
             : PearsonBase
         {
-            private static readonly IReadOnlyList<byte> NonDistinct_T =
+            private static readonly IReadOnlyList<Byte> NonDistinct_T =
                 Enumerable.Range(0, 255)
-                    .Select(i => (byte) i)
-                    .Concat(new byte[] { 0 })
+                    .Select(i => (Byte) i)
+                    .Concat(new Byte[] { 0 })
                     .ToList();
 
             public PearsonBase_T_NonDistinct()

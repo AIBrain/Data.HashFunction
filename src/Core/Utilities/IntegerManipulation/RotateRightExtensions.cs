@@ -25,11 +25,11 @@ namespace System.Data.HashFunction.Utilities.IntegerManipulation
 #if !NET40
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static byte RotateRight(this byte operand, int shiftCount)
+        public static Byte RotateRight(this Byte operand, Int32 shiftCount)
         {
             shiftCount &= 0x07;
 
-            return (byte)(
+            return (Byte)(
                 (operand >> shiftCount) |
                 (operand << (8 - shiftCount)));
         }
@@ -49,7 +49,7 @@ namespace System.Data.HashFunction.Utilities.IntegerManipulation
 #if !NET40
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static UInt16 RotateRight(this UInt16 operand, int shiftCount)
+        public static UInt16 RotateRight(this UInt16 operand, Int32 shiftCount)
         {
             shiftCount &= 0x0f;
 
@@ -73,7 +73,7 @@ namespace System.Data.HashFunction.Utilities.IntegerManipulation
 #if !NET40
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static UInt32 RotateRight(this UInt32 operand, int shiftCount)
+        public static UInt32 RotateRight(this UInt32 operand, Int32 shiftCount)
         {
             shiftCount &= 0x1f;
 
@@ -97,7 +97,7 @@ namespace System.Data.HashFunction.Utilities.IntegerManipulation
 #if !NET40
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static UInt64 RotateRight(this UInt64 operand, int shiftCount)
+        public static UInt64 RotateRight(this UInt64 operand, Int32 shiftCount)
         {
             shiftCount &= 0x3f;
 

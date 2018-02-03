@@ -9,11 +9,11 @@ namespace System.Data.HashFunction.Test
     public class SingleSpeedTest
         : IHashFunction_SpeedTest
     {
-        protected override IReadOnlyDictionary<string, IHashFunction> TestHashFunctions
+        protected override IReadOnlyDictionary<String, IHashFunction> TestHashFunctions
         {
             get 
             { 
-                return new Dictionary<string, IHashFunction>() {
+                return new Dictionary<String, IHashFunction>() {
                     { "JenkinsLookup3()", new JenkinsLookup3() }
                 };
             }

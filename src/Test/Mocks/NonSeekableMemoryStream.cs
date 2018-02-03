@@ -15,47 +15,47 @@ namespace System.Data.HashFunction.Test.Mocks
         : MemoryStream
     {
 
-        public virtual long Real_Length { get { return base.Length; } }
+        public virtual Int64 Real_Length { get { return base.Length; } }
 
 
-        public override bool CanSeek { get { return false; } }
+        public override Boolean CanSeek { get { return false; } }
 
         [SuppressMessage("Microsoft.Design", "CA1065:DoNotRaiseExceptionsInUnexpectedLocations", 
             Justification = "Mock purposefully throws to indicate a major issue.")]
-        public override long Length
+        public override Int64 Length
         {
             get { throw new NotImplementedException("Attempted to read length of a non-seekable stream."); }
         }
 
 
 
-        public NonSeekableMemoryStream(byte[] buffer) : base(buffer) { }
-        public NonSeekableMemoryStream(byte[] buffer, bool writable) : base(buffer, writable) { }
-        public NonSeekableMemoryStream(byte[] buffer, int index, int count) : base(buffer, index, count) { }
-        public NonSeekableMemoryStream(byte[] buffer, int index, int count, bool writable) : base(buffer, index, count, writable) { }
-        public NonSeekableMemoryStream(byte[] buffer, int index, int count, bool writable, bool publiclyVisible) : base(buffer, index, count, writable, publiclyVisible) { }
+        public NonSeekableMemoryStream(Byte[] buffer) : base(buffer) { }
+        public NonSeekableMemoryStream(Byte[] buffer, Boolean writable) : base(buffer, writable) { }
+        public NonSeekableMemoryStream(Byte[] buffer, Int32 index, Int32 count) : base(buffer, index, count) { }
+        public NonSeekableMemoryStream(Byte[] buffer, Int32 index, Int32 count, Boolean writable) : base(buffer, index, count, writable) { }
+        public NonSeekableMemoryStream(Byte[] buffer, Int32 index, Int32 count, Boolean writable, Boolean publiclyVisible) : base(buffer, index, count, writable, publiclyVisible) { }
 
 
         
-        public virtual long Real_Seek(long offset, SeekOrigin loc)
+        public virtual Int64 Real_Seek(Int64 offset, SeekOrigin loc)
         {
             return base.Seek(offset, loc);
         }
 
-        public virtual void Real_SetLength(long value)
+        public virtual void Real_SetLength(Int64 value)
         {
             base.SetLength(value);
         }
 
 
 
-        public override long Seek(long offset, SeekOrigin loc)
+        public override Int64 Seek(Int64 offset, SeekOrigin loc)
         {
             throw new NotImplementedException("Attempted to seek an non-seekable stream.");
         }
 
 
-        public override void SetLength(long value)
+        public override void SetLength(Int64 value)
         {
             throw new NotImplementedException("Attempted to set length of a non-seekable stream.");
         }

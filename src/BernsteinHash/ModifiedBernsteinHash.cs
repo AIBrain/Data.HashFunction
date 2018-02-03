@@ -57,7 +57,7 @@ namespace System.Data.HashFunction
 
 
         /// <inheritdoc />
-        protected override byte[] ComputeHashInternal(UnifiedData data)
+        protected override Byte[] ComputeHashInternal(UnifiedData data)
         {
             UInt32 h = 0;
 
@@ -70,7 +70,7 @@ namespace System.Data.HashFunction
         
 #if !NET40 || INCLUDE_ASYNC
         /// <inheritdoc />
-        protected override async Task<byte[]> ComputeHashAsyncInternal(UnifiedData data)
+        protected override async Task<Byte[]> ComputeHashAsyncInternal(UnifiedData data)
         {
             UInt32 h = 0;
 
@@ -86,7 +86,7 @@ namespace System.Data.HashFunction
 #if !NET40
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        private static void ProcessBytes(ref UInt32 h, byte[] dataBytes, int position, int length)
+        private static void ProcessBytes(ref UInt32 h, Byte[] dataBytes, Int32 position, Int32 length)
         {
             for (var x = position; x < position + length; ++x)
                 h = (33 * h) ^ dataBytes[x];

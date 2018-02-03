@@ -28,7 +28,7 @@ namespace System.Data.HashFunction.Test
             [Fact]
             public void IHashFunction_Extensions_ComputeHash_byte()
             {
-                var value = (byte) 0x39;
+                var value = (Byte) 0x39;
 
                 AssertSugar(
                     hf => hf.ComputeHash(value),
@@ -38,7 +38,7 @@ namespace System.Data.HashFunction.Test
             [Fact]
             public void IHashFunction_Extensions_ComputeHash_char()
             {
-                var value = (char) 0x39;
+                var value = (Char) 0x39;
 
                 AssertSugar(
                     hf => hf.ComputeHash(value),
@@ -88,17 +88,17 @@ namespace System.Data.HashFunction.Test
             [Fact]
             public void IHashFunction_Extensions_ComputeHash_sbyte()
             {
-                var value = (sbyte) 0x39;
+                var value = (SByte) 0x39;
 
                 AssertSugar(
                     hf => hf.ComputeHash(value),
-                    new[] { (byte) value });
+                    new[] { (Byte) value });
             }
 
             [Fact]
             public void IHashFunction_Extensions_ComputeHash_short()
             {
-                var value = (short) 3209;
+                var value = (Int16) 3209;
 
                 AssertSugar(
                     hf => hf.ComputeHash(value),
@@ -138,7 +138,7 @@ namespace System.Data.HashFunction.Test
             [Fact]
             public void IHashFunction_Extensions_ComputeHash_ushort()
             {
-                var value = (ushort) 36090;
+                var value = (UInt16) 36090;
 
                 AssertSugar(
                     hf => hf.ComputeHash(value),
@@ -149,7 +149,7 @@ namespace System.Data.HashFunction.Test
             [Fact]
             public void IHashFunction_Extensions_ComputeHash_TModel()
             {
-                var value = new Dictionary<string, int>() { 
+                var value = new Dictionary<String, Int32>() { 
                     {"Test", 5 },
                     {"Foo", 20 },
                     {"Bar", 40 }
@@ -167,11 +167,11 @@ namespace System.Data.HashFunction.Test
             }
 
 
-            private void AssertSugar(Action<IHashFunction> action, byte[] data)
+            private void AssertSugar(Action<IHashFunction> action, Byte[] data)
             {
                 var hashFunctionMock = new Mock<HashFunctionImpl>(32) { CallBase = true }; ;
 
-                hashFunctionMock.Setup(hf => hf.ComputeHash(It.Is<byte[]>(d => data.SequenceEqual(d))))
+                hashFunctionMock.Setup(hf => hf.ComputeHash(It.Is<Byte[]>(d => data.SequenceEqual(d))))
                     .Verifiable();
 
                 action(hashFunctionMock.Object);
@@ -195,7 +195,7 @@ namespace System.Data.HashFunction.Test
             [Fact]
             public void IHashFunction_Extensions_ComputeHash_WithDesiredBits_byte()
             {
-                var value = (byte)0x39;
+                var value = (Byte)0x39;
 
                 AssertSugar(
                     (hf, desiredSize) => hf.ComputeHash(value, desiredSize),
@@ -205,7 +205,7 @@ namespace System.Data.HashFunction.Test
             [Fact]
             public void IHashFunction_Extensions_ComputeHash_WithDesiredBits_char()
             {
-                var value = (char)0x39;
+                var value = (Char)0x39;
 
                 AssertSugar(
                     (hf, desiredSize) => hf.ComputeHash(value, desiredSize),
@@ -255,17 +255,17 @@ namespace System.Data.HashFunction.Test
             [Fact]
             public void IHashFunction_Extensions_ComputeHash_WithDesiredBits_sbyte()
             {
-                var value = (sbyte) 0x39;
+                var value = (SByte) 0x39;
 
                 AssertSugar(
                     (hf, desiredSize) => hf.ComputeHash(value, desiredSize),
-                    new[] { (byte) value });
+                    new[] { (Byte) value });
             }
 
             [Fact]
             public void IHashFunction_Extensions_ComputeHash_WithDesiredBits_short()
             {
-                var value = (short)3209;
+                var value = (Int16)3209;
 
                 AssertSugar(
                     (hf, desiredSize) => hf.ComputeHash(value, desiredSize),
@@ -305,7 +305,7 @@ namespace System.Data.HashFunction.Test
             [Fact]
             public void IHashFunction_Extensions_ComputeHash_WithDesiredBits_ushort()
             {
-                var value = (ushort)36090;
+                var value = (UInt16)36090;
 
                 AssertSugar(
                     (hf, desiredSize) => hf.ComputeHash(value, desiredSize),
@@ -316,7 +316,7 @@ namespace System.Data.HashFunction.Test
             [Fact]
             public void IHashFunction_Extensions_ComputeHash_WithDesiredBits_TModel()
             {
-                var value = new Dictionary<string, int>() { 
+                var value = new Dictionary<String, Int32>() { 
                 {"Test", 5 },
                 {"Foo", 20 },
                 {"Bar", 40 }
@@ -334,12 +334,12 @@ namespace System.Data.HashFunction.Test
             }
 
 
-            private void AssertSugar(Action<IHashFunction, int> action, byte[] data)
+            private void AssertSugar(Action<IHashFunction, Int32> action, Byte[] data)
             {
                 var hashFunctionMock = new Mock<HashFunctionImpl>(32) { CallBase = true };
 
-                hashFunctionMock.Setup(hf => hf.ComputeHash(It.Is<byte[]>(d => data.SequenceEqual(d))))
-                    .Returns(new byte[4])
+                hashFunctionMock.Setup(hf => hf.ComputeHash(It.Is<Byte[]>(d => data.SequenceEqual(d))))
+                    .Returns(new Byte[4])
                     .Verifiable();
 
 
@@ -359,17 +359,17 @@ namespace System.Data.HashFunction.Test
         {
             var hashFunction = new JenkinsOneAtATime();
 
-            var knownValues = new Dictionary<int, byte[]>() {
-                {  1, new byte[] { 0x00 } },
-                {  2, new byte[] { 0x02 } },
-                {  4, new byte[] { 0x09 } },
-                {  8, new byte[] { 0x1a } },
-                { 16, new byte[] { 0xb5, 0x04 } },
-                { 32, new byte[] { 0xe7, 0xfd, 0x52, 0xf9 } },
-                { 48, new byte[] { 0xcb, 0x66, 0x52, 0xf9, 0x70, 0xac } },
-                { 53, new byte[] { 0x3e, 0xf9, 0x52, 0xf9, 0x70, 0xac, 0x0c } },
-                { 55, new byte[] { 0xd1, 0xfc, 0x52, 0xf9, 0x70, 0xac, 0x2c } },
-                { 64, new byte[] { 0xe7, 0xfd, 0x52, 0xf9, 0x70, 0xac, 0x2c, 0x9b } },
+            var knownValues = new Dictionary<Int32, Byte[]>() {
+                {  1, new Byte[] { 0x00 } },
+                {  2, new Byte[] { 0x02 } },
+                {  4, new Byte[] { 0x09 } },
+                {  8, new Byte[] { 0x1a } },
+                { 16, new Byte[] { 0xb5, 0x04 } },
+                { 32, new Byte[] { 0xe7, 0xfd, 0x52, 0xf9 } },
+                { 48, new Byte[] { 0xcb, 0x66, 0x52, 0xf9, 0x70, 0xac } },
+                { 53, new Byte[] { 0x3e, 0xf9, 0x52, 0xf9, 0x70, 0xac, 0x0c } },
+                { 55, new Byte[] { 0xd1, 0xfc, 0x52, 0xf9, 0x70, 0xac, 0x2c } },
+                { 64, new Byte[] { 0xe7, 0xfd, 0x52, 0xf9, 0x70, 0xac, 0x2c, 0x9b } },
             };
 
 

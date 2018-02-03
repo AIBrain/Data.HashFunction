@@ -18,7 +18,7 @@ namespace System.Data.HashFunction
     {
 
         /// <inheritdoc />
-        public int HashSize 
+        public Int32 HashSize 
         { 
             get { return _HashSize; }
         }
@@ -30,24 +30,24 @@ namespace System.Data.HashFunction
         /// <value>
         /// <c>true</c> if a seekable stream; otherwise, <c>false</c>.
         /// </value>
-        protected virtual bool RequiresSeekableStream { get { return false; } }
+        protected virtual Boolean RequiresSeekableStream { get { return false; } }
 
 
-        private readonly int _HashSize;
+        private readonly Int32 _HashSize;
 
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HashFunctionBase"/> class.
         /// </summary>
         /// <param name="hashSize"><inheritdoc cref="HashSize" /></param>
-        protected HashFunctionBase(int hashSize)
+        protected HashFunctionBase(Int32 hashSize)
         {
             _HashSize = hashSize;
         }
 
 
         /// <inheritdoc />
-        public virtual byte[] ComputeHash(byte[] data)
+        public virtual Byte[] ComputeHash(Byte[] data)
         {
             return ComputeHashInternal(
                 new ArrayData(data));
@@ -55,14 +55,14 @@ namespace System.Data.HashFunction
 
         /// <exception cref="System.ArgumentException">Stream \data\ must be readable.;data</exception>
         /// <inheritdoc />
-        public virtual byte[] ComputeHash(Stream data)
+        public virtual Byte[] ComputeHash(Stream data)
         {
             if (!data.CanRead)
                 throw new ArgumentException("Stream \"data\" must be readable.", "data");
 
             if (!data.CanSeek && RequiresSeekableStream)
             {
-                byte[] buffer;
+                Byte[] buffer;
 
                 using (var ms = new MemoryStream())
                 {
@@ -88,6 +88,6 @@ namespace System.Data.HashFunction
         /// <returns>
         /// Hash value of data as byte array.
         /// </returns>
-        protected abstract byte[] ComputeHashInternal(UnifiedData data);
+        protected abstract Byte[] ComputeHashInternal(UnifiedData data);
     }
 }

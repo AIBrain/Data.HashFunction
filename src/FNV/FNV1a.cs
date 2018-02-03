@@ -30,7 +30,7 @@ namespace System.Data.HashFunction
         /// Initializes a new instance of the <see cref="FNV1a"/> class.
         /// </summary>
         /// <inheritdoc cref="FNV1Base(int)" />
-        public FNV1a(int hashSize)
+        public FNV1a(Int32 hashSize)
             : base(hashSize)
         {
 
@@ -39,7 +39,7 @@ namespace System.Data.HashFunction
 
         /// <inheritdoc />
 #if !NET40
-        protected override void ProcessBytes(ref UInt32[] hash, IReadOnlyList<UInt32> prime, byte[] data, int position, int length)
+        protected override void ProcessBytes(ref UInt32[] hash, IReadOnlyList<UInt32> prime, Byte[] data, Int32 position, Int32 length)
 #else
         protected override void ProcessBytes(ref UInt32[] hash, IList<UInt32> prime, byte[] data, int position, int length)
 #endif
@@ -52,7 +52,7 @@ namespace System.Data.HashFunction
         }
 
         /// <inheritdoc />
-        protected override void ProcessBytes32(ref UInt32 hash, UInt32 prime, byte[] data, int position, int length)
+        protected override void ProcessBytes32(ref UInt32 hash, UInt32 prime, Byte[] data, Int32 position, Int32 length)
         {
             for (var x = position; x < position + length; ++x)
             {
@@ -62,7 +62,7 @@ namespace System.Data.HashFunction
         }
 
         /// <inheritdoc />
-        protected override void ProcessBytes64(ref UInt64 hash, UInt64 prime, byte[] data, int position, int length)
+        protected override void ProcessBytes64(ref UInt64 hash, UInt64 prime, Byte[] data, Int32 position, Int32 length)
         {
             for (var x = position; x < position + length; ++x)
             {

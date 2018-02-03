@@ -35,7 +35,7 @@ namespace System.Data.HashFunction.Test
 
             // HashAlgorithm shouldn't be usable anymore.
             Assert.Throws<ObjectDisposedException>(() =>
-                ha.ComputeHash(new byte[0]));
+                ha.ComputeHash(new Byte[0]));
 
             Assert.Throws<ObjectDisposedException>(() =>
                 ha.ComputeHash(new MemoryStream()));
@@ -43,7 +43,7 @@ namespace System.Data.HashFunction.Test
 
             // HashAlgorithmWrapper should not be usable anymore either.
             Assert.Throws<ObjectDisposedException>(() =>
-                haw.ComputeHash(new byte[0]));
+                haw.ComputeHash(new Byte[0]));
 
             Assert.Throws<ObjectDisposedException>(() =>
                 haw.ComputeHash(new MemoryStream()));
@@ -70,7 +70,7 @@ namespace System.Data.HashFunction.Test
 
 
             // HashAlgorithm should still be usable.
-            ha.ComputeHash(new byte[0]);
+            ha.ComputeHash(new Byte[0]);
             ha.ComputeHash(new MemoryStream());
 
 
@@ -98,7 +98,7 @@ namespace System.Data.HashFunction.Test
 
             // HashAlgorithmWrapper should no longer be usable.
             Assert.Throws<ObjectDisposedException>(() =>
-                haw.ComputeHash(new byte[0]));
+                haw.ComputeHash(new Byte[0]));
 
             Assert.Throws<ObjectDisposedException>(() =>
                 haw.ComputeHash(new MemoryStream()));

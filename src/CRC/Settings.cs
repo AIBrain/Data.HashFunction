@@ -19,7 +19,7 @@ namespace System.Data.HashFunction
             /// <value>
             /// The length of the produced CRC value, in bits
             /// </value>
-            public int Bits { get; private set; }
+            public Int32 Bits { get; private set; }
 
 
             /// <summary>
@@ -46,7 +46,7 @@ namespace System.Data.HashFunction
             /// <value>
             ///   <c>true</c> if the input should be processed in big endian bit order; otherwise, <c>false</c>.
             /// </value>
-            public bool ReflectIn { get; private set; }
+            public Boolean ReflectIn { get; private set; }
 
 
             /// <summary>
@@ -55,7 +55,7 @@ namespace System.Data.HashFunction
             /// <value>
             ///   <c>true</c> if the CRC calculation processes the output as big endian bit order; otherwise, <c>false</c>.
             /// </value>
-            public bool ReflectOut { get; private set; }
+            public Boolean ReflectOut { get; private set; }
 
 
             /// <summary>
@@ -97,8 +97,8 @@ namespace System.Data.HashFunction
             /// <param name="xOrOut"><inheritdoc cref="XOrOut" /></param>
             /// <exception cref="System.ArgumentOutOfRangeException">bits;bitLength must be in the range [1, 64].</exception>
             public Setting(
-                int bits, UInt64 polynomial, UInt64 initialValue,
-                bool reflectIn, bool reflectOut, UInt64 xOrOut)
+                Int32 bits, UInt64 polynomial, UInt64 initialValue,
+                Boolean reflectIn, Boolean reflectOut, UInt64 xOrOut)
             {
                 if (bits < 1 || bits > 64)
                     throw new ArgumentOutOfRangeException("bits", "bitLength must be in the range [1, 64].");
@@ -129,7 +129,7 @@ namespace System.Data.HashFunction
             /// <returns>
             /// True if the table was calculated, false if the table has already been calculated.
             /// </returns>
-            public bool PreCalculateTable()
+            public Boolean PreCalculateTable()
             {
                 if (_DataDivisionTable.IsValueCreated)
                     return false;
@@ -148,14 +148,14 @@ namespace System.Data.HashFunction
             /// <param name="inputValue">Value to check.</param>
             /// <param name="bitLength">Expected bit length of the inputValue parameter.</param>
             /// <exception cref="System.ArgumentOutOfRangeException"></exception>
-            private static void CheckInput(string paramName, UInt64 inputValue, int bitLength)
+            private static void CheckInput(String paramName, UInt64 inputValue, Int32 bitLength)
             {
                 var maxInputValue = UInt64.MaxValue >> (64 - bitLength);
 
                 if (inputValue > maxInputValue)
                 {
                     throw new ArgumentOutOfRangeException(paramName,
-                        string.Format("{0} must not be more than {1} bits in length.",
+                        String.Format("{0} must not be more than {1} bits in length.",
                             paramName, bitLength));
                 }
             }

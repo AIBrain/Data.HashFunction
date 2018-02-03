@@ -14,26 +14,26 @@ namespace System.Data.HashFunction.Test.Mocks
     public class SlowAsyncStream
         : Stream
     {
-        public override bool CanRead { get { return _underlyingStream.CanRead; } }
-        public override bool CanSeek { get { return _underlyingStream.CanSeek; } }
-        public override bool CanTimeout { get { return _underlyingStream.CanTimeout; } }
-        public override bool CanWrite { get { return _underlyingStream.CanTimeout; } }
+        public override Boolean CanRead { get { return _underlyingStream.CanRead; } }
+        public override Boolean CanSeek { get { return _underlyingStream.CanSeek; } }
+        public override Boolean CanTimeout { get { return _underlyingStream.CanTimeout; } }
+        public override Boolean CanWrite { get { return _underlyingStream.CanTimeout; } }
 
-        public override long Length { get { return _underlyingStream.Length; } }
+        public override Int64 Length { get { return _underlyingStream.Length; } }
 
-        public override long Position
+        public override Int64 Position
         {
             get { return _underlyingStream.Position; }
             set { _underlyingStream.Position = value; }
         }
 
-        public override int ReadTimeout
+        public override Int32 ReadTimeout
         {
             get { return _underlyingStream.ReadTimeout; }
             set { _underlyingStream.ReadTimeout = value; }
         }
 
-        public override int WriteTimeout
+        public override Int32 WriteTimeout
         {
             get { return _underlyingStream.WriteTimeout; }
             set { _underlyingStream.WriteTimeout = value; }
@@ -47,12 +47,12 @@ namespace System.Data.HashFunction.Test.Mocks
             _underlyingStream = underlyingStream;
         }
 
-        public override IAsyncResult BeginRead(byte[] buffer, int offset, int count, AsyncCallback callback, object state)
+        public override IAsyncResult BeginRead(Byte[] buffer, Int32 offset, Int32 count, AsyncCallback callback, Object state)
         {
             return _underlyingStream.BeginRead(buffer, offset, count, callback, state);
         }
 
-        public override IAsyncResult BeginWrite(byte[] buffer, int offset, int count, AsyncCallback callback, object state)
+        public override IAsyncResult BeginWrite(Byte[] buffer, Int32 offset, Int32 count, AsyncCallback callback, Object state)
         {
             return _underlyingStream.BeginWrite(buffer, offset, count, callback, state);
         }
@@ -62,7 +62,7 @@ namespace System.Data.HashFunction.Test.Mocks
             _underlyingStream.Close();
         }
 
-        public async override Task CopyToAsync(Stream destination, int bufferSize, CancellationToken cancellationToken)
+        public async override Task CopyToAsync(Stream destination, Int32 bufferSize, CancellationToken cancellationToken)
         {
             await Task.Delay(10)
                 .ConfigureAwait(false);
@@ -71,13 +71,13 @@ namespace System.Data.HashFunction.Test.Mocks
                 .ConfigureAwait(false);
         }
 
-        protected override void Dispose(bool disposing)
+        protected override void Dispose(Boolean disposing)
         {
             if (disposing)
                 _underlyingStream.Dispose();
         }
 
-        public override int EndRead(IAsyncResult asyncResult)
+        public override Int32 EndRead(IAsyncResult asyncResult)
         {
             return _underlyingStream.EndRead(asyncResult);
         }
@@ -101,12 +101,12 @@ namespace System.Data.HashFunction.Test.Mocks
                 .ConfigureAwait(false);
         }
 
-        public override int Read(byte[] buffer, int offset, int count)
+        public override Int32 Read(Byte[] buffer, Int32 offset, Int32 count)
         {
             return _underlyingStream.Read(buffer, offset, count);
         }
 
-        public async override Task<int> ReadAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
+        public async override Task<Int32> ReadAsync(Byte[] buffer, Int32 offset, Int32 count, CancellationToken cancellationToken)
         {
             await Task.Delay(10)
                 .ConfigureAwait(false);
@@ -115,27 +115,27 @@ namespace System.Data.HashFunction.Test.Mocks
                 .ConfigureAwait(false);
         }
 
-        public override int ReadByte()
+        public override Int32 ReadByte()
         {
             return _underlyingStream.ReadByte();
         }
 
-        public override long Seek(long offset, SeekOrigin origin)
+        public override Int64 Seek(Int64 offset, SeekOrigin origin)
         {
             return _underlyingStream.Seek(offset, origin);
         }
 
-        public override void SetLength(long value)
+        public override void SetLength(Int64 value)
         {
             _underlyingStream.SetLength(value);
         }
 
-        public override void Write(byte[] buffer, int offset, int count)
+        public override void Write(Byte[] buffer, Int32 offset, Int32 count)
         {
             _underlyingStream.Write(buffer, offset, count);
         }
 
-        public async override Task WriteAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
+        public async override Task WriteAsync(Byte[] buffer, Int32 offset, Int32 count, CancellationToken cancellationToken)
         {
             await Task.Delay(50)
                 .ConfigureAwait(false);
@@ -144,7 +144,7 @@ namespace System.Data.HashFunction.Test.Mocks
                 .ConfigureAwait(false);
         }
 
-        public override void WriteByte(byte value)
+        public override void WriteByte(Byte value)
         {
             _underlyingStream.WriteByte(value);
         }

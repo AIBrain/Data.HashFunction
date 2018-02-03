@@ -14,14 +14,14 @@ namespace System.Data.HashFunction.Test.Jenkins
         [Fact]
         public void JenkinsLookup3_32bit_ComputeHash_ExtremelyLongStream_Works()
         {
-            byte[] knownValue;
+            Byte[] knownValue;
 
             {
                 var loremIpsumRepeatCount = 800;
                 var loremIpsumLength = TestConstants.LoremIpsum.Length;
 
 
-                knownValue = new byte[loremIpsumLength * loremIpsumRepeatCount];
+                knownValue = new Byte[loremIpsumLength * loremIpsumRepeatCount];
 
                 for (var x = 0; x < loremIpsumRepeatCount; ++x)
                     Array.Copy(TestConstants.LoremIpsum, 0, knownValue, loremIpsumLength * x, loremIpsumLength);

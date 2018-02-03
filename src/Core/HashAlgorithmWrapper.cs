@@ -15,14 +15,14 @@ namespace System.Data.HashFunction
         : IHashFunction, IDisposable
     {
         /// <inheritdoc/>
-        public virtual int HashSize { get { return _hashAlgorithm.HashSize; } }
+        public virtual Int32 HashSize { get { return _hashAlgorithm.HashSize; } }
 
         private readonly HashAlgorithm _hashAlgorithm;
-        private readonly bool _ownsInstance;
+        private readonly Boolean _ownsInstance;
 
-        private readonly object SyncRoot = new object();
+        private readonly Object SyncRoot = new Object();
 
-        private bool _disposed = false;
+        private Boolean _disposed = false;
 
 
         /// <remarks>
@@ -39,7 +39,7 @@ namespace System.Data.HashFunction
         /// </summary>
         /// <param name="hashAlgorithm">Instance of <see cref="HashAlgorithm" /> to use for hashing.</param>
         /// <param name="ownsInstance">If true, the instance of <see cref="HashAlgorithm" /> passed will be disposed when the HashAlgorithmWrapper instance is disposed.</param>
-        public HashAlgorithmWrapper(HashAlgorithm hashAlgorithm, bool ownsInstance)
+        public HashAlgorithmWrapper(HashAlgorithm hashAlgorithm, Boolean ownsInstance)
         {
             _hashAlgorithm = hashAlgorithm;
             _ownsInstance = ownsInstance;
@@ -67,7 +67,7 @@ namespace System.Data.HashFunction
         /// Disposes <see cref="HashAlgorithm" /> passed in constructor if it is owned by this <see cref="HashAlgorithmWrapper" />.
         /// </summary>
         /// <param name="disposing">If false, call is assumed to be from the destructor.</param>
-        protected virtual void Dispose(bool disposing)
+        protected virtual void Dispose(Boolean disposing)
         {
             lock (SyncRoot)
             {
@@ -80,14 +80,14 @@ namespace System.Data.HashFunction
 
 
         /// <inheritdoc />
-        public byte[] ComputeHash(byte[] data)
+        public Byte[] ComputeHash(Byte[] data)
         {
             lock (SyncRoot)
                 return _hashAlgorithm.ComputeHash(data);
         }
 
         /// <inheritdoc />
-        public byte[] ComputeHash(Stream data)
+        public Byte[] ComputeHash(Stream data)
         {
             lock (SyncRoot)
                 return _hashAlgorithm.ComputeHash(data);
@@ -104,13 +104,13 @@ namespace System.Data.HashFunction
         where HashAlgorithmT : HashAlgorithm, new()
     {
         /// <inheritdoc />
-        public virtual int HashSize { get { return _hashAlgorithm.HashSize; } }
+        public virtual Int32 HashSize { get { return _hashAlgorithm.HashSize; } }
 
 
         private readonly HashAlgorithmT _hashAlgorithm;
-        private readonly object SyncRoot = new object();
+        private readonly Object SyncRoot = new Object();
         
-        private bool _disposed = false;
+        private Boolean _disposed = false;
 
 
         /// <summary>
@@ -142,7 +142,7 @@ namespace System.Data.HashFunction
         /// Disposes <see cref="HashAlgorithm" /> created in constructor.
         /// </summary>
         /// <param name="disposing">If false, call is assumed to be from the destructor.</param>
-        protected virtual void Dispose(bool disposing)
+        protected virtual void Dispose(Boolean disposing)
         {
             lock (SyncRoot)
             {
@@ -155,14 +155,14 @@ namespace System.Data.HashFunction
 
 
         /// <inheritdoc />
-        public byte[] ComputeHash(byte[] data)
+        public Byte[] ComputeHash(Byte[] data)
         {
             lock (SyncRoot)
                 return _hashAlgorithm.ComputeHash(data);
         }
 
         /// <inheritdoc />
-        public byte[] ComputeHash(Stream data)
+        public Byte[] ComputeHash(Stream data)
         {
             lock (SyncRoot)
                 return _hashAlgorithm.ComputeHash(data);

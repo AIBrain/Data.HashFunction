@@ -20,7 +20,7 @@ namespace System.Data.HashFunction.Utilities
 #if !NET40
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        public static IEnumerable<byte> ToBytes(this IEnumerable<UInt32> values)
+        public static IEnumerable<Byte> ToBytes(this IEnumerable<UInt32> values)
         {
             return values.SelectMany(v => BitConverter.GetBytes(v));
         }

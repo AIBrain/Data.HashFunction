@@ -39,11 +39,11 @@ namespace System.Data.HashFunction
         /// <value>
         /// The list of valid hash sizes.
         /// </value>
-        public static IEnumerable<int> ValidHashSizes { get { return _ValidHashSizes; } }
+        public static IEnumerable<Int32> ValidHashSizes { get { return _ValidHashSizes; } }
 
 
         /// <inheritdoc/>
-        protected override bool RequiresSeekableStream { get { return true; } }
+        protected override Boolean RequiresSeekableStream { get { return true; } }
 
         /// <summary>
         /// Constant as defined by MurmurHash2 specification.
@@ -53,7 +53,7 @@ namespace System.Data.HashFunction
 
         private readonly UInt64 _Seed;
 
-        private static readonly IEnumerable<int> _ValidHashSizes = new[] { 32, 64 };
+        private static readonly IEnumerable<Int32> _ValidHashSizes = new[] { 32, 64 };
 
 
         /// <remarks>
@@ -70,7 +70,7 @@ namespace System.Data.HashFunction
         /// Defaults <see cref="Seed" /> to 0.
         /// </remarks>
         /// <inheritdoc cref="MurmurHash2(int, UInt64)" />
-        public MurmurHash2(int hashSize)
+        public MurmurHash2(Int32 hashSize)
             : this(hashSize, 0U)
         {
 
@@ -93,7 +93,7 @@ namespace System.Data.HashFunction
         /// <param name="seed"><inheritdoc cref="Seed" /></param>
         /// <exception cref="System.ArgumentOutOfRangeException">hashSize;hashSize must be contained within MurmurHash2.ValidHashSizes.</exception>
         /// <inheritdoc cref="HashFunctionBase(int)" />
-        public MurmurHash2(int hashSize, UInt64 seed)
+        public MurmurHash2(Int32 hashSize, UInt64 seed)
             : base(hashSize)
         {
             if (!ValidHashSizes.Contains(hashSize))
@@ -105,9 +105,9 @@ namespace System.Data.HashFunction
 
         /// <exception cref="System.InvalidOperationException">HashSize set to an invalid value.</exception>
         /// <inheritdoc />
-        protected override byte[] ComputeHashInternal(UnifiedData data)
+        protected override Byte[] ComputeHashInternal(UnifiedData data)
         {
-            byte[] hash = null;
+            Byte[] hash = null;
 
             switch (HashSize)
             {
@@ -165,9 +165,9 @@ namespace System.Data.HashFunction
 #if !NET40 || INCLUDE_ASYNC
         /// <exception cref="System.InvalidOperationException">HashSize set to an invalid value.</exception>
         /// <inheritdoc />
-        protected override async Task<byte[]> ComputeHashAsyncInternal(UnifiedData data)
+        protected override async Task<Byte[]> ComputeHashAsyncInternal(UnifiedData data)
         {
-            byte[] hash = null;
+            Byte[] hash = null;
 
             switch (HashSize)
             {
@@ -227,7 +227,7 @@ namespace System.Data.HashFunction
 #if !NET40
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        private static void ProcessGroup(ref UInt32 h, UInt32 m, byte[] dataGroup, int position, int length)
+        private static void ProcessGroup(ref UInt32 h, UInt32 m, Byte[] dataGroup, Int32 position, Int32 length)
         {
             for (var x = position; x < position + length; x += 4)
             {
@@ -245,7 +245,7 @@ namespace System.Data.HashFunction
 #if !NET40
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        private static void ProcessGroup(ref UInt64 h, UInt64 m, byte[] dataGroup, int position, int length)
+        private static void ProcessGroup(ref UInt64 h, UInt64 m, Byte[] dataGroup, Int32 position, Int32 length)
         {
             for (var x = position; x < position + length; x += 8)
             {
@@ -263,7 +263,7 @@ namespace System.Data.HashFunction
 #if !NET40
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        private static void ProcessRemainder(ref UInt32 h, UInt32 m, byte[] remainder, int position, int length)
+        private static void ProcessRemainder(ref UInt32 h, UInt32 m, Byte[] remainder, Int32 position, Int32 length)
         {
             switch (length)
             {
@@ -281,7 +281,7 @@ namespace System.Data.HashFunction
 #if !NET40
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        private static void ProcessRemainder(ref UInt64 h, UInt64 m, byte[] remainder, int position, int length)
+        private static void ProcessRemainder(ref UInt64 h, UInt64 m, Byte[] remainder, Int32 position, Int32 length)
         {
             switch (length)
             {

@@ -10,17 +10,17 @@ namespace System.Data.HashFunction.Utilities.UnifiedData
         : UnifiedData
     {
         /// <inheritdoc />
-        public override long Length { get { return _Data.LongLength; } }
+        public override Int64 Length { get { return _Data.LongLength; } }
 
         
-        protected readonly byte[] _Data;
+        protected readonly Byte[] _Data;
 
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ArrayData"/> class.
         /// </summary>
         /// <param name="data">The data to represent.</param>
-        public ArrayData(byte[] data)
+        public ArrayData(Byte[] data)
         {
             _Data = data;
             BufferSize = (
@@ -32,7 +32,7 @@ namespace System.Data.HashFunction.Utilities.UnifiedData
 
 
         /// <inheritdoc />
-        public override void ForEachRead(Action<byte[], int, int> action)
+        public override void ForEachRead(Action<Byte[], Int32, Int32> action)
         {
             if (action == null)
                 throw new ArgumentNullException("action");
@@ -43,7 +43,7 @@ namespace System.Data.HashFunction.Utilities.UnifiedData
 
 #if !NET40 || INCLUDE_ASYNC
         /// <inheritdoc />
-        public override Task ForEachReadAsync(Action<byte[], int, int> action)
+        public override Task ForEachReadAsync(Action<Byte[], Int32, Int32> action)
         {
             ForEachRead(action);
 
@@ -58,7 +58,7 @@ namespace System.Data.HashFunction.Utilities.UnifiedData
 
 
             /// <inheritdoc />
-        public override void ForEachGroup(int groupSize, Action<byte[], int, int> action, Action<byte[], int, int> remainderAction)
+        public override void ForEachGroup(Int32 groupSize, Action<Byte[], Int32, Int32> action, Action<Byte[], Int32, Int32> remainderAction)
         {
             if (groupSize <= 0)
                 throw new ArgumentOutOfRangeException("groupSize", "bufferSize must be greater than 0.");
@@ -81,7 +81,7 @@ namespace System.Data.HashFunction.Utilities.UnifiedData
 
 #if !NET40 || INCLUDE_ASYNC
         /// <inheritdoc />
-        public override Task ForEachGroupAsync(int groupSize, Action<byte[], int, int> action, Action<byte[], int, int> remainderAction)
+        public override Task ForEachGroupAsync(Int32 groupSize, Action<Byte[], Int32, Int32> action, Action<Byte[], Int32, Int32> remainderAction)
         {
             ForEachGroup(groupSize, action, remainderAction);
 
@@ -96,14 +96,14 @@ namespace System.Data.HashFunction.Utilities.UnifiedData
 
 
         /// <inheritdoc />
-        public override byte[] ToArray()
+        public override Byte[] ToArray()
         {
             return _Data;
         }
 
 #if !NET40 || INCLUDE_ASYNC
         /// <inheritdoc />
-        public override Task<byte[]> ToArrayAsync()
+        public override Task<Byte[]> ToArrayAsync()
         {
 #if !INCLUDE_ASYNC
             return Task.FromResult(

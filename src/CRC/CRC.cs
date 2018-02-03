@@ -96,7 +96,7 @@ namespace System.Data.HashFunction
 
 
         /// <inheritdoc />
-        protected override byte[] ComputeHashInternal(UnifiedData data)
+        protected override Byte[] ComputeHashInternal(UnifiedData data)
         {
             // Use 64-bit variable regardless of CRC bit length
             UInt64 hash = Settings.InitialValue;
@@ -111,7 +111,7 @@ namespace System.Data.HashFunction
 
 
             // How much hash must be right-shifted to get the most significant byte (HashSize >= 8) or bit (HashSize < 8)
-            int mostSignificantShift = HashSize - 8;
+            Int32 mostSignificantShift = HashSize - 8;
 
             if (HashSize < 8)
                 mostSignificantShift = HashSize - 1;
@@ -134,7 +134,7 @@ namespace System.Data.HashFunction
         
 #if !NET40 || INCLUDE_ASYNC
         /// <inheritdoc />
-        protected override async Task<byte[]> ComputeHashAsyncInternal(UnifiedData data)
+        protected override async Task<Byte[]> ComputeHashAsyncInternal(UnifiedData data)
         {
             // Use 64-bit variable regardless of CRC bit length
             UInt64 hash = Settings.InitialValue;
@@ -149,7 +149,7 @@ namespace System.Data.HashFunction
 
 
             // How much hash must be right-shifted to get the most significant byte (HashSize >= 8) or bit (HashSize < 8)
-            int mostSignificantShift = HashSize - 8;
+            Int32 mostSignificantShift = HashSize - 8;
 
             if (HashSize < 8)
                 mostSignificantShift = HashSize - 1;
@@ -172,7 +172,7 @@ namespace System.Data.HashFunction
 #endif
 
 #if !NET40
-        private void ProcessBytes(ref UInt64 hash, IReadOnlyList<UInt64> crcTable, int mostSignificantShift, byte[] dataBytes, int position, int length)
+        private void ProcessBytes(ref UInt64 hash, IReadOnlyList<UInt64> crcTable, Int32 mostSignificantShift, Byte[] dataBytes, Int32 position, Int32 length)
 #else
         private void ProcessBytes(ref UInt64 hash, IList<UInt64> crcTable, int mostSignificantShift, byte[] dataBytes, int position, int length)
 #endif
@@ -183,18 +183,18 @@ namespace System.Data.HashFunction
                 {
                     // Process per byte, treating hash differently based on input endianness
                     if (Settings.ReflectIn)
-                        hash = (hash >> 8) ^ crcTable[(byte) hash ^ dataBytes[x]];
+                        hash = (hash >> 8) ^ crcTable[(Byte) hash ^ dataBytes[x]];
                     else
-                        hash = (hash << 8) ^ crcTable[((byte) (hash >> mostSignificantShift)) ^ dataBytes[x]];
+                        hash = (hash << 8) ^ crcTable[((Byte) (hash >> mostSignificantShift)) ^ dataBytes[x]];
 
                 } else {
                     // Process per bit, treating hash differently based on input endianness
-                    for (int y = 0; y < 8; ++y)
+                    for (Int32 y = 0; y < 8; ++y)
                     {
                         if (Settings.ReflectIn)
-                            hash = (hash >> 1) ^ crcTable[(byte) (hash & 1) ^ ((byte) (dataBytes[x] >> y) & 1)];
+                            hash = (hash >> 1) ^ crcTable[(Byte) (hash & 1) ^ ((Byte) (dataBytes[x] >> y) & 1)];
                         else
-                            hash =  (hash << 1) ^ crcTable[(byte) ((hash >> mostSignificantShift) & 1) ^ ((byte) (dataBytes[x] >> (7 - y)) & 1)];
+                            hash =  (hash << 1) ^ crcTable[(Byte) ((hash >> mostSignificantShift) & 1) ^ ((Byte) (dataBytes[x] >> (7 - y)) & 1)];
                     }
 
                 }
@@ -226,7 +226,7 @@ namespace System.Data.HashFunction
             var mostSignificantBit = 1UL << (settings.Bits - 1);
 
 
-            for (uint x = 0; x < crcTable.Length; ++x)
+            for (UInt32 x = 0; x < crcTable.Length; ++x)
             {
                 UInt64 curValue = x;
 
@@ -237,7 +237,7 @@ namespace System.Data.HashFunction
                 curValue <<= (settings.Bits - perBitCount);
 
 
-                for (int y = 0; y < perBitCount; ++y)
+                for (Int32 y = 0; y < perBitCount; ++y)
                 {
                     if ((curValue & mostSignificantBit) > 0UL)
                         curValue = (curValue << 1) ^ settings.Polynomial;

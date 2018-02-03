@@ -13,23 +13,23 @@ namespace System.Data.HashFunction.Test.Mocks
         public static readonly InvalidOperationException ExceptionToThrow = new InvalidOperationException("Mock Exception");
 
 
-        public ArrayData_ThrowNonAsync(byte[] data)
+        public ArrayData_ThrowNonAsync(Byte[] data)
             : base(data)
         {
 
         }
 
-        public override void ForEachRead(Action<byte[], int, int> action)
+        public override void ForEachRead(Action<Byte[], Int32, Int32> action)
         {
             throw ExceptionToThrow;
         }
 
-        public override void ForEachGroup(int groupSize, Action<byte[], int, int> action, Action<byte[], int, int> remainderAction)
+        public override void ForEachGroup(Int32 groupSize, Action<Byte[], Int32, Int32> action, Action<Byte[], Int32, Int32> remainderAction)
         {
             throw ExceptionToThrow;
         }
 
-        public override byte[] ToArray()
+        public override Byte[] ToArray()
         {
             throw ExceptionToThrow;
         }

@@ -109,12 +109,12 @@ namespace System.Data.HashFunction.Test
 
         protected class KnownValue
         {
-            public readonly int HashSize;
-            public readonly byte[] TestValue;
-            public readonly byte[] ExpectedValue;
+            public readonly Int32 HashSize;
+            public readonly Byte[] TestValue;
+            public readonly Byte[] ExpectedValue;
             
 
-            public KnownValue(int hashSize, IEnumerable<byte> testValue, IEnumerable<byte> expectedValue)
+            public KnownValue(Int32 hashSize, IEnumerable<Byte> testValue, IEnumerable<Byte> expectedValue)
             {
                 TestValue = testValue.ToArray();
                 ExpectedValue = expectedValue.ToArray();
@@ -122,27 +122,27 @@ namespace System.Data.HashFunction.Test
             }
 
 
-            public KnownValue(int hashSize, string utf8Value, string expectedValue)
+            public KnownValue(Int32 hashSize, String utf8Value, String expectedValue)
                 : this(hashSize, utf8Value.ToBytes(), expectedValue.HexToBytes()) { }
 
-            public KnownValue(int hashSize, string utf8Value, UInt32 expectedValue)
+            public KnownValue(Int32 hashSize, String utf8Value, UInt32 expectedValue)
                 : this(hashSize, utf8Value.ToBytes(), expectedValue.ToBytes(32)) { }
 
-            public KnownValue(int hashSize, string utf8Value, UInt64 expectedValue)
+            public KnownValue(Int32 hashSize, String utf8Value, UInt64 expectedValue)
                 : this(hashSize, utf8Value.ToBytes(), expectedValue.ToBytes(64)) { }
 
 
-            public KnownValue(int hashSize, IEnumerable<byte> value, string expectedValue)
+            public KnownValue(Int32 hashSize, IEnumerable<Byte> value, String expectedValue)
                 : this(hashSize, value, expectedValue.HexToBytes()) { }
 
-            public KnownValue(int hashSize, IEnumerable<byte> value, UInt32 expectedValue)
+            public KnownValue(Int32 hashSize, IEnumerable<Byte> value, UInt32 expectedValue)
                 : this(hashSize, value, expectedValue.ToBytes(32)) { }
 
-            public KnownValue(int hashSize, IEnumerable<byte> value, UInt64 expectedValue)
+            public KnownValue(Int32 hashSize, IEnumerable<Byte> value, UInt64 expectedValue)
                 : this(hashSize, value, expectedValue.ToBytes(64)) { }
         }
 
 
-        protected abstract IHashFunctionT CreateHashFunction(int hashSize);
+        protected abstract IHashFunctionT CreateHashFunction(Int32 hashSize);
     }
 }

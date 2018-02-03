@@ -27,7 +27,7 @@ namespace System.Data.HashFunction
         /// <returns>
         /// Hash value of the data as byte array.
         /// </returns>
-        public static byte[] ComputeHash(this IHashFunction hashFunction, bool data)
+        public static Byte[] ComputeHash(this IHashFunction hashFunction, Boolean data)
         {
             return hashFunction.ComputeHash(
                 BitConverter.GetBytes(data));
@@ -41,7 +41,7 @@ namespace System.Data.HashFunction
         /// <returns>
         /// Hash value of the data as byte array.
         /// </returns>
-        public static byte[] ComputeHash(this IHashFunction hashFunction, byte data)
+        public static Byte[] ComputeHash(this IHashFunction hashFunction, Byte data)
         {
             return hashFunction.ComputeHash(
                 new[] { data });
@@ -55,7 +55,7 @@ namespace System.Data.HashFunction
         /// <returns>
         /// Hash value of the data as byte array.
         /// </returns>
-        public static byte[] ComputeHash(this IHashFunction hashFunction, char data)
+        public static Byte[] ComputeHash(this IHashFunction hashFunction, Char data)
         {
             return hashFunction.ComputeHash(
                 BitConverter.GetBytes(data));
@@ -69,7 +69,7 @@ namespace System.Data.HashFunction
         /// <returns>
         /// Hash value of the data as byte array.
         /// </returns>
-        public static byte[] ComputeHash(this IHashFunction hashFunction, double data)
+        public static Byte[] ComputeHash(this IHashFunction hashFunction, Double data)
         {
             return hashFunction.ComputeHash(
                 BitConverter.GetBytes(data));
@@ -83,7 +83,7 @@ namespace System.Data.HashFunction
         /// <returns>
         /// Hash value of the data as byte array.
         /// </returns>
-        public static byte[] ComputeHash(this IHashFunction hashFunction, float data)
+        public static Byte[] ComputeHash(this IHashFunction hashFunction, Single data)
         {
             return hashFunction.ComputeHash(
                 BitConverter.GetBytes(data));
@@ -97,7 +97,7 @@ namespace System.Data.HashFunction
         /// <returns>
         /// Hash value of the data as byte array.
         /// </returns>
-        public static byte[] ComputeHash(this IHashFunction hashFunction, int data)
+        public static Byte[] ComputeHash(this IHashFunction hashFunction, Int32 data)
         {
             return hashFunction.ComputeHash(
                 BitConverter.GetBytes(data));
@@ -111,7 +111,7 @@ namespace System.Data.HashFunction
         /// <returns>
         /// Hash value of the data as byte array.
         /// </returns>
-        public static byte[] ComputeHash(this IHashFunction hashFunction, long data)
+        public static Byte[] ComputeHash(this IHashFunction hashFunction, Int64 data)
         {
             return hashFunction.ComputeHash(
                 BitConverter.GetBytes(data));
@@ -125,10 +125,10 @@ namespace System.Data.HashFunction
         /// <returns>
         /// Hash value of the data as byte array.
         /// </returns>
-        public static byte[] ComputeHash(this IHashFunction hashFunction, sbyte data)
+        public static Byte[] ComputeHash(this IHashFunction hashFunction, SByte data)
         {
             return hashFunction.ComputeHash(
-                new[] { (byte)data });
+                new[] { (Byte)data });
         }
 
         /// <summary>
@@ -139,7 +139,7 @@ namespace System.Data.HashFunction
         /// <returns>
         /// Hash value of the data as byte array.
         /// </returns>
-        public static byte[] ComputeHash(this IHashFunction hashFunction, short data)
+        public static Byte[] ComputeHash(this IHashFunction hashFunction, Int16 data)
         {
             return hashFunction.ComputeHash(
                 BitConverter.GetBytes(data));
@@ -156,7 +156,7 @@ namespace System.Data.HashFunction
         /// <remarks>
         /// UTF-8 encoding used to convert string to bytes.
         /// </remarks>
-        public static byte[] ComputeHash(this IHashFunction hashFunction, string data)
+        public static Byte[] ComputeHash(this IHashFunction hashFunction, String data)
         {
             return hashFunction.ComputeHash(
                 Encoding.UTF8.GetBytes(data));
@@ -170,7 +170,7 @@ namespace System.Data.HashFunction
         /// <returns>
         /// Hash value of the data as byte array.
         /// </returns>
-        public static byte[] ComputeHash(this IHashFunction hashFunction, uint data)
+        public static Byte[] ComputeHash(this IHashFunction hashFunction, UInt32 data)
         {
             return hashFunction.ComputeHash(
                 BitConverter.GetBytes(data));
@@ -184,7 +184,7 @@ namespace System.Data.HashFunction
         /// <returns>
         /// Hash value of the data as byte array.
         /// </returns>
-        public static byte[] ComputeHash(this IHashFunction hashFunction, ulong data)
+        public static Byte[] ComputeHash(this IHashFunction hashFunction, UInt64 data)
         {
             return hashFunction.ComputeHash(
                 BitConverter.GetBytes(data));
@@ -198,7 +198,7 @@ namespace System.Data.HashFunction
         /// <returns>
         /// Hash value of the data as byte array.
         /// </returns>
-        public static byte[] ComputeHash(this IHashFunction hashFunction, ushort data)
+        public static Byte[] ComputeHash(this IHashFunction hashFunction, UInt16 data)
         {
             return hashFunction.ComputeHash(
                 BitConverter.GetBytes(data));
@@ -216,7 +216,7 @@ namespace System.Data.HashFunction
         /// <remarks>
         /// <see cref="BinaryFormatter"/> is used to turn given data into a byte array.
         /// </remarks>
-        public static byte[] ComputeHash<ModelT>(this IHashFunction hashFunction, ModelT data)
+        public static Byte[] ComputeHash<ModelT>(this IHashFunction hashFunction, ModelT data)
         {
             using (var memoryStream = new MemoryStream())
             {
@@ -241,7 +241,7 @@ namespace System.Data.HashFunction
         /// <returns>
         /// Hash value of the data as byte array.
         /// </returns>
-        public static byte[] ComputeHash(this IHashFunction hashFunction, bool data, int desiredHashSize)
+        public static Byte[] ComputeHash(this IHashFunction hashFunction, Boolean data, Int32 desiredHashSize)
         {
             return hashFunction.ComputeHash(
                 BitConverter.GetBytes(data),
@@ -257,7 +257,7 @@ namespace System.Data.HashFunction
         /// <returns>
         /// Hash value of the data as byte array.
         /// </returns>
-        public static byte[] ComputeHash(this IHashFunction hashFunction, byte data, int desiredHashSize)
+        public static Byte[] ComputeHash(this IHashFunction hashFunction, Byte data, Int32 desiredHashSize)
         {
             return hashFunction.ComputeHash(
                 new[] { data },
@@ -273,7 +273,7 @@ namespace System.Data.HashFunction
         /// <returns>
         /// Hash value of the data as byte array.
         /// </returns>
-        public static byte[] ComputeHash(this IHashFunction hashFunction, char data, int desiredHashSize)
+        public static Byte[] ComputeHash(this IHashFunction hashFunction, Char data, Int32 desiredHashSize)
         {
             return hashFunction.ComputeHash(
                 BitConverter.GetBytes(data),
@@ -289,7 +289,7 @@ namespace System.Data.HashFunction
         /// <returns>
         /// Hash value of the data as byte array.
         /// </returns>
-        public static byte[] ComputeHash(this IHashFunction hashFunction, double data, int desiredHashSize)
+        public static Byte[] ComputeHash(this IHashFunction hashFunction, Double data, Int32 desiredHashSize)
         {
             return hashFunction.ComputeHash(
                 BitConverter.GetBytes(data),
@@ -305,7 +305,7 @@ namespace System.Data.HashFunction
         /// <returns>
         /// Hash value of the data as byte array.
         /// </returns>
-        public static byte[] ComputeHash(this IHashFunction hashFunction, float data, int desiredHashSize)
+        public static Byte[] ComputeHash(this IHashFunction hashFunction, Single data, Int32 desiredHashSize)
         {
             return hashFunction.ComputeHash(
                 BitConverter.GetBytes(data),
@@ -321,7 +321,7 @@ namespace System.Data.HashFunction
         /// <returns>
         /// Hash value of the data as byte array.
         /// </returns>
-        public static byte[] ComputeHash(this IHashFunction hashFunction, int data, int desiredHashSize)
+        public static Byte[] ComputeHash(this IHashFunction hashFunction, Int32 data, Int32 desiredHashSize)
         {
             return hashFunction.ComputeHash(
                 BitConverter.GetBytes(data),
@@ -337,7 +337,7 @@ namespace System.Data.HashFunction
         /// <returns>
         /// Hash value of the data as byte array.
         /// </returns>
-        public static byte[] ComputeHash(this IHashFunction hashFunction, long data, int desiredHashSize)
+        public static Byte[] ComputeHash(this IHashFunction hashFunction, Int64 data, Int32 desiredHashSize)
         {
             return hashFunction.ComputeHash(
                 BitConverter.GetBytes(data),
@@ -353,10 +353,10 @@ namespace System.Data.HashFunction
         /// <returns>
         /// Hash value of the data as byte array.
         /// </returns>
-        public static byte[] ComputeHash(this IHashFunction hashFunction, sbyte data, int desiredHashSize)
+        public static Byte[] ComputeHash(this IHashFunction hashFunction, SByte data, Int32 desiredHashSize)
         {
             return hashFunction.ComputeHash(
-                new[] { (byte)data },
+                new[] { (Byte)data },
                 desiredHashSize);
         }
 
@@ -369,7 +369,7 @@ namespace System.Data.HashFunction
         /// <returns>
         /// Hash value of the data as byte array.
         /// </returns>
-        public static byte[] ComputeHash(this IHashFunction hashFunction, short data, int desiredHashSize)
+        public static Byte[] ComputeHash(this IHashFunction hashFunction, Int16 data, Int32 desiredHashSize)
         {
             return hashFunction.ComputeHash(
                 BitConverter.GetBytes(data),
@@ -388,7 +388,7 @@ namespace System.Data.HashFunction
         /// <remarks>
         /// UTF-8 encoding used to convert string to bytes.
         /// </remarks>
-        public static byte[] ComputeHash(this IHashFunction hashFunction, string data, int desiredHashSize)
+        public static Byte[] ComputeHash(this IHashFunction hashFunction, String data, Int32 desiredHashSize)
         {
             return hashFunction.ComputeHash(
                 Encoding.UTF8.GetBytes(data),
@@ -404,7 +404,7 @@ namespace System.Data.HashFunction
         /// <returns>
         /// Hash value of the data as byte array.
         /// </returns>
-        public static byte[] ComputeHash(this IHashFunction hashFunction, uint data, int desiredHashSize)
+        public static Byte[] ComputeHash(this IHashFunction hashFunction, UInt32 data, Int32 desiredHashSize)
         {
             return hashFunction.ComputeHash(
                 BitConverter.GetBytes(data),
@@ -420,7 +420,7 @@ namespace System.Data.HashFunction
         /// <returns>
         /// Hash value of the data as byte array.
         /// </returns>
-        public static byte[] ComputeHash(this IHashFunction hashFunction, ulong data, int desiredHashSize)
+        public static Byte[] ComputeHash(this IHashFunction hashFunction, UInt64 data, Int32 desiredHashSize)
         {
             return hashFunction.ComputeHash(
                 BitConverter.GetBytes(data),
@@ -436,7 +436,7 @@ namespace System.Data.HashFunction
         /// <returns>
         /// Hash value of the data as byte array.
         /// </returns>
-        public static byte[] ComputeHash(this IHashFunction hashFunction, ushort data, int desiredHashSize)
+        public static Byte[] ComputeHash(this IHashFunction hashFunction, UInt16 data, Int32 desiredHashSize)
         {
             return hashFunction.ComputeHash(
                 BitConverter.GetBytes(data),
@@ -456,7 +456,7 @@ namespace System.Data.HashFunction
         /// <remarks>
         /// <see cref="BinaryFormatter"/> is used to turn given data into a byte array.
         /// </remarks>
-        public static byte[] ComputeHash<ModelT>(this IHashFunction hashFunction, ModelT data, int desiredHashSize)
+        public static Byte[] ComputeHash<ModelT>(this IHashFunction hashFunction, ModelT data, Int32 desiredHashSize)
         {
             using (var memoryStream = new MemoryStream())
             {
@@ -480,20 +480,20 @@ namespace System.Data.HashFunction
         /// <returns>
         /// Hash value of the data as byte array.
         /// </returns>
-        public static byte[] ComputeHash(this IHashFunction hashFunction, byte[] data, int desiredHashSize)
+        public static Byte[] ComputeHash(this IHashFunction hashFunction, Byte[] data, Int32 desiredHashSize)
         {
             var hash = new BigInteger();
             var desiredHashBytes = (desiredHashSize + 7) / 8;
 
-            var seededData = new byte[data.Length + 4];
+            var seededData = new Byte[data.Length + 4];
             Array.Copy(data, 0, seededData, 4, data.Length);
 
             var hashesNeeded = (desiredHashSize + (hashFunction.HashSize - 1)) / hashFunction.HashSize;
 
             // Compute as many hashes as needed
-            for (int x = 0; x < Math.Max(hashesNeeded, 1); ++x)
+            for (Int32 x = 0; x < Math.Max(hashesNeeded, 1); ++x)
             {
-                byte[] currentData;
+                Byte[] currentData;
                 
                 if (x != 0)
                 {
@@ -508,7 +508,7 @@ namespace System.Data.HashFunction
 
                 var elementHash = new BigInteger(
                     hashFunction.ComputeHash(currentData)
-                        .Concat(new[] { (byte) 0 })
+                        .Concat(new[] { (Byte) 0 })
                         .ToArray());
 
                 hash |= elementHash << (x * hashFunction.HashSize);
@@ -530,7 +530,7 @@ namespace System.Data.HashFunction
             // Account for missing or extra bytes.
             if (hashBytes.Length != desiredHashBytes)
             {
-                var buffer = new byte[desiredHashBytes];
+                var buffer = new Byte[desiredHashBytes];
                 Array.Copy(hashBytes, buffer, Math.Min(hashBytes.Length, desiredHashBytes));
 
                 hashBytes = buffer;

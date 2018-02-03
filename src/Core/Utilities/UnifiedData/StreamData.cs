@@ -11,7 +11,7 @@ namespace System.Data.HashFunction.Utilities.UnifiedData
         : UnifiedData, IDisposable
     {
         /// <inheritdoc />
-        public override long Length { get { return _Data.Length; } }
+        public override Int64 Length { get { return _Data.Length; } }
 
         protected readonly Stream _Data;
 
@@ -36,14 +36,14 @@ namespace System.Data.HashFunction.Utilities.UnifiedData
 
 
         /// <inheritdoc />
-        public override void ForEachRead(Action<byte[], int, int> action)
+        public override void ForEachRead(Action<Byte[], Int32, Int32> action)
         {
             if (action == null)
                 throw new ArgumentNullException("action");
 
 
-            var buffer = new byte[BufferSize];
-            int bytesRead;
+            var buffer = new Byte[BufferSize];
+            Int32 bytesRead;
 
             while ((bytesRead = _Data.Read(buffer, 0, buffer.Length)) > 0)
                 action(buffer, 0, bytesRead);
@@ -51,14 +51,14 @@ namespace System.Data.HashFunction.Utilities.UnifiedData
 
 #if !NET40 || INCLUDE_ASYNC
         /// <inheritdoc />
-        public override async Task ForEachReadAsync(Action<byte[], int, int> action)
+        public override async Task ForEachReadAsync(Action<Byte[], Int32, Int32> action)
         {
             if (action == null)
                 throw new ArgumentNullException("action");
 
 
-            var buffer = new byte[BufferSize];
-            int bytesRead;
+            var buffer = new Byte[BufferSize];
+            Int32 bytesRead;
 
             while ((bytesRead = await _Data.ReadAsync(buffer, 0, buffer.Length).ConfigureAwait(false)) > 0)
                 action(buffer, 0, bytesRead);
@@ -67,7 +67,7 @@ namespace System.Data.HashFunction.Utilities.UnifiedData
 
 
         /// <inheritdoc />
-        public override void ForEachGroup(int groupSize, Action<byte[], int, int> action, Action<byte[], int, int> remainderAction)
+        public override void ForEachGroup(Int32 groupSize, Action<Byte[], Int32, Int32> action, Action<Byte[], Int32, Int32> remainderAction)
         {
             if (groupSize <= 0)
                 throw new ArgumentOutOfRangeException("groupSize", "groupSize must be greater than 0.");
@@ -80,9 +80,9 @@ namespace System.Data.HashFunction.Utilities.UnifiedData
             var bufferSize = BufferSize;
 
 
-            byte[] buffer = new byte[groupSize < bufferSize ? bufferSize : groupSize];
-            int position = 0;
-            int currentLength;
+            Byte[] buffer = new Byte[groupSize < bufferSize ? bufferSize : groupSize];
+            Int32 position = 0;
+            Int32 currentLength;
             
 
             while ((currentLength = _Data.Read(buffer, position, buffer.Length - position)) > 0)
@@ -118,7 +118,7 @@ namespace System.Data.HashFunction.Utilities.UnifiedData
 
 #if !NET40 || INCLUDE_ASYNC
         /// <inheritdoc />
-        public override async Task ForEachGroupAsync(int groupSize, Action<byte[], int, int> action, Action<byte[], int, int> remainderAction)
+        public override async Task ForEachGroupAsync(Int32 groupSize, Action<Byte[], Int32, Int32> action, Action<Byte[], Int32, Int32> remainderAction)
         {
             if (groupSize <= 0)
                 throw new ArgumentOutOfRangeException("groupSize", "groupSize must be greater than 0.");
@@ -131,9 +131,9 @@ namespace System.Data.HashFunction.Utilities.UnifiedData
             var bufferSize = BufferSize;
 
 
-            byte[] buffer = new byte[groupSize < bufferSize ? bufferSize : groupSize];
-            int position = 0;
-            int currentLength;
+            Byte[] buffer = new Byte[groupSize < bufferSize ? bufferSize : groupSize];
+            Int32 position = 0;
+            Int32 currentLength;
 
 
             while ((currentLength = await _Data.ReadAsync(buffer, position, buffer.Length - position).ConfigureAwait(false)) > 0)
@@ -170,7 +170,7 @@ namespace System.Data.HashFunction.Utilities.UnifiedData
 
 
         /// <inheritdoc />
-        public override byte[] ToArray()
+        public override Byte[] ToArray()
         {
             using (var ms = new MemoryStream())
             {
@@ -182,7 +182,7 @@ namespace System.Data.HashFunction.Utilities.UnifiedData
 
 #if !NET40 || INCLUDE_ASYNC
         /// <inheritdoc />
-        public override async Task<byte[]> ToArrayAsync()
+        public override async Task<Byte[]> ToArrayAsync()
         {
             using (var ms = new MemoryStream())
             {

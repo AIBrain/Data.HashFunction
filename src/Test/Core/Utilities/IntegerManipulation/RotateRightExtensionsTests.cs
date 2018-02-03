@@ -13,9 +13,9 @@ namespace System.Data.HashFunction.Test.Core.Utilities.IntegerManipulation
         [Fact]
         public void RotateRight_byte_RotatesCorrectly()
         {
-            var operand = (byte) 198;
+            var operand = (Byte) 198;
 
-            Assert.Equal((byte) 108, operand.RotateRight(4));
+            Assert.Equal((Byte) 108, operand.RotateRight(4));
         }
 
         [Fact]

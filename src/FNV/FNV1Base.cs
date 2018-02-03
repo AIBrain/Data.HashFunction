@@ -30,7 +30,7 @@ namespace System.Data.HashFunction
         /// <value>
         /// The enumerable set of valid hash sizes.
         /// </value>
-        public static IEnumerable<int> ValidHashSizes { get { return HashParameters.Keys; } }
+        public static IEnumerable<Int32> ValidHashSizes { get { return HashParameters.Keys; } }
 
 
         /// <summary>
@@ -48,15 +48,15 @@ namespace System.Data.HashFunction
         /// Dictionary is guaranteed to be thread-safe.
         /// </para>
         /// </remarks>
-        public static IDictionary<int, FNVPrimeOffset> HashParameters { get { return _HashParameters; }}
+        public static IDictionary<Int32, FNVPrimeOffset> HashParameters { get { return _HashParameters; }}
 
 
         /// <summary>
         /// Parameters as defined by the FNV specifications.
         /// </summary>
-        private static readonly ConcurrentDictionary<int, FNVPrimeOffset> _HashParameters =
-            new ConcurrentDictionary<int, FNVPrimeOffset>(
-                new Dictionary<int, FNVPrimeOffset>() { 
+        private static readonly ConcurrentDictionary<Int32, FNVPrimeOffset> _HashParameters =
+            new ConcurrentDictionary<Int32, FNVPrimeOffset>(
+                new Dictionary<Int32, FNVPrimeOffset>() { 
                     { 
                         32, 
                         new FNVPrimeOffset(32,
@@ -110,7 +110,7 @@ namespace System.Data.HashFunction
         /// <exception cref="System.ArgumentException">
         /// </exception>
         /// <inheritdoc cref="HashFunctionBase(int)" />
-        protected FNV1Base(int hashSize)
+        protected FNV1Base(Int32 hashSize)
             : base(hashSize)
         {
             if (!ValidHashSizes.Contains(hashSize))
@@ -124,21 +124,21 @@ namespace System.Data.HashFunction
             if (HashParameters[hashSize].Prime.Count != hashSize / 32)
             {
                 throw new ArgumentException(
-                    string.Format("HashParameters[{0}].Prime should contain exactly {1} items.", hashSize, hashSize / 32),
-                    string.Format("HashParameters[{0}].Prime", hashSize));
+                    String.Format("HashParameters[{0}].Prime should contain exactly {1} items.", hashSize, hashSize / 32),
+                    String.Format("HashParameters[{0}].Prime", hashSize));
             }
                     
             if (HashParameters[hashSize].Offset.Count != hashSize / 32)
             {
                 throw new ArgumentException(
-                    string.Format("HashParameters[{0}].Offset should contain exactly {1} items.", hashSize, hashSize / 32),
-                    string.Format("HashParameters[{0}].Offset", hashSize));
+                    String.Format("HashParameters[{0}].Offset should contain exactly {1} items.", hashSize, hashSize / 32),
+                    String.Format("HashParameters[{0}].Offset", hashSize));
             }
         }
 
 
         /// <inheritdoc />
-        protected override byte[] ComputeHashInternal(UnifiedData data)
+        protected override Byte[] ComputeHashInternal(UnifiedData data)
         {
             var prime = HashParameters[HashSize].Prime;
             var offset = HashParameters[HashSize].Offset;
@@ -183,7 +183,7 @@ namespace System.Data.HashFunction
         
 #if !NET40 || INCLUDE_ASYNC
         /// <inheritdoc />
-        protected override async Task<byte[]> ComputeHashAsyncInternal(UnifiedData data)
+        protected override async Task<Byte[]> ComputeHashAsyncInternal(UnifiedData data)
         {
             var prime = HashParameters[HashSize].Prime;
             var offset = HashParameters[HashSize].Offset;
@@ -240,7 +240,7 @@ namespace System.Data.HashFunction
         /// <param name="data">Data to process.</param>
         /// <param name="position">The starting index of the data array.</param>
         /// <param name="length">The length of the data in the data array, starting from the position parameter.</param>
-        protected abstract void ProcessBytes32(ref UInt32 hash, UInt32 prime, byte[] data, int position, int length);
+        protected abstract void ProcessBytes32(ref UInt32 hash, UInt32 prime, Byte[] data, Int32 position, Int32 length);
 
         /// <summary>
         /// Apply 64-bit FNV algorithm on all data supplied.
@@ -250,7 +250,7 @@ namespace System.Data.HashFunction
         /// <param name="data">Data to process.</param>
         /// <param name="position">The starting index of the data array.</param>
         /// <param name="length">The length of the data in the data array, starting from the position parameter.</param>
-        protected abstract void ProcessBytes64(ref UInt64 hash, UInt64 prime, byte[] data, int position, int length);
+        protected abstract void ProcessBytes64(ref UInt64 hash, UInt64 prime, Byte[] data, Int32 position, Int32 length);
 
         /// <summary>
         /// Apply FNV algorithm on all data supplied.
@@ -261,7 +261,7 @@ namespace System.Data.HashFunction
         /// <param name="position">The starting index of the data array.</param>
         /// <param name="length">The length of the data in the data array, starting from the position parameter.</param>
 #if !NET40
-        protected abstract void ProcessBytes(ref UInt32[] hash, IReadOnlyList<UInt32> prime, byte[] data, int position, int length);
+        protected abstract void ProcessBytes(ref UInt32[] hash, IReadOnlyList<UInt32> prime, Byte[] data, Int32 position, Int32 length);
 #else
         protected abstract void ProcessBytes(ref UInt32[] hash, IList<UInt32> prime, byte[] data, int position, int length);
 #endif

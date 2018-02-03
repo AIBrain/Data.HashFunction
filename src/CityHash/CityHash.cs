@@ -37,11 +37,11 @@ namespace System.Data.HashFunction
         /// <value>
         /// The list of valid hash sizes.
         /// </value>
-        public static IEnumerable<int> ValidHashSizes { get { return _ValidHashSizes; } }
+        public static IEnumerable<Int32> ValidHashSizes { get { return _ValidHashSizes; } }
 
 
         /// <inheritdoc />
-        protected override bool RequiresSeekableStream { get { return true; } }
+        protected override Boolean RequiresSeekableStream { get { return true; } }
 
         /// <summary>
         /// Constant k0 as defined by CityHash specification.
@@ -70,7 +70,7 @@ namespace System.Data.HashFunction
         protected const UInt32 c2 = 0x1b873593;
 
 
-        private static readonly IEnumerable<int> _ValidHashSizes = new[] { 32, 64, 128 };
+        private static readonly IEnumerable<Int32> _ValidHashSizes = new[] { 32, 64, 128 };
 
 
 
@@ -90,7 +90,7 @@ namespace System.Data.HashFunction
         /// <param name="hashSize"><inheritdoc cref="HashFunctionBase(int)" select="param[name=hashSize]" /></param>
         /// <exception cref="System.ArgumentOutOfRangeException">hashSize;hashSize must be contained within CityHash.ValidHashSizes.</exception>
         /// <inheritdoc cref="HashFunctionBase(int)" />
-        public CityHash(int hashSize)
+        public CityHash(Int32 hashSize)
             : base(hashSize)
         {
             if (!ValidHashSizes.Contains(hashSize))
@@ -100,9 +100,9 @@ namespace System.Data.HashFunction
         
         /// <exception cref="System.InvalidOperationException">HashSize set to an invalid value.</exception>
         /// <inheritdoc />
-        protected override byte[] ComputeHashInternal(UnifiedData data)
+        protected override Byte[] ComputeHashInternal(UnifiedData data)
         {
-            byte[] hash = null;
+            Byte[] hash = null;
             var dataArray = data.ToArray();
             
             switch (HashSize)
@@ -123,7 +123,7 @@ namespace System.Data.HashFunction
                     var result = ComputeHash128(dataArray);
 
 
-                    hash = new byte[16];
+                    hash = new Byte[16];
 
                     BitConverter.GetBytes(result.Low)
                         .CopyTo(hash, 0);
@@ -140,9 +140,9 @@ namespace System.Data.HashFunction
 #if !NET40 || INCLUDE_ASYNC
         /// <exception cref="System.InvalidOperationException">HashSize set to an invalid value.</exception>
         /// <inheritdoc />
-        protected override async Task<byte[]> ComputeHashAsyncInternal(UnifiedData data)
+        protected override async Task<Byte[]> ComputeHashAsyncInternal(UnifiedData data)
         {
-            byte[] hash = null;
+            Byte[] hash = null;
             var dataArray = await data.ToArrayAsync()
                 .ConfigureAwait(false);
 
@@ -164,7 +164,7 @@ namespace System.Data.HashFunction
                     var result = ComputeHash128(dataArray);
 
 
-                    hash = new byte[16];
+                    hash = new Byte[16];
                     
                     BitConverter.GetBytes(result.Low)
                         .CopyTo(hash, 0);
@@ -185,7 +185,7 @@ namespace System.Data.HashFunction
         /// <summary>32-bit implementation of ComputeHash.</summary>
         /// <param name="data">Data to be hashed.</param>
         /// <returns>UInt32 value representing the hash value.</returns>
-        protected virtual UInt32 ComputeHash32(byte[] data)
+        protected virtual UInt32 ComputeHash32(Byte[] data)
         {
             if (data.Length <= 24)
             {
@@ -226,7 +226,7 @@ namespace System.Data.HashFunction
                 f = f * 5 + 0xe6546b64;
             }
 
-            for (int x = 0; x < (data.Length - 1) / 20; ++x)
+            for (Int32 x = 0; x < (data.Length - 1) / 20; ++x)
             {
                 UInt32 a0 = (BitConverter.ToUInt32(data, 20 * x + 0) * c1).RotateRight(17) * c2;
                 UInt32 a1 =  BitConverter.ToUInt32(data, 20 * x + 4);
@@ -281,7 +281,7 @@ namespace System.Data.HashFunction
 #if !NET40
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        private static UInt32 Hash32Len0to4(byte[] data) 
+        private static UInt32 Hash32Len0to4(Byte[] data) 
         {
             UInt32 b = 0;
             UInt32 c = 9;
@@ -298,7 +298,7 @@ namespace System.Data.HashFunction
 #if !NET40
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        private static UInt32 Hash32Len5to12(byte[] data) 
+        private static UInt32 Hash32Len5to12(Byte[] data) 
         {
             UInt32 a = (UInt32) data.Length;
             UInt32 b = (UInt32) data.Length * 5;
@@ -316,7 +316,7 @@ namespace System.Data.HashFunction
 #if !NET40
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        private static UInt32 Hash32Len13to24(byte[] data) 
+        private static UInt32 Hash32Len13to24(Byte[] data) 
         {
             UInt32 a = BitConverter.ToUInt32(data, (data.Length >> 1) - 4);
             UInt32 b = BitConverter.ToUInt32(data, 4);
@@ -336,7 +336,7 @@ namespace System.Data.HashFunction
         /// <summary>64-bit implementation of ComputeHash.</summary>
         /// <param name="data">Data to be hashed.</param>
         /// <returns>UInt64 value representing the hash value.</returns>
-        protected virtual UInt64 ComputeHash64(byte[] data) 
+        protected virtual UInt64 ComputeHash64(Byte[] data) 
         {
             if (data.Length <= 32) 
             {
@@ -362,7 +362,7 @@ namespace System.Data.HashFunction
 
             x = x * k1 + BitConverter.ToUInt64(data, 0);
             
-            for (int i = 0; i < data.Length >> 6; ++i)
+            for (Int32 i = 0; i < data.Length >> 6; ++i)
             {
                 x = (x + y + v.Low + BitConverter.ToUInt64(data, 64 * i + 8)).RotateRight(37) * k1;
                 y = (y + v.High + BitConverter.ToUInt64(data, 64 * i + 48)).RotateRight(42) * k1;
@@ -407,7 +407,7 @@ namespace System.Data.HashFunction
 #if !NET40
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        private static UInt64 HashLen0to16(byte[] data) 
+        private static UInt64 HashLen0to16(Byte[] data) 
         {
             if (data.Length >= 8) 
             {
@@ -429,9 +429,9 @@ namespace System.Data.HashFunction
 
             if (data.Length > 0) 
             {
-                byte a = data[0];
-                byte b = data[data.Length >> 1];
-                byte c = data[data.Length - 1];
+                Byte a = data[0];
+                Byte b = data[data.Length >> 1];
+                Byte c = data[data.Length - 1];
 
                 UInt32 y = (UInt32) a + ((UInt32) b << 8);
                 UInt32 z = (UInt32) data.Length + ((UInt32) c << 2);
@@ -447,7 +447,7 @@ namespace System.Data.HashFunction
 #if !NET40
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        private static UInt64 HashLen17to32(byte[] data) 
+        private static UInt64 HashLen17to32(Byte[] data) 
         {
           UInt64 mul = k2 + (UInt64) data.Length * 2;
           UInt64 a = BitConverter.ToUInt64(data, 0) * k1;
@@ -483,7 +483,7 @@ namespace System.Data.HashFunction
 #if !NET40
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        private static UInt128 WeakHashLen32WithSeeds(byte[] data, int startIndex, UInt64 a, UInt64 b) 
+        private static UInt128 WeakHashLen32WithSeeds(Byte[] data, Int32 startIndex, UInt64 a, UInt64 b) 
         {
             return WeakHashLen32WithSeeds(
                 BitConverter.ToUInt64(data, startIndex),
@@ -498,7 +498,7 @@ namespace System.Data.HashFunction
 #if !NET40
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        private static UInt64 HashLen33to64(byte[] data) 
+        private static UInt64 HashLen33to64(Byte[] data) 
         {
             UInt64 mul = k2 + (UInt64) data.Length * 2;
             UInt64 a = BitConverter.ToUInt64(data, 0) * k2;
@@ -529,7 +529,7 @@ namespace System.Data.HashFunction
         /// <summary>128-bit implementation of ComputeHash.</summary>
         /// <param name="data">Data to be hashed.</param>
         /// <returns>UInt128 value representing the hash value.</returns>
-        protected virtual UInt128 ComputeHash128(byte[] data) {
+        protected virtual UInt128 ComputeHash128(Byte[] data) {
             return 
                 data.Length >= 16 ?
                 CityHash128WithSeed(
@@ -552,13 +552,13 @@ namespace System.Data.HashFunction
 #if !NET40
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        private static UInt128 CityMurmur(byte[] data, UInt128 seed) {
+        private static UInt128 CityMurmur(Byte[] data, UInt128 seed) {
             UInt64 a = seed.Low;
             UInt64 b = seed.High;
             UInt64 c = 0;
             UInt64 d = 0;
 
-            int l = data.Length - 16;
+            Int32 l = data.Length - 16;
             if (l <= 0) {  // len <= 16
                 a = Mix(a * k1) * k1;
                 c = b * k1 + HashLen0to16(data);
@@ -568,7 +568,7 @@ namespace System.Data.HashFunction
                 d = HashLen16(b + (UInt64) data.Length, c + BitConverter.ToUInt64(data, data.Length - 16));
                 a += d;
 
-                for (int i = 0; i < (data.Length - 1) / 16; ++i)
+                for (Int32 i = 0; i < (data.Length - 1) / 16; ++i)
                 {
                     a ^= Mix(BitConverter.ToUInt64(data, i * 16) * k1) * k1;
                     a *= k1;
@@ -587,7 +587,7 @@ namespace System.Data.HashFunction
 #if !NET40
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        private static UInt128 CityHash128WithSeed(byte[] data, UInt128 seed)
+        private static UInt128 CityHash128WithSeed(Byte[] data, UInt128 seed)
         {
             if (data.Length < 128) {
                 return CityMurmur(data, seed);
@@ -610,7 +610,7 @@ namespace System.Data.HashFunction
 
 
             // This is the same inner loop as CityHash64(), manually unrolled.
-            for (int i = 0; i < data.Length / 128; ++i)
+            for (Int32 i = 0; i < data.Length / 128; ++i)
             {
                 x = (x + y + v.Low + BitConverter.ToUInt64(data, (128 * i) + 8)).RotateRight(37) * k1;
                 y = (y + v.High + BitConverter.ToUInt64(data, (128 * i) + 48)).RotateRight(42) * k1;
@@ -653,7 +653,7 @@ namespace System.Data.HashFunction
 
             
             // If 0 < len < 128, hash up to 4 chunks of 32 bytes each from the end of s.
-            for (int i = 1; i <= (((data.Length % 128) + 31) / 32); ++i) 
+            for (Int32 i = 1; i <= (((data.Length % 128) + 31) / 32); ++i) 
             {
                 y = (x + y).RotateRight(42) * k0 + v.High;
                 w.Low += BitConverter.ToUInt64(data, data.Length - (32 * i) + 16);

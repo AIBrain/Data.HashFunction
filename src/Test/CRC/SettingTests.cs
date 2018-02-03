@@ -27,7 +27,7 @@ namespace System.Data.HashFunction.Test.CRC_Tests
         [Fact]
         public void CRC_Setting_Constructor_InvalidBits_Throws()
         {
-            foreach (var invalidBits in new[] { int.MinValue, short.MinValue, -1, 0, 65, short.MaxValue, int.MaxValue })
+            foreach (var invalidBits in new[] { Int32.MinValue, Int16.MinValue, -1, 0, 65, Int16.MaxValue, Int32.MaxValue })
             {
                 Assert.Equal("bits",
                     Assert.Throws<ArgumentOutOfRangeException>(() =>
@@ -42,7 +42,7 @@ namespace System.Data.HashFunction.Test.CRC_Tests
         {
             foreach (var validBits in Enumerable.Range(1, 64))
             {
-                for (int x = 1; x <= validBits; ++x)
+                for (Int32 x = 1; x <= validBits; ++x)
                 {
                     var validPolynomial = UInt64.MaxValue >> (64 - x);
 
@@ -56,7 +56,7 @@ namespace System.Data.HashFunction.Test.CRC_Tests
         {
             foreach (var validBits in Enumerable.Range(1, 64))
             {
-                for (int x = validBits; x < 64; ++x)
+                for (Int32 x = validBits; x < 64; ++x)
                 {
                     var invalidPolynomial = 1UL << x;
 
@@ -74,7 +74,7 @@ namespace System.Data.HashFunction.Test.CRC_Tests
         {
             foreach (var validBits in Enumerable.Range(1, 64))
             {
-                for (int x = 1; x <= validBits; ++x)
+                for (Int32 x = 1; x <= validBits; ++x)
                 {
                     var validInitialValue = UInt64.MaxValue >> (64 - x);
 
@@ -88,7 +88,7 @@ namespace System.Data.HashFunction.Test.CRC_Tests
         {
             foreach (var validBits in Enumerable.Range(1, 64))
             {
-                for (int x = validBits; x < 64; ++x)
+                for (Int32 x = validBits; x < 64; ++x)
                 {
                     var invalidInitialValue = 1UL << x;
 
@@ -106,7 +106,7 @@ namespace System.Data.HashFunction.Test.CRC_Tests
         {
             foreach (var validBits in Enumerable.Range(1, 64))
             {
-                for (int x = 1; x <= validBits; ++x)
+                for (Int32 x = 1; x <= validBits; ++x)
                 {
                     var validXOrOut = UInt64.MaxValue >> (64 - x);
 
@@ -120,7 +120,7 @@ namespace System.Data.HashFunction.Test.CRC_Tests
         {
             foreach (var validBits in Enumerable.Range(1, 64))
             {
-                for (int x = validBits; x < 64; ++x)
+                for (Int32 x = validBits; x < 64; ++x)
                 {
                     var invalidXOrOut = 1UL << x;
 
@@ -141,9 +141,9 @@ namespace System.Data.HashFunction.Test.CRC_Tests
 
             foreach (var bits in Enumerable.Range(1, 64))
             {
-                for (int x = 0; x < 4; ++x)
+                for (Int32 x = 0; x < 4; ++x)
                 {
-                    var randomBytes = new byte[24];
+                    var randomBytes = new Byte[24];
                     r.NextBytes(randomBytes);
 
                     var bitMask = UInt64.MaxValue >> (64 - bits);

@@ -14,7 +14,7 @@ namespace System.Data.HashFunction.Test.Core.Utilities
         [Fact]
         public void ToUInt32Array_BigInteger_ComputesCorrectly()
         {
-            var testValue = new BigInteger(new byte[] {
+            var testValue = new BigInteger(new Byte[] {
                 0x5A, 0x53, 0x08, 0x8E,
                 0x00, 0x00, 0x00, 0x00,
                 0x46, 0xaa, 0xef, 0x01,

@@ -61,13 +61,13 @@ namespace System.Data.HashFunction
 
 
         /// <inheritdoc />
-        protected override byte[] ComputeHashInternal(UnifiedData data)
+        protected override Byte[] ComputeHashInternal(UnifiedData data)
         {
             UInt32 a = 0x9e3779b9;
             UInt32 b = 0x9e3779b9;
             UInt32 c = InitVal;
 
-            int dataCount = 0;
+            Int32 dataCount = 0;
 
             data.ForEachGroup(12, 
                 (dataGroup, position, length) => {
@@ -91,13 +91,13 @@ namespace System.Data.HashFunction
         
 #if !NET40 || INCLUDE_ASYNC
         /// <inheritdoc />
-        protected override async Task<byte[]> ComputeHashAsyncInternal(UnifiedData data)
+        protected override async Task<Byte[]> ComputeHashAsyncInternal(UnifiedData data)
         {
             UInt32 a = 0x9e3779b9;
             UInt32 b = 0x9e3779b9;
             UInt32 c = InitVal;
 
-            int dataCount = 0;
+            Int32 dataCount = 0;
 
             await data.ForEachGroupAsync(12, 
                 (dataGroup, position, length) => {
@@ -124,7 +124,7 @@ namespace System.Data.HashFunction
 #if !NET40
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        private static void ProcessGroup(ref UInt32 a, ref UInt32 b, ref UInt32 c, byte[] dataGroup, int position, int length)
+        private static void ProcessGroup(ref UInt32 a, ref UInt32 b, ref UInt32 c, Byte[] dataGroup, Int32 position, Int32 length)
         {
             for (var x = position; x < position + length; x += 12)
             {
@@ -139,7 +139,7 @@ namespace System.Data.HashFunction
 #if !NET40
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
 #endif
-        private static void ProcessRemainder(ref UInt32 a, ref UInt32 b, ref UInt32 c, byte[] remainder, int position, int length)
+        private static void ProcessRemainder(ref UInt32 a, ref UInt32 b, ref UInt32 c, Byte[] remainder, Int32 position, Int32 length)
         {
             // All the case statements fall through on purpose
             switch (length)

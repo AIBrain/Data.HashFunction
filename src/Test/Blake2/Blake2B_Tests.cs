@@ -54,7 +54,7 @@ namespace System.Data.HashFunction.Test.Blake2
         {
             Assert.Equal("key",
                 Assert.Throws<ArgumentOutOfRangeException>(() =>
-                        new Blake2B(key: new byte[65]))
+                        new Blake2B(key: new Byte[65]))
                     .ParamName);
         }
 
@@ -66,7 +66,7 @@ namespace System.Data.HashFunction.Test.Blake2
 
             foreach (var validKeyLength in validKeyLengths)
             {
-                new Blake2B(key: new byte[validKeyLength]);
+                new Blake2B(key: new Byte[validKeyLength]);
             }
         }
 
@@ -83,7 +83,7 @@ namespace System.Data.HashFunction.Test.Blake2
             {
                 Assert.Equal("salt",
                     Assert.Throws<ArgumentOutOfRangeException>(() =>
-                            new Blake2B(salt: new byte[invalidSaltLength]))
+                            new Blake2B(salt: new Byte[invalidSaltLength]))
                         .ParamName);
             }
         }
@@ -91,7 +91,7 @@ namespace System.Data.HashFunction.Test.Blake2
         [Fact]
         public void Blake2B_Constructor_ValidSaltLength_Works()
         {
-            new Blake2B(salt: new byte[16]);
+            new Blake2B(salt: new Byte[16]);
         }
 
         #endregion
@@ -107,7 +107,7 @@ namespace System.Data.HashFunction.Test.Blake2
             {
                 Assert.Equal("personalization",
                     Assert.Throws<ArgumentOutOfRangeException>(() =>
-                            new Blake2B(personalization: new byte[invalidPersonalizationLength]))
+                            new Blake2B(personalization: new Byte[invalidPersonalizationLength]))
                         .ParamName);
             }
         }
@@ -115,7 +115,7 @@ namespace System.Data.HashFunction.Test.Blake2
         [Fact]
         public void Blake2B_Constructor_ValidPersonalizationLength_Works()
         {
-            new Blake2B(personalization: new byte[16]);
+            new Blake2B(personalization: new Byte[16]);
         }
 
         #endregion
