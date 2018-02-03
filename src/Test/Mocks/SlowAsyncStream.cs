@@ -41,8 +41,9 @@ namespace System.Data.HashFunction.Test.Mocks {
         }
 
         protected override void Dispose( Boolean disposing ) {
-            if ( disposing )
-                _underlyingStream.Dispose();
+            if ( disposing ) {
+                this._underlyingStream.Dispose();
+            }
         }
 
         public override IAsyncResult BeginRead( Byte[] buffer, Int32 offset, Int32 count, AsyncCallback callback, Object state ) {

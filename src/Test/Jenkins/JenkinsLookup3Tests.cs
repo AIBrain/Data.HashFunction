@@ -16,8 +16,9 @@ namespace System.Data.HashFunction.Test.Jenkins {
 
                 knownValue = new Byte[loremIpsumLength * loremIpsumRepeatCount];
 
-                for ( var x = 0; x < loremIpsumRepeatCount; ++x )
+                for ( var x = 0; x < loremIpsumRepeatCount; ++x ) {
                     Array.Copy( TestConstants.LoremIpsum, 0, knownValue, loremIpsumLength * x, loremIpsumLength );
+                }
             }
 
             var jenkinsLookup3 = new JenkinsLookup3( 32 );

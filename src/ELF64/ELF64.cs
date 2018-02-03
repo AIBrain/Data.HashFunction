@@ -62,8 +62,9 @@ namespace System.Data.HashFunction {
 
                 var tmp = hash & 0xF0000000;
 
-                if ( tmp != 0 )
+                if ( tmp != 0 ) {
                     hash ^= tmp >> 24;
+                }
 
                 hash &= 0x0FFFFFFF;
             }

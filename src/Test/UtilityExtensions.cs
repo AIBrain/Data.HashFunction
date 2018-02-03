@@ -17,11 +17,13 @@ namespace System.Data.HashFunction.Test {
         /// of types.
         /// </returns>
         public static IEnumerable<Type> GetBaseTypes( this Type parentType, Boolean includeParentType = false ) {
-            if ( parentType == null )
+            if ( parentType == null ) {
                 throw new ArgumentNullException( "parentType" );
+            }
 
-            if ( includeParentType )
+            if ( includeParentType ) {
                 yield return parentType;
+            }
 
             var currentType = parentType;
 
@@ -44,25 +46,32 @@ namespace System.Data.HashFunction.Test {
                 .Replace( "_", "" )
                 .ToCharArray();
 
-            if ( chars.Length % 2 == 1 )
+            if ( chars.Length % 2 == 1 ) {
                 throw new ArgumentException( "hexString's length must be divisible by 2 after removing spaces, underscores, and dashes.", "hexString" );
+            }
 
             var bytes = new Byte[chars.Length / 2];
 
             for ( Int32 x = 0; x < chars.Length; ++x ) {
-                if ( x % 2 == 0 )
+                if ( x % 2 == 0 ) {
                     bytes[x / 2] = 0;
-                else
+                }
+                else {
                     bytes[x / 2] <<= 4;
+                }
 
-                if ( chars[x] >= '0' && chars[x] <= '9' )
+                if ( chars[x] >= '0' && chars[x] <= '9' ) {
                     bytes[x / 2] |= ( Byte )( chars[x] - '0' );
-                else if ( chars[x] >= 'a' && chars[x] <= 'f' )
+                }
+                else if ( chars[x] >= 'a' && chars[x] <= 'f' ) {
                     bytes[x / 2] |= ( Byte )( chars[x] - 'a' + 10 );
-                else if ( chars[x] >= 'A' && chars[x] <= 'F' )
+                }
+                else if ( chars[x] >= 'A' && chars[x] <= 'F' ) {
                     bytes[x / 2] |= ( Byte )( chars[x] - 'A' + 10 );
-                else
+                }
+                else {
                     throw new ArgumentException( "hexString contains an invalid character, only [0-9a-fA-F _-] expected", "hexString" );
+                }
             }
 
             return bytes;

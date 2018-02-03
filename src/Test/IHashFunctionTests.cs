@@ -62,8 +62,9 @@ namespace System.Data.HashFunction.Test {
         public void IHashFunction_Constructor_InvalidHashSize_Throws() {
 
             // Ignore if hash function does not seem to have a configurable hashSize constructor.
-            if ( KnownValues.Select( kv => kv.HashSize ).Distinct().Count() <= 1 )
+            if ( KnownValues.Select( kv => kv.HashSize ).Distinct().Count() <= 1 ) {
                 return;
+            }
 
             Exception resultingException = null;
 
@@ -77,8 +78,9 @@ namespace System.Data.HashFunction.Test {
 
             Assert.NotNull( resultingException );
 
-            if ( resultingException is TargetInvocationException )
+            if ( resultingException is TargetInvocationException ) {
                 resultingException = resultingException.InnerException;
+            }
 
             Assert.Equal( "hashSize",
                 Assert.IsType<ArgumentOutOfRangeException>(

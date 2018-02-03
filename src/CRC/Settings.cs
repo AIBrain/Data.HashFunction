@@ -84,8 +84,9 @@ namespace System.Data.HashFunction {
             public Setting(
                 Int32 bits, UInt64 polynomial, UInt64 initialValue,
                 Boolean reflectIn, Boolean reflectOut, UInt64 xOrOut ) {
-                if ( bits < 1 || bits > 64 )
+                if ( bits < 1 || bits > 64 ) {
                     throw new ArgumentOutOfRangeException( "bits", "bitLength must be in the range [1, 64]." );
+                }
 
                 CheckInput( "polynomial", polynomial, bits );
                 CheckInput( "initialValue", initialValue, bits );
@@ -111,8 +112,9 @@ namespace System.Data.HashFunction {
             /// True if the table was calculated, false if the table has already been calculated.
             /// </returns>
             public Boolean PreCalculateTable() {
-                if ( _DataDivisionTable.IsValueCreated )
+                if ( _DataDivisionTable.IsValueCreated ) {
                     return false;
+                }
 
                 GC.KeepAlive(
                     _DataDivisionTable.Value );

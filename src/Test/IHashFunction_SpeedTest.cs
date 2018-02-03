@@ -39,8 +39,9 @@ namespace System.Data.HashFunction.Test {
             foreach ( var testHashFunction in TestHashFunctions.OrderBy( kv => kv.Key ) ) {
 
                 // Test if computeHash results in a valid test and initialize any lazy settings
-                if ( !computeHash( sw, testHashFunction.Value, testBytes ) )
+                if ( !computeHash( sw, testHashFunction.Value, testBytes ) ) {
                     continue;
+                }
 
                 sw.Reset();
 
@@ -85,8 +86,9 @@ namespace System.Data.HashFunction.Test {
             foreach ( var testHashFunction in TestHashFunctions.OrderBy( kv => kv.Key ) ) {
 
                 // Test if computeHash results in a valid test and initialize any lazy settings
-                if ( !computeHash( sw, testHashFunction.Value, 1, testBytes ) )
+                if ( !computeHash( sw, testHashFunction.Value, 1, testBytes ) ) {
                     continue;
+                }
 
                 sw.Reset();
 
@@ -108,8 +110,9 @@ namespace System.Data.HashFunction.Test {
             IHashFunction_SpeedTest_MultipleItems( ( sw, testHashFunction, count, testBytes ) => {
                 sw.Start();
 
-                for ( Int32 x = 0; x < count; ++x )
+                for ( Int32 x = 0; x < count; ++x ) {
                     testHashFunction.ComputeHash( testBytes );
+                }
 
                 sw.Stop();
 
@@ -160,8 +163,9 @@ namespace System.Data.HashFunction.Test {
             IHashFunction_SpeedTest_MultipleItems( ( sw, testHashFunction, count, testBytes ) => {
                 var testHashFunctionAsync = testHashFunction as IHashFunctionAsync;
 
-                if ( testHashFunctionAsync == null )
+                if ( testHashFunctionAsync == null ) {
                     return false;
+                }
 
                 using ( var ms = new NonSeekableMemoryStream( testBytes ) ) {
                     sw.Start();
@@ -185,8 +189,9 @@ namespace System.Data.HashFunction.Test {
             IHashFunction_SpeedTest_MultipleItems( ( sw, testHashFunction, count, testBytes ) => {
                 var testHashFunctionAsync = testHashFunction as IHashFunctionAsync;
 
-                if ( testHashFunctionAsync == null )
+                if ( testHashFunctionAsync == null ) {
                     return false;
+                }
 
                 using ( var ms = new MemoryStream( testBytes ) ) {
                     sw.Start();
@@ -256,8 +261,9 @@ namespace System.Data.HashFunction.Test {
             IHashFunction_SpeedTest_SingleBlock( ( sw, testHashFunction, testBytes ) => {
                 var testHashFunctionAsync = testHashFunction as IHashFunctionAsync;
 
-                if ( testHashFunctionAsync == null )
+                if ( testHashFunctionAsync == null ) {
                     return false;
+                }
 
                 using ( var ms = new NonSeekableMemoryStream( testBytes ) ) {
                     sw.Start();
@@ -277,8 +283,9 @@ namespace System.Data.HashFunction.Test {
             IHashFunction_SpeedTest_SingleBlock( ( sw, testHashFunction, testBytes ) => {
                 var testHashFunctionAsync = testHashFunction as IHashFunctionAsync;
 
-                if ( testHashFunctionAsync == null )
+                if ( testHashFunctionAsync == null ) {
                     return false;
+                }
 
                 using ( var ms = new MemoryStream( testBytes ) ) {
                     sw.Start();

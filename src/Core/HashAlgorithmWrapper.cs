@@ -55,8 +55,9 @@ namespace System.Data.HashFunction {
         /// <param name="disposing">If false, call is assumed to be from the destructor.</param>
         protected virtual void Dispose( Boolean disposing ) {
             lock ( SyncRoot ) {
-                if ( !_disposed && _ownsInstance )
-                    _hashAlgorithm.Dispose();
+                if ( !_disposed && _ownsInstance ) {
+                    this._hashAlgorithm.Dispose();
+                }
 
                 _disposed = true;
             }
@@ -64,14 +65,16 @@ namespace System.Data.HashFunction {
 
         /// <inheritdoc/>
         public Byte[] ComputeHash( Byte[] data ) {
-            lock ( SyncRoot )
-                return _hashAlgorithm.ComputeHash( data );
+            lock ( SyncRoot ) {
+                return this._hashAlgorithm.ComputeHash( data );
+            }
         }
 
         /// <inheritdoc/>
         public Byte[] ComputeHash( Stream data ) {
-            lock ( SyncRoot )
-                return _hashAlgorithm.ComputeHash( data );
+            lock ( SyncRoot ) {
+                return this._hashAlgorithm.ComputeHash( data );
+            }
         }
 
         /// <summary>
@@ -119,8 +122,9 @@ namespace System.Data.HashFunction {
         /// <param name="disposing">If false, call is assumed to be from the destructor.</param>
         protected virtual void Dispose( Boolean disposing ) {
             lock ( SyncRoot ) {
-                if ( !_disposed )
-                    _hashAlgorithm.Dispose();
+                if ( !_disposed ) {
+                    this._hashAlgorithm.Dispose();
+                }
 
                 _disposed = true;
             }
@@ -128,14 +132,16 @@ namespace System.Data.HashFunction {
 
         /// <inheritdoc/>
         public Byte[] ComputeHash( Byte[] data ) {
-            lock ( SyncRoot )
-                return _hashAlgorithm.ComputeHash( data );
+            lock ( SyncRoot ) {
+                return this._hashAlgorithm.ComputeHash( data );
+            }
         }
 
         /// <inheritdoc/>
         public Byte[] ComputeHash( Stream data ) {
-            lock ( SyncRoot )
-                return _hashAlgorithm.ComputeHash( data );
+            lock ( SyncRoot ) {
+                return this._hashAlgorithm.ComputeHash( data );
+            }
         }
 
         /// <summary>

@@ -16,8 +16,9 @@
         /// bitLength;bitLength must be in the range [1, 8].
         /// </exception>
         public static Byte ReflectBits( this Byte value, Int32 bitLength ) {
-            if ( bitLength <= 0 || bitLength > 8 )
+            if ( bitLength <= 0 || bitLength > 8 ) {
                 throw new ArgumentOutOfRangeException( "bitLength", "bitLength must be in the range [1, 8]." );
+            }
 
             Byte reflectedValue = 0;
 
@@ -37,8 +38,9 @@
         /// </exception>
         /// <inheritdoc cref="ReflectBits(byte, int)"/>
         public static UInt16 ReflectBits( this UInt16 value, Int32 bitLength ) {
-            if ( bitLength <= 0 || bitLength > 16 )
+            if ( bitLength <= 0 || bitLength > 16 ) {
                 throw new ArgumentOutOfRangeException( "bitLength", "bitLength must be in the range [1, 16]." );
+            }
 
             UInt16 reflectedValue = 0;
 
@@ -58,8 +60,9 @@
         /// </exception>
         /// <inheritdoc cref="ReflectBits(byte, int)"/>
         public static UInt32 ReflectBits( this UInt32 value, Int32 bitLength ) {
-            if ( bitLength <= 0 || bitLength > 32 )
+            if ( bitLength <= 0 || bitLength > 32 ) {
                 throw new ArgumentOutOfRangeException( "bitLength", "bitLength must be in the range [1, 32]." );
+            }
 
             UInt32 reflectedValue = 0U;
 
@@ -79,8 +82,9 @@
         /// </exception>
         /// <inheritdoc cref="ReflectBits(byte, int)"/>
         public static UInt64 ReflectBits( this UInt64 value, Int32 bitLength ) {
-            if ( bitLength <= 0 || bitLength > 64 )
+            if ( bitLength <= 0 || bitLength > 64 ) {
                 throw new ArgumentOutOfRangeException( "bitLength", "bitLength must be in the range [1, 64]." );
+            }
 
             UInt64 reflectedValue = 0UL;
 

@@ -72,14 +72,17 @@ namespace System.Data.HashFunction {
         public PearsonBase(IList<byte> t, int hashSize)
 #endif
             : base( hashSize ) {
-            if ( t == null )
+            if ( t == null ) {
                 throw new ArgumentNullException( "t" );
+            }
 
-            if ( t.Count != 256 || t.Distinct().Count() != 256 )
+            if ( t.Count != 256 || t.Distinct().Count() != 256 ) {
                 throw new ArgumentException( "t must be a permutation of [0, 255].", "t" );
+            }
 
-            if ( hashSize <= 0 || hashSize % 8 != 0 )
+            if ( hashSize <= 0 || hashSize % 8 != 0 ) {
                 throw new ArgumentOutOfRangeException( "hashSize", "hashSize must be a positive integer that is divisible by 8." );
+            }
 
             _T = t;
         }
@@ -115,10 +118,12 @@ namespace System.Data.HashFunction {
         private void ProcessBytes( ref Byte[] h, ref Boolean firstByte, Byte[] dataBytes, Int32 position, Int32 length ) {
             for ( var x = position; x < position + length; ++x ) {
                 for ( Int32 y = 0; y < HashSize / 8; ++y ) {
-                    if ( !firstByte )
-                        h[y] = T[h[y] ^ dataBytes[x]];
-                    else
-                        h[y] = T[( dataBytes[x] + y ) & 0xff];
+                    if ( !firstByte ) {
+                        h[y] = this.T[h[y] ^ dataBytes[x]];
+                    }
+                    else {
+                        h[y] = this.T[( dataBytes[x] + y ) & 0xff];
+                    }
                 }
 
                 firstByte = false;

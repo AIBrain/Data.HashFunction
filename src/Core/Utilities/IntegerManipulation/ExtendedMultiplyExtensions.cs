@@ -29,15 +29,17 @@ namespace System.Data.HashFunction.Utilities.IntegerManipulation {
             for ( Int32 y = 0; y < operand2.Count; ++y ) {
 
                 // Skip multiplying things by zero
-                if ( operand2[y] == 0 )
+                if ( operand2[y] == 0 ) {
                     continue;
+                }
 
                 UInt32 carryOver = 0;
 
                 // Top of equation
                 for ( Int32 x = 0; x < operand2.Count; ++x ) {
-                    if ( x + y >= product.Length )
+                    if ( x + y >= product.Length ) {
                         break;
+                    }
 
                     var productResult = product[x + y] + ( ( ( UInt64 )operand2[y] ) * operand1[x] ) + carryOver;
                     product[x + y] = ( UInt32 )productResult;

@@ -88,8 +88,9 @@ namespace System.Data.HashFunction {
         /// <inheritdoc cref="HashFunctionBase(int)"/>
         public SpookyHashV1( Int32 hashSize, UInt64 initVal1, UInt64 initVal2 )
             : base( hashSize ) {
-            if ( !ValidHashSizes.Contains( hashSize ) )
+            if ( !ValidHashSizes.Contains( hashSize ) ) {
                 throw new ArgumentOutOfRangeException( "hashSize", "hashSize must be contained within SpookyHashV1.ValidHashSizes." );
+            }
 
             _InitVal1 = initVal1;
             _InitVal2 = initVal2;

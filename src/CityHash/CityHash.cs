@@ -78,8 +78,9 @@ namespace System.Data.HashFunction {
         /// <inheritdoc cref="HashFunctionBase(int)"/>
         public CityHash( Int32 hashSize )
             : base( hashSize ) {
-            if ( !ValidHashSizes.Contains( hashSize ) )
+            if ( !ValidHashSizes.Contains( hashSize ) ) {
                 throw new ArgumentOutOfRangeException( "hashSize", "hashSize must be contained within CityHash.ValidHashSizes." );
+            }
         }
 
         /// <exception cref="System.InvalidOperationException">HashSize set to an invalid value.</exception>
@@ -166,10 +167,12 @@ namespace System.Data.HashFunction {
         /// <returns>UInt32 value representing the hash value.</returns>
         protected virtual UInt32 ComputeHash32( Byte[] data ) {
             if ( data.Length <= 24 ) {
-                if ( data.Length <= 12 )
+                if ( data.Length <= 12 ) {
                     return ( data.Length <= 4 ? Hash32Len0to4( data ) : Hash32Len5to12( data ) );
-                else
+                }
+                else {
                     return Hash32Len13to24( data );
+                }
             }
 
             // data.Length > 24

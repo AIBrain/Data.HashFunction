@@ -67,8 +67,9 @@ namespace System.Data.HashFunction {
         [MethodImpl( MethodImplOptions.AggressiveInlining )]
 #endif
         private static void ProcessBytes( ref UInt32 h, Byte[] dataBytes, Int32 position, Int32 length ) {
-            for ( var x = position; x < position + length; ++x )
+            for ( var x = position; x < position + length; ++x ) {
                 h = ( 33 * h ) + dataBytes[x];
+            }
         }
     }
 }

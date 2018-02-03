@@ -87,8 +87,9 @@ namespace System.Data.HashFunction {
         /// <inheritdoc cref="HashFunctionBase(int)"/>
         public JenkinsLookup3( Int32 hashSize, UInt32 initVal1, UInt32 initVal2 )
             : base( hashSize ) {
-            if ( !ValidHashSizes.Contains( hashSize ) )
+            if ( !ValidHashSizes.Contains( hashSize ) ) {
                 throw new ArgumentOutOfRangeException( "hashSize", "hashSize must be contained within SpookyHashV2.ValidHashSizes." );
+            }
 
             _InitVal1 = initVal1;
             _InitVal2 = initVal2;
@@ -101,8 +102,9 @@ namespace System.Data.HashFunction {
             UInt32 b = 0xdeadbeef + ( UInt32 )data.Length + InitVal1;
             UInt32 c = 0xdeadbeef + ( UInt32 )data.Length + InitVal1;
 
-            if ( HashSize == 64 )
-                c += InitVal2;
+            if ( HashSize == 64 ) {
+                c += this.InitVal2;
+            }
 
             Int32 dataCount = 0;
 
@@ -114,8 +116,9 @@ namespace System.Data.HashFunction {
                     ProcessRemainder( ref a, ref b, ref c, ref dataCount, remainder, position, length );
                 } );
 
-            if ( dataCount > 0 )
+            if ( dataCount > 0 ) {
                 Final( ref a, ref b, ref c );
+            }
 
             Byte[] hash = null;
 
@@ -141,8 +144,9 @@ namespace System.Data.HashFunction {
             UInt32 b = 0xdeadbeef + ( UInt32 )data.Length + InitVal1;
             UInt32 c = 0xdeadbeef + ( UInt32 )data.Length + InitVal1;
 
-            if ( HashSize == 64 )
-                c += InitVal2;
+            if ( HashSize == 64 ) {
+                c += this.InitVal2;
+            }
 
             Int32 dataCount = 0;
 
@@ -154,8 +158,9 @@ namespace System.Data.HashFunction {
                     ProcessRemainder( ref a, ref b, ref c, ref dataCount, remainder, position, length );
                 } ).ConfigureAwait( false );
 
-            if ( dataCount > 0 )
+            if ( dataCount > 0 ) {
                 Final( ref a, ref b, ref c );
+            }
 
             Byte[] hash = null;
 
@@ -182,8 +187,9 @@ namespace System.Data.HashFunction {
             for ( Int32 x = position; x < position + length; x += 12 ) {
 
                 // Mix at beginning of subsequent group to handle special case of length <= 12
-                if ( dataCount > 0 || x > position )
+                if ( dataCount > 0 || x > position ) {
                     Mix( ref a, ref b, ref c );
+                }
 
                 a += BitConverter.ToUInt32( dataGroup, x + 0 );
                 b += BitConverter.ToUInt32( dataGroup, x + 4 );
@@ -200,8 +206,9 @@ namespace System.Data.HashFunction {
         private static void ProcessRemainder( ref UInt32 a, ref UInt32 b, ref UInt32 c, ref Int32 dataCount, Byte[] remainder, Int32 position, Int32 length ) {
 
             // Mix at beginning of subsequent group to handle special case of length <= 12
-            if ( dataCount > 0 )
+            if ( dataCount > 0 ) {
                 Mix( ref a, ref b, ref c );
+            }
 
             switch ( length ) {
                 case 11: c += ( UInt32 )remainder[position + 10] << 16; goto case 10;

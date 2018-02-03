@@ -135,24 +135,29 @@ namespace System.Data.HashFunction {
         [SuppressMessage( "Microsoft.Design", "CA1026:DefaultParametersShouldNotBeUsed", Justification = "Default values only for named parameter usage." )]
         public Blake2B( Int32 hashSize, IEnumerable<Byte> key = null, IEnumerable<Byte> salt = null, IEnumerable<Byte> personalization = null )
             : base( hashSize ) {
-            if ( hashSize < MinHashSizeBits || hashSize > MaxHashSizeBits )
+            if ( hashSize < MinHashSizeBits || hashSize > MaxHashSizeBits ) {
                 throw new ArgumentOutOfRangeException( "hashSize", hashSize, String.Format( "Expected: {0} >= hashSize <= {1}", MinHashSizeBits, MaxHashSizeBits ) );
+            }
 
-            if ( hashSize % 8 != 0 )
+            if ( hashSize % 8 != 0 ) {
                 throw new ArgumentOutOfRangeException( "hashSize", hashSize, "The hash size must be a multiple of 8" );
+            }
 
             var keyArray = ( key ?? new Byte[0] ).ToArray();
             var saltArray = ( salt ?? new Byte[16] ).ToArray();
             var personalizationArray = ( personalization ?? new Byte[16] ).ToArray();
 
-            if ( keyArray.Length > MaxKeySizeBytes )
+            if ( keyArray.Length > MaxKeySizeBytes ) {
                 throw new ArgumentOutOfRangeException( "key", key, String.Format( "Expected: key.Length <= {0}", MaxKeySizeBytes ) );
+            }
 
-            if ( saltArray.Length != SaltSizeBytes )
+            if ( saltArray.Length != SaltSizeBytes ) {
                 throw new ArgumentOutOfRangeException( "salt", salt, String.Format( "Expected: salt.Length == {0}", SaltSizeBytes ) );
+            }
 
-            if ( personalizationArray.Length != PersonalizationSizeBytes )
+            if ( personalizationArray.Length != PersonalizationSizeBytes ) {
                 throw new ArgumentOutOfRangeException( "personalization", personalization, String.Format( "Expected: personalization.Length == {0}", PersonalizationSizeBytes ) );
+            }
 
             _originalKeyLength = ( UInt32 )keyArray.Length;
 
@@ -167,8 +172,9 @@ namespace System.Data.HashFunction {
         protected override Byte[] ComputeHashInternal( UnifiedData data ) {
             var internalState = new InternalState( HashSize, _originalKeyLength, _salt, _personalization );
 
-            if ( _originalKeyLength > 0 )
-                ProcessBytes( internalState, _key, 0, _key.Length );
+            if ( _originalKeyLength > 0 ) {
+                ProcessBytes( internalState, this._key, 0, this._key.Length );
+            }
 
             data.ForEachGroup(
                 BlockSizeBytes,
@@ -184,8 +190,9 @@ namespace System.Data.HashFunction {
         protected override async Task<Byte[]> ComputeHashAsyncInternal( UnifiedData data ) {
             var internalState = new InternalState( HashSize, _originalKeyLength, _salt, _personalization );
 
-            if ( _originalKeyLength > 0 )
-                ProcessBytes( internalState, _key, 0, _key.Length );
+            if ( _originalKeyLength > 0 ) {
+                ProcessBytes( internalState, this._key, 0, this._key.Length );
+            }
 
             await data.ForEachGroupAsync(
                 BlockSizeBytes,
@@ -240,8 +247,9 @@ namespace System.Data.HashFunction {
             internalState.Counter += ( UInt32 )internalState.BufferFilled;
             internalState.FinalizationFlags[0] = UInt64.MaxValue;
 
-            for ( Int32 i = internalState.BufferFilled; i < internalState.Buffer.Length; i++ )
+            for ( Int32 i = internalState.BufferFilled; i < internalState.Buffer.Length; i++ ) {
                 internalState.Buffer[i] = 0;
+            }
 
             Compress( internalState, internalState.Buffer, 0 );
 

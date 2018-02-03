@@ -38,8 +38,9 @@ namespace System.Data.HashFunction {
             get { return _DefaultSettings; }
 
             set {
-                if ( value == null )
+                if ( value == null ) {
                     throw new ArgumentNullException( "value" );
+                }
 
                 _DefaultSettings = value;
             }
@@ -63,8 +64,9 @@ namespace System.Data.HashFunction {
         /// <inheritdoc cref="HashFunctionBase(int)"/>
         public CRC( Setting settings )
             : base( settings != null ? settings.Bits : -1 ) {
-            if ( settings == null )
+            if ( settings == null ) {
                 throw new ArgumentNullException( "settings" );
+            }
 
             _Settings = settings;
         }
@@ -83,8 +85,9 @@ namespace System.Data.HashFunction {
             UInt64 hash = Settings.InitialValue;
 
             // Reflect InitialValue if processing as big endian
-            if ( Settings.ReflectIn )
-                hash = hash.ReflectBits( HashSize );
+            if ( Settings.ReflectIn ) {
+                hash = hash.ReflectBits( this.HashSize );
+            }
 
             // Store table reference in local variable to lower overhead.
             var crcTable = Settings.DataDivisionTable;
@@ -93,16 +96,18 @@ namespace System.Data.HashFunction {
             // or bit (HashSize < 8)
             Int32 mostSignificantShift = HashSize - 8;
 
-            if ( HashSize < 8 )
-                mostSignificantShift = HashSize - 1;
+            if ( HashSize < 8 ) {
+                mostSignificantShift = this.HashSize - 1;
+            }
 
             data.ForEachRead( ( dataBytes, position, length ) => {
                 ProcessBytes( ref hash, crcTable, mostSignificantShift, dataBytes, position, length );
             } );
 
             // Account for mixed-endianness
-            if ( Settings.ReflectIn ^ Settings.ReflectOut )
-                hash = hash.ReflectBits( HashSize );
+            if ( Settings.ReflectIn ^ Settings.ReflectOut ) {
+                hash = hash.ReflectBits( this.HashSize );
+            }
 
             hash ^= Settings.XOrOut;
 
@@ -118,8 +123,9 @@ namespace System.Data.HashFunction {
             UInt64 hash = Settings.InitialValue;
 
             // Reflect InitialValue if processing as big endian
-            if ( Settings.ReflectIn )
-                hash = hash.ReflectBits( HashSize );
+            if ( Settings.ReflectIn ) {
+                hash = hash.ReflectBits( this.HashSize );
+            }
 
             // Store table reference in local variable to lower overhead.
             var crcTable = Settings.DataDivisionTable;
@@ -128,16 +134,18 @@ namespace System.Data.HashFunction {
             // or bit (HashSize < 8)
             Int32 mostSignificantShift = HashSize - 8;
 
-            if ( HashSize < 8 )
-                mostSignificantShift = HashSize - 1;
+            if ( HashSize < 8 ) {
+                mostSignificantShift = this.HashSize - 1;
+            }
 
             await data.ForEachReadAsync( ( dataBytes, position, length ) => {
                 ProcessBytes( ref hash, crcTable, mostSignificantShift, dataBytes, position, length );
             } ).ConfigureAwait( false );
 
             // Account for mixed-endianness
-            if ( Settings.ReflectIn ^ Settings.ReflectOut )
-                hash = hash.ReflectBits( HashSize );
+            if ( Settings.ReflectIn ^ Settings.ReflectOut ) {
+                hash = hash.ReflectBits( this.HashSize );
+            }
 
             hash ^= Settings.XOrOut;
 
@@ -157,19 +165,23 @@ namespace System.Data.HashFunction {
                 if ( HashSize >= 8 ) {
 
                     // Process per byte, treating hash differently based on input endianness
-                    if ( Settings.ReflectIn )
+                    if ( Settings.ReflectIn ) {
                         hash = ( hash >> 8 ) ^ crcTable[( Byte )hash ^ dataBytes[x]];
-                    else
+                    }
+                    else {
                         hash = ( hash << 8 ) ^ crcTable[( ( Byte )( hash >> mostSignificantShift ) ) ^ dataBytes[x]];
+                    }
                 }
                 else {
 
                     // Process per bit, treating hash differently based on input endianness
                     for ( Int32 y = 0; y < 8; ++y ) {
-                        if ( Settings.ReflectIn )
+                        if ( Settings.ReflectIn ) {
                             hash = ( hash >> 1 ) ^ crcTable[( Byte )( hash & 1 ) ^ ( ( Byte )( dataBytes[x] >> y ) & 1 )];
-                        else
+                        }
+                        else {
                             hash = ( hash << 1 ) ^ crcTable[( Byte )( ( hash >> mostSignificantShift ) & 1 ) ^ ( ( Byte )( dataBytes[x] >> ( 7 - y ) ) & 1 )];
+                        }
                     }
                 }
             }
@@ -191,8 +203,9 @@ namespace System.Data.HashFunction {
         internal static UInt64[] CalculateTable( Setting settings ) {
             var perBitCount = 8;
 
-            if ( settings.Bits < 8 )
+            if ( settings.Bits < 8 ) {
                 perBitCount = 1;
+            }
 
             var crcTable = new UInt64[1 << perBitCount];
             var mostSignificantBit = 1UL << ( settings.Bits - 1 );
@@ -200,20 +213,24 @@ namespace System.Data.HashFunction {
             for ( UInt32 x = 0; x < crcTable.Length; ++x ) {
                 UInt64 curValue = x;
 
-                if ( perBitCount > 1 && settings.ReflectIn )
+                if ( perBitCount > 1 && settings.ReflectIn ) {
                     curValue = curValue.ReflectBits( perBitCount );
+                }
 
                 curValue <<= ( settings.Bits - perBitCount );
 
                 for ( Int32 y = 0; y < perBitCount; ++y ) {
-                    if ( ( curValue & mostSignificantBit ) > 0UL )
+                    if ( ( curValue & mostSignificantBit ) > 0UL ) {
                         curValue = ( curValue << 1 ) ^ settings.Polynomial;
-                    else
+                    }
+                    else {
                         curValue <<= 1;
+                    }
                 }
 
-                if ( settings.ReflectIn )
+                if ( settings.ReflectIn ) {
                     curValue = curValue.ReflectBits( settings.Bits );
+                }
 
                 curValue &= ( UInt64.MaxValue >> ( 64 - settings.Bits ) );
 

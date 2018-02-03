@@ -24,8 +24,9 @@ namespace System.Data.HashFunction.Utilities.UnifiedData {
 
         /// <inheritdoc/>
         public override void ForEachRead( Action<Byte[], Int32, Int32> action ) {
-            if ( action == null )
+            if ( action == null ) {
                 throw new ArgumentNullException( "action" );
+            }
 
             action( _Data, 0, _Data.Length );
         }
@@ -47,20 +48,24 @@ namespace System.Data.HashFunction.Utilities.UnifiedData {
 
         /// <inheritdoc/>
         public override void ForEachGroup( Int32 groupSize, Action<Byte[], Int32, Int32> action, Action<Byte[], Int32, Int32> remainderAction ) {
-            if ( groupSize <= 0 )
+            if ( groupSize <= 0 ) {
                 throw new ArgumentOutOfRangeException( "groupSize", "bufferSize must be greater than 0." );
+            }
 
-            if ( action == null )
+            if ( action == null ) {
                 throw new ArgumentNullException( "action" );
+            }
 
             var remainderLength = _Data.Length % groupSize;
 
-            if ( _Data.Length - remainderLength > 0 )
-                action( _Data, 0, _Data.Length - remainderLength );
+            if ( _Data.Length - remainderLength > 0 ) {
+                action( this._Data, 0, this._Data.Length - remainderLength );
+            }
 
             if ( remainderAction != null ) {
-                if ( remainderLength > 0 )
-                    remainderAction( _Data, _Data.Length - remainderLength, remainderLength );
+                if ( remainderLength > 0 ) {
+                    remainderAction( this._Data, this._Data.Length - remainderLength, remainderLength );
+                }
             }
         }
 

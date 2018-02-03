@@ -48,8 +48,9 @@ namespace System.Data.HashFunction {
         /// <exception cref="System.ArgumentException">Stream \data\ must be readable.;data</exception>
         /// <inheritdoc/>
         public virtual Byte[] ComputeHash( Stream data ) {
-            if ( !data.CanRead )
+            if ( !data.CanRead ) {
                 throw new ArgumentException( "Stream \"data\" must be readable.", "data" );
+            }
 
             if ( !data.CanSeek && RequiresSeekableStream ) {
                 Byte[] buffer;

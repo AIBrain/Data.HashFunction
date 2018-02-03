@@ -24,8 +24,9 @@ namespace System.Data.HashFunction.Utilities.UnifiedData {
             get { return _BufferSize; }
 
             set {
-                if ( value <= 0 )
+                if ( value <= 0 ) {
                     throw new ArgumentOutOfRangeException( "value", "value must be greater than 0" );
+                }
 
                 _BufferSize = value;
             }

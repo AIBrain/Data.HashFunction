@@ -16,7 +16,7 @@ namespace System.Data.HashFunction.Test.Core.Utilities.IntegerManipulation {
                 3421783489UL, 23891920398UL
             };
 
-            foreach ( var operand1 in testValues )
+            foreach ( var operand1 in testValues ) {
                 foreach ( var operand2 in testValues ) {
                     var operand1Bytes = new[] { ( UInt32 )operand1, ( UInt32 )( operand1 >> 32 ) };
                     var operand2Bytes = new[] { ( UInt32 )operand2, ( UInt32 )( operand2 >> 32 ) };
@@ -25,6 +25,7 @@ namespace System.Data.HashFunction.Test.Core.Utilities.IntegerManipulation {
 
                     Assert.Equal( operand1 * operand2, ( ( UInt64 )result[1] << 32 ) | result[0] );
                 }
+            }
         }
 
         [Fact]

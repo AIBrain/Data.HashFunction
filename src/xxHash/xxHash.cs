@@ -89,8 +89,9 @@ namespace System.Data.HashFunction {
         /// <inheritdoc cref="HashFunctionBase(int)"/>
         public xxHash( Int32 hashSize, UInt64 initVal )
             : base( hashSize ) {
-            if ( !ValidHashSizes.Contains( hashSize ) )
+            if ( !ValidHashSizes.Contains( hashSize ) ) {
                 throw new ArgumentOutOfRangeException( "hashSize", "hashSize must be contained within xxHash.ValidHashSizes" );
+            }
 
             InitVal = initVal;
         }

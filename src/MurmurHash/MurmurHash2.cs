@@ -72,8 +72,9 @@ namespace System.Data.HashFunction {
         /// <inheritdoc cref="HashFunctionBase(int)"/>
         public MurmurHash2( Int32 hashSize, UInt64 seed )
             : base( hashSize ) {
-            if ( !ValidHashSizes.Contains( hashSize ) )
+            if ( !ValidHashSizes.Contains( hashSize ) ) {
                 throw new ArgumentOutOfRangeException( "hashSize", "hashSize must be contained within MurmurHash2.ValidHashSizes." );
+            }
 
             _Seed = seed;
         }

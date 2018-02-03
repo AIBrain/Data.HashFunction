@@ -24,16 +24,18 @@ namespace System.Data.HashFunction.Utilities {
         [MethodImpl( MethodImplOptions.AggressiveInlining )]
 #endif
         public static UInt32[] ToUInt32Array( this BigInteger value, Int32 bitSize ) {
-            if ( bitSize < 0 || bitSize % 32 != 0 )
+            if ( bitSize < 0 || bitSize % 32 != 0 ) {
                 throw new ArgumentOutOfRangeException( "bitSize", "bitSize must be a positive a multiple of 32." );
+            }
 
             var uint32Values = new UInt32[bitSize / 32];
             var bigIntegerBytes = value.ToByteArray();
 
             var copyLength = uint32Values.Length * 4;
 
-            if ( bigIntegerBytes.Length < copyLength )
+            if ( bigIntegerBytes.Length < copyLength ) {
                 copyLength = bigIntegerBytes.Length;
+            }
 
             Buffer.BlockCopy(
                 bigIntegerBytes, 0,

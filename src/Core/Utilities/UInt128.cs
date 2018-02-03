@@ -92,8 +92,9 @@
             var borrow = 0UL;
             var lowResult = a.Low - b.Low;
 
-            if ( lowResult > a.Low )
+            if ( lowResult > a.Low ) {
                 borrow = 1UL;
+            }
 
             return new UInt128() {
                 Low = lowResult,
@@ -132,8 +133,9 @@
             var carryOver = 0UL;
             var lowResult = unchecked(a.Low + b.Low);
 
-            if ( lowResult < a.Low )
+            if ( lowResult < a.Low ) {
                 carryOver = 1UL;
+            }
 
             return new UInt128() {
                 Low = lowResult,
@@ -238,11 +240,13 @@
         /// </returns>
         /// <exception cref="System.ArgumentException"><paramref name="value"/> is not a <see cref="UInt128"/>.;value</exception>
         public Int32 CompareTo( Object value ) {
-            if ( value == null )
+            if ( value == null ) {
                 return 1;
+            }
 
-            if ( !( value is UInt128 ) )
+            if ( !( value is UInt128 ) ) {
                 throw new ArgumentException( "value is not a UInt128.", "value" );
+            }
 
             return CompareTo( ( UInt128 )value );
         }
@@ -262,11 +266,13 @@
         /// Greater than zero This instance is greater than <paramref name="value"/>.
         /// </returns>
         public Int32 CompareTo( UInt128 value ) {
-            if ( value < this )
+            if ( value < this ) {
                 return -1;
+            }
 
-            if ( value > this )
+            if ( value > this ) {
                 return 1;
+            }
 
             return 0;
         }
