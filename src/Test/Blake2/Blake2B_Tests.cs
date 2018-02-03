@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.HashFunction.Test.Mocks;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MoreLinq;
-using Xunit;
-using System.Data.HashFunction.Utilities.UnifiedData;
+﻿using System.Linq;
 
 namespace System.Data.HashFunction.Test.Blake2
 {

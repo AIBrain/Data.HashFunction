@@ -1,18 +1,7 @@
-﻿using Moq;
-using MoreLinq;
-using System;
-using System.Collections.Generic;
-using System.Data.HashFunction.Utilities.IntegerManipulation;
-using System.Data.HashFunction.Test.Mocks;
+﻿using System.Data.HashFunction.Test.Mocks;
 using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using Xunit;
-using System.Reflection;
 
 namespace System.Data.HashFunction.Test
 {

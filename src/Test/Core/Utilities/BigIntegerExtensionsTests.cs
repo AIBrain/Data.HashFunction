@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.HashFunction.Utilities;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
-using Xunit;
+﻿using System.Linq;
 
 namespace System.Data.HashFunction.Test.Core.Utilities
 {

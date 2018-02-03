@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.HashFunction.Utilities.IntegerManipulation;
+﻿using System.Data.HashFunction.Utilities.IntegerManipulation;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xunit;
 
 namespace System.Data.HashFunction.Test.Core.Utilities.IntegerManipulation
 {

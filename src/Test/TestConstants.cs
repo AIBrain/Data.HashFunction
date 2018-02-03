@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.HashFunction.Utilities;
-
-namespace System.Data.HashFunction.Test
+﻿namespace System.Data.HashFunction.Test
 {
     internal sealed class TestConstants
     {

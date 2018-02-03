@@ -1,13 +1,4 @@
-﻿using Moq;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xunit;
-
-namespace System.Data.HashFunction.Test.CRC_Tests
+﻿namespace System.Data.HashFunction.Test.CRC_Tests
 {
     using System.Data.HashFunction;
 

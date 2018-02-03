@@ -1,14 +1,8 @@
 ﻿//! Automatically generated from IHashFunctionTests_CRC.tt
 //! Direct modifications to this file will be lost.
 
-using Moq;
-using System;
 using System.Collections.Generic;
 using System.Data.HashFunction.CRCStandards;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xunit;
 
 namespace System.Data.HashFunction.Test
 {

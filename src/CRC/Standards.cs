@@ -4,11 +4,7 @@
 //! A vast majority if not all of the parameters for these standards 
 //!   were provided by http://reveng.sourceforge.net/crc-catalogue/.
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace System.Data.HashFunction
 {

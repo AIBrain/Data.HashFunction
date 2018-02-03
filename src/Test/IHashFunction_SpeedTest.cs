@@ -1,14 +1,8 @@
-﻿using Moq;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.HashFunction.Test.Mocks;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using Xunit;
 
 namespace System.Data.HashFunction.Test
 {

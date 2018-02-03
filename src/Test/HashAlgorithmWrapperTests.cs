@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.HashFunction;
-using System.Security.Cryptography;
-using Xunit;
+﻿using System.Security.Cryptography;
 using System.IO;
-using Moq;
 
 namespace System.Data.HashFunction.Test
 {

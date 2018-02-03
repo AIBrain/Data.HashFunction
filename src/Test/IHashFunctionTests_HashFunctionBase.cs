@@ -1,15 +1,10 @@
 ﻿//! Automatically generated from IHashFunctionTests_HashFunctionBase.tt
 //! Direct modifications to this file will be lost.
 
-using Moq;
-using System;
 using System.Collections.Generic;
 using System.Data.HashFunction.Test.Mocks;
 using System.Linq;
 using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using Xunit;
 
 namespace System.Data.HashFunction.Test
 {

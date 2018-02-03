@@ -1,13 +1,9 @@
-﻿using Moq;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.HashFunction.Test.Mocks;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
-using System.Threading.Tasks;
-using Xunit;
 
 namespace System.Data.HashFunction.Test
 {
