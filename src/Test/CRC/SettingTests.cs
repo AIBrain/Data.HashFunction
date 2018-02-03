@@ -19,7 +19,7 @@ namespace System.Data.HashFunction.Test.CRC_Tests {
         [Fact]
         public void CRC_Setting_Constructor_InvalidInitialValue_Throws() {
             foreach ( var validBits in Enumerable.Range( 1, 64 ) ) {
-                for ( Int32 x = validBits; x < 64; ++x ) {
+                for ( var x = validBits; x < 64; ++x ) {
                     var invalidInitialValue = 1UL << x;
 
                     Assert.Equal( "initialValue",
@@ -33,7 +33,7 @@ namespace System.Data.HashFunction.Test.CRC_Tests {
         [Fact]
         public void CRC_Setting_Constructor_InvalidPolynomial_Throws() {
             foreach ( var validBits in Enumerable.Range( 1, 64 ) ) {
-                for ( Int32 x = validBits; x < 64; ++x ) {
+                for ( var x = validBits; x < 64; ++x ) {
                     var invalidPolynomial = 1UL << x;
 
                     Assert.Equal( "polynomial",
@@ -47,7 +47,7 @@ namespace System.Data.HashFunction.Test.CRC_Tests {
         [Fact]
         public void CRC_Setting_Constructor_InvalidXOrOut_Throws() {
             foreach ( var validBits in Enumerable.Range( 1, 64 ) ) {
-                for ( Int32 x = validBits; x < 64; ++x ) {
+                for ( var x = validBits; x < 64; ++x ) {
                     var invalidXOrOut = 1UL << x;
 
                     Assert.Equal( "xOrOut",
@@ -63,7 +63,7 @@ namespace System.Data.HashFunction.Test.CRC_Tests {
             var r = new Random();
 
             foreach ( var bits in Enumerable.Range( 1, 64 ) ) {
-                for ( Int32 x = 0; x < 4; ++x ) {
+                for ( var x = 0; x < 4; ++x ) {
                     var randomBytes = new Byte[24];
                     r.NextBytes( randomBytes );
 
@@ -97,7 +97,7 @@ namespace System.Data.HashFunction.Test.CRC_Tests {
         [Fact]
         public void CRC_Setting_Constructor_ValidInitialValue_Works() {
             foreach ( var validBits in Enumerable.Range( 1, 64 ) ) {
-                for ( Int32 x = 1; x <= validBits; ++x ) {
+                for ( var x = 1; x <= validBits; ++x ) {
                     var validInitialValue = UInt64.MaxValue >> ( 64 - x );
 
                     new CRC.Setting( validBits, 0, validInitialValue, false, false, 0 );
@@ -108,7 +108,7 @@ namespace System.Data.HashFunction.Test.CRC_Tests {
         [Fact]
         public void CRC_Setting_Constructor_ValidPolynomial_Works() {
             foreach ( var validBits in Enumerable.Range( 1, 64 ) ) {
-                for ( Int32 x = 1; x <= validBits; ++x ) {
+                for ( var x = 1; x <= validBits; ++x ) {
                     var validPolynomial = UInt64.MaxValue >> ( 64 - x );
 
                     new CRC.Setting( validBits, validPolynomial, 0, false, false, 0 );
@@ -119,7 +119,7 @@ namespace System.Data.HashFunction.Test.CRC_Tests {
         [Fact]
         public void CRC_Setting_Constructor_ValidXOrOut_Works() {
             foreach ( var validBits in Enumerable.Range( 1, 64 ) ) {
-                for ( Int32 x = 1; x <= validBits; ++x ) {
+                for ( var x = 1; x <= validBits; ++x ) {
                     var validXOrOut = UInt64.MaxValue >> ( 64 - x );
 
                     new CRC.Setting( validBits, 0, 0, false, false, validXOrOut );

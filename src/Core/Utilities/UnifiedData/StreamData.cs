@@ -29,7 +29,7 @@ namespace System.Data.HashFunction.Utilities.UnifiedData {
         /// <inheritdoc/>
         public override void ForEachRead( Action<Byte[], Int32, Int32> action ) {
             if ( action == null ) {
-                throw new ArgumentNullException( "action" );
+                throw new ArgumentNullException( nameof(action) );
             }
 
             var buffer = new Byte[BufferSize];
@@ -45,7 +45,7 @@ namespace System.Data.HashFunction.Utilities.UnifiedData {
         /// <inheritdoc/>
         public override async Task ForEachReadAsync( Action<Byte[], Int32, Int32> action ) {
             if ( action == null ) {
-                throw new ArgumentNullException( "action" );
+                throw new ArgumentNullException( nameof(action) );
             }
 
             var buffer = new Byte[BufferSize];
@@ -61,18 +61,18 @@ namespace System.Data.HashFunction.Utilities.UnifiedData {
         /// <inheritdoc/>
         public override void ForEachGroup( Int32 groupSize, Action<Byte[], Int32, Int32> action, Action<Byte[], Int32, Int32> remainderAction ) {
             if ( groupSize <= 0 ) {
-                throw new ArgumentOutOfRangeException( "groupSize", "groupSize must be greater than 0." );
+                throw new ArgumentOutOfRangeException( nameof(groupSize), "groupSize must be greater than 0." );
             }
 
             if ( action == null ) {
-                throw new ArgumentNullException( "action" );
+                throw new ArgumentNullException( nameof(action) );
             }
 
             // Store bufferSize to keep it from changing under us
             var bufferSize = BufferSize;
 
-            Byte[] buffer = new Byte[groupSize < bufferSize ? bufferSize : groupSize];
-            Int32 position = 0;
+            var buffer = new Byte[groupSize < bufferSize ? bufferSize : groupSize];
+            var position = 0;
             Int32 currentLength;
 
             while ( ( currentLength = _Data.Read( buffer, position, buffer.Length - position ) ) > 0 ) {
@@ -106,18 +106,18 @@ namespace System.Data.HashFunction.Utilities.UnifiedData {
         /// <inheritdoc/>
         public override async Task ForEachGroupAsync( Int32 groupSize, Action<Byte[], Int32, Int32> action, Action<Byte[], Int32, Int32> remainderAction ) {
             if ( groupSize <= 0 ) {
-                throw new ArgumentOutOfRangeException( "groupSize", "groupSize must be greater than 0." );
+                throw new ArgumentOutOfRangeException( nameof(groupSize), "groupSize must be greater than 0." );
             }
 
             if ( action == null ) {
-                throw new ArgumentNullException( "action" );
+                throw new ArgumentNullException( nameof(action) );
             }
 
             // Store bufferSize to keep it from changing under us
             var bufferSize = BufferSize;
 
-            Byte[] buffer = new Byte[groupSize < bufferSize ? bufferSize : groupSize];
-            Int32 position = 0;
+            var buffer = new Byte[groupSize < bufferSize ? bufferSize : groupSize];
+            var position = 0;
             Int32 currentLength;
 
             while ( ( currentLength = await _Data.ReadAsync( buffer, position, buffer.Length - position ).ConfigureAwait( false ) ) > 0 ) {

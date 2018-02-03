@@ -26,7 +26,7 @@ namespace System.Data.HashFunction.Utilities.IntegerManipulation {
             var product = new UInt32[( operand1.Count >= operand2.Count ? operand1.Count : operand2.Count )];
 
             // Bottom of equation
-            for ( Int32 y = 0; y < operand2.Count; ++y ) {
+            for ( var y = 0; y < operand2.Count; ++y ) {
 
                 // Skip multiplying things by zero
                 if ( operand2[y] == 0 ) {
@@ -36,7 +36,7 @@ namespace System.Data.HashFunction.Utilities.IntegerManipulation {
                 UInt32 carryOver = 0;
 
                 // Top of equation
-                for ( Int32 x = 0; x < operand2.Count; ++x ) {
+                for ( var x = 0; x < operand2.Count; ++x ) {
                     if ( x + y >= product.Length ) {
                         break;
                     }

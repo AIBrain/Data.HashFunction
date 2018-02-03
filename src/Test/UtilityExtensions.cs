@@ -18,7 +18,7 @@ namespace System.Data.HashFunction.Test {
         /// </returns>
         public static IEnumerable<Type> GetBaseTypes( this Type parentType, Boolean includeParentType = false ) {
             if ( parentType == null ) {
-                throw new ArgumentNullException( "parentType" );
+                throw new ArgumentNullException( nameof(parentType) );
             }
 
             if ( includeParentType ) {
@@ -47,12 +47,12 @@ namespace System.Data.HashFunction.Test {
                 .ToCharArray();
 
             if ( chars.Length % 2 == 1 ) {
-                throw new ArgumentException( "hexString's length must be divisible by 2 after removing spaces, underscores, and dashes.", "hexString" );
+                throw new ArgumentException( "hexString's length must be divisible by 2 after removing spaces, underscores, and dashes.", nameof(hexString) );
             }
 
             var bytes = new Byte[chars.Length / 2];
 
-            for ( Int32 x = 0; x < chars.Length; ++x ) {
+            for ( var x = 0; x < chars.Length; ++x ) {
                 if ( x % 2 == 0 ) {
                     bytes[x / 2] = 0;
                 }
@@ -70,7 +70,7 @@ namespace System.Data.HashFunction.Test {
                     bytes[x / 2] |= ( Byte )( chars[x] - 'A' + 10 );
                 }
                 else {
-                    throw new ArgumentException( "hexString contains an invalid character, only [0-9a-fA-F _-] expected", "hexString" );
+                    throw new ArgumentException( "hexString contains an invalid character, only [0-9a-fA-F _-] expected", nameof(hexString) );
                 }
             }
 

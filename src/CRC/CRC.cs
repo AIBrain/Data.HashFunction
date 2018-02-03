@@ -39,7 +39,7 @@ namespace System.Data.HashFunction {
 
             set {
                 if ( value == null ) {
-                    throw new ArgumentNullException( "value" );
+                    throw new ArgumentNullException( nameof(value) );
                 }
 
                 _DefaultSettings = value;
@@ -65,7 +65,7 @@ namespace System.Data.HashFunction {
         public CRC( Setting settings )
             : base( settings != null ? settings.Bits : -1 ) {
             if ( settings == null ) {
-                throw new ArgumentNullException( "settings" );
+                throw new ArgumentNullException( nameof(settings) );
             }
 
             _Settings = settings;
@@ -82,7 +82,7 @@ namespace System.Data.HashFunction {
         protected override Byte[] ComputeHashInternal( UnifiedData data ) {
 
             // Use 64-bit variable regardless of CRC bit length
-            UInt64 hash = Settings.InitialValue;
+            var hash = Settings.InitialValue;
 
             // Reflect InitialValue if processing as big endian
             if ( Settings.ReflectIn ) {
@@ -94,7 +94,7 @@ namespace System.Data.HashFunction {
 
             // How much hash must be right-shifted to get the most significant byte (HashSize >= 8)
             // or bit (HashSize < 8)
-            Int32 mostSignificantShift = HashSize - 8;
+            var mostSignificantShift = HashSize - 8;
 
             if ( HashSize < 8 ) {
                 mostSignificantShift = this.HashSize - 1;
@@ -120,7 +120,7 @@ namespace System.Data.HashFunction {
         protected override async Task<Byte[]> ComputeHashAsyncInternal( UnifiedData data ) {
 
             // Use 64-bit variable regardless of CRC bit length
-            UInt64 hash = Settings.InitialValue;
+            var hash = Settings.InitialValue;
 
             // Reflect InitialValue if processing as big endian
             if ( Settings.ReflectIn ) {
@@ -132,7 +132,7 @@ namespace System.Data.HashFunction {
 
             // How much hash must be right-shifted to get the most significant byte (HashSize >= 8)
             // or bit (HashSize < 8)
-            Int32 mostSignificantShift = HashSize - 8;
+            var mostSignificantShift = HashSize - 8;
 
             if ( HashSize < 8 ) {
                 mostSignificantShift = this.HashSize - 1;
@@ -175,7 +175,7 @@ namespace System.Data.HashFunction {
                 else {
 
                     // Process per bit, treating hash differently based on input endianness
-                    for ( Int32 y = 0; y < 8; ++y ) {
+                    for ( var y = 0; y < 8; ++y ) {
                         if ( Settings.ReflectIn ) {
                             hash = ( hash >> 1 ) ^ crcTable[( Byte )( hash & 1 ) ^ ( ( Byte )( dataBytes[x] >> y ) & 1 )];
                         }
@@ -219,7 +219,7 @@ namespace System.Data.HashFunction {
 
                 curValue <<= ( settings.Bits - perBitCount );
 
-                for ( Int32 y = 0; y < perBitCount; ++y ) {
+                for ( var y = 0; y < perBitCount; ++y ) {
                     if ( ( curValue & mostSignificantBit ) > 0UL ) {
                         curValue = ( curValue << 1 ) ^ settings.Polynomial;
                     }

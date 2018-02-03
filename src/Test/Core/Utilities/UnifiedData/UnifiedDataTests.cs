@@ -84,7 +84,7 @@
             foreach ( var validGroupSize in validGroupSizes ) {
 
                 // Test correct functioning when value is a multiple of groupSize
-                for ( Int32 x = 0; x < 10; ++x ) {
+                for ( var x = 0; x < 10; ++x ) {
                     var dataLength = validGroupSize * ( r.Next( 0, 20 ) + 1 );
                     var testData = CreateTestData( dataLength );
 
@@ -104,7 +104,7 @@
                 if ( validGroupSize > 1 ) {
 
                     // Test correct functioning when value is not a multiple of groupSize
-                    for ( Int32 x = 0; x < 10; ++x ) {
+                    for ( var x = 0; x < 10; ++x ) {
                         var groupLength = validGroupSize * ( r.Next( 0, 20 ) + 1 );
                         var remainderLength = r.Next( 1, validGroupSize );
 
@@ -175,7 +175,7 @@
             foreach ( var validGroupSize in validGroupSizes ) {
 
                 // Test correct functioning when value is a multiple of groupSize
-                for ( Int32 x = 0; x < 10; ++x ) {
+                for ( var x = 0; x < 10; ++x ) {
                     var dataLength = validGroupSize * ( r.Next( 0, 20 ) + 1 );
                     var testData = CreateTestData( dataLength );
 
@@ -195,7 +195,7 @@
                 if ( validGroupSize > 1 ) {
 
                     // Test correct functioning when value is not a multiple of groupSize
-                    for ( Int32 x = 0; x < 10; ++x ) {
+                    for ( var x = 0; x < 10; ++x ) {
                         var groupLength = validGroupSize * ( r.Next( 0, 20 ) + 1 );
                         var remainderLength = r.Next( 1, validGroupSize );
 

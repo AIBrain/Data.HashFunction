@@ -51,7 +51,7 @@ namespace System.Data.HashFunction {
 
         /// <inheritdoc/>
         protected override Byte[] ComputeHashInternal( UnifiedData data ) {
-            UInt32 h = Seed ^ ( ( UInt32 )data.Length * m );
+            var h = Seed ^ ( ( UInt32 )data.Length * m );
 
             data.ForEachGroup( 4,
                 ( dataGroup, position, length ) => {
@@ -73,7 +73,7 @@ namespace System.Data.HashFunction {
 
         /// <inheritdoc/>
         protected override async Task<Byte[]> ComputeHashAsyncInternal( UnifiedData data ) {
-            UInt32 h = Seed ^ ( ( UInt32 )data.Length * m );
+            var h = Seed ^ ( ( UInt32 )data.Length * m );
 
             await data.ForEachGroupAsync( 4,
                 ( dataGroup, position, length ) => {

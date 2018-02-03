@@ -84,7 +84,7 @@ namespace System.Data.HashFunction {
         public MurmurHash3( Int32 hashSize, UInt32 seed )
             : base( hashSize ) {
             if ( !ValidHashSizes.Contains( hashSize ) ) {
-                throw new ArgumentOutOfRangeException( "hashSize", "hashSize must be contained within MurmurHash3.ValidHashSizes." );
+                throw new ArgumentOutOfRangeException( nameof(hashSize), "hashSize must be contained within MurmurHash3.ValidHashSizes." );
             }
 
             _Seed = seed;
@@ -97,8 +97,8 @@ namespace System.Data.HashFunction {
 
             switch ( HashSize ) {
                 case 32: {
-                        UInt32 h1 = Seed;
-                        Int32 dataCount = 0;
+                        var h1 = Seed;
+                        var dataCount = 0;
 
                         data.ForEachGroup( 4,
                             ( dataGroup, position, length ) => {
@@ -120,10 +120,10 @@ namespace System.Data.HashFunction {
                     }
 
                 case 128: {
-                        UInt64 h1 = ( UInt64 )Seed;
-                        UInt64 h2 = ( UInt64 )Seed;
+                        var h1 = ( UInt64 )Seed;
+                        var h2 = ( UInt64 )Seed;
 
-                        Int32 dataCount = 0;
+                        var dataCount = 0;
 
                         data.ForEachGroup( 16,
                             ( dataGroup, position, length ) => {
@@ -174,8 +174,8 @@ namespace System.Data.HashFunction {
 
             switch ( HashSize ) {
                 case 32: {
-                        UInt32 h1 = Seed;
-                        Int32 dataCount = 0;
+                        var h1 = Seed;
+                        var dataCount = 0;
 
                         await data.ForEachGroupAsync( 4,
                             ( dataGroup, position, length ) => {
@@ -197,10 +197,10 @@ namespace System.Data.HashFunction {
                     }
 
                 case 128: {
-                        UInt64 h1 = ( UInt64 )Seed;
-                        UInt64 h2 = ( UInt64 )Seed;
+                        var h1 = ( UInt64 )Seed;
+                        var h2 = ( UInt64 )Seed;
 
-                        Int32 dataCount = 0;
+                        var dataCount = 0;
 
                         await data.ForEachGroupAsync( 16,
                             ( dataGroup, position, length ) => {
@@ -249,7 +249,7 @@ namespace System.Data.HashFunction {
 #endif
         private static void ProcessGroup( ref UInt32 h1, Byte[] dataGroup, Int32 position, Int32 length ) {
             for ( var x = position; x < position + length; x += 4 ) {
-                UInt32 k1 = BitConverter.ToUInt32( dataGroup, x );
+                var k1 = BitConverter.ToUInt32( dataGroup, x );
 
                 k1 *= c1_32;
                 k1 = k1.RotateLeft( 15 );
@@ -267,8 +267,8 @@ namespace System.Data.HashFunction {
 #endif
         private static void ProcessGroup( ref UInt64 h1, ref UInt64 h2, Byte[] dataGroup, Int32 position, Int32 length ) {
             for ( var x = position; x < position + length; x += 16 ) {
-                UInt64 k1 = BitConverter.ToUInt64( dataGroup, x );
-                UInt64 k2 = BitConverter.ToUInt64( dataGroup, x + 8 );
+                var k1 = BitConverter.ToUInt64( dataGroup, x );
+                var k2 = BitConverter.ToUInt64( dataGroup, x + 8 );
 
                 k1 *= c1_128;
                 k1 = k1.RotateLeft( 31 );

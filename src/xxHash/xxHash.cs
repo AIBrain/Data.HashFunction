@@ -90,7 +90,7 @@ namespace System.Data.HashFunction {
         public xxHash( Int32 hashSize, UInt64 initVal )
             : base( hashSize ) {
             if ( !ValidHashSizes.Contains( hashSize ) ) {
-                throw new ArgumentOutOfRangeException( "hashSize", "hashSize must be contained within xxHash.ValidHashSizes" );
+                throw new ArgumentOutOfRangeException( nameof(hashSize), "hashSize must be contained within xxHash.ValidHashSizes" );
             }
 
             InitVal = initVal;
@@ -117,7 +117,7 @@ namespace System.Data.HashFunction {
 
                         data.ForEachGroup( 16,
                             ( dataGroup, position, length ) => {
-                                for ( Int32 x = position; x < position + length; x += 16 ) {
+                                for ( var x = position; x < position + length; x += 16 ) {
                                     for ( var y = 0; y < 4; ++y ) {
                                         initValues[y] += BitConverter.ToUInt32( dataGroup, x + ( y * 4 ) ) * _primes32[1];
                                         initValues[y] = initValues[y].RotateLeft( 13 );
@@ -289,13 +289,13 @@ namespace System.Data.HashFunction {
             if ( remainder != null ) {
 
                 // In 4-byte chunks, process all process all full chunks
-                for ( Int32 x = 0; x < remainder.Length / 4; ++x ) {
+                for ( var x = 0; x < remainder.Length / 4; ++x ) {
                     h += BitConverter.ToUInt32( remainder, x * 4 ) * _primes32[2];
                     h = h.RotateLeft( 17 ) * _primes32[3];
                 }
 
                 // Process last 4 bytes in 1-byte chunks (only runs if data.Length % 4 != 0)
-                for ( Int32 x = remainder.Length - ( remainder.Length % 4 ); x < remainder.Length; ++x ) {
+                for ( var x = remainder.Length - ( remainder.Length % 4 ); x < remainder.Length; ++x ) {
                     h += ( UInt32 )remainder[x] * _primes32[4];
                     h = h.RotateLeft( 11 ) * _primes32[0];
                 }
@@ -334,7 +334,7 @@ namespace System.Data.HashFunction {
             if ( remainder != null ) {
 
                 // In 8-byte chunks, process all full chunks
-                for ( Int32 x = 0; x < remainder.Length / 8; ++x ) {
+                for ( var x = 0; x < remainder.Length / 8; ++x ) {
                     h ^= ( BitConverter.ToUInt64( remainder, x * 8 ) * _primes64[1] ).RotateLeft( 31 ) * _primes64[0];
                     h = ( h.RotateLeft( 27 ) * _primes64[0] ) + _primes64[3];
                 }
@@ -346,7 +346,7 @@ namespace System.Data.HashFunction {
                 }
 
                 // Process last 4 bytes in 1-byte chunks (only runs if data.Length % 4 != 0)
-                for ( Int32 x = remainder.Length - ( remainder.Length % 4 ); x < remainder.Length; ++x ) {
+                for ( var x = remainder.Length - ( remainder.Length % 4 ); x < remainder.Length; ++x ) {
                     h ^= ( UInt64 )remainder[x] * _primes64[4];
                     h = h.RotateLeft( 11 ) * _primes64[0];
                 }

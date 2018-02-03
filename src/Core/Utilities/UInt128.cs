@@ -245,7 +245,7 @@
             }
 
             if ( !( value is UInt128 ) ) {
-                throw new ArgumentException( "value is not a UInt128.", "value" );
+                throw new ArgumentException( "value is not a UInt128.", nameof(value) );
             }
 
             return CompareTo( ( UInt128 )value );

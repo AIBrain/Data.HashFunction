@@ -88,7 +88,7 @@ namespace System.Data.HashFunction {
         public JenkinsLookup3( Int32 hashSize, UInt32 initVal1, UInt32 initVal2 )
             : base( hashSize ) {
             if ( !ValidHashSizes.Contains( hashSize ) ) {
-                throw new ArgumentOutOfRangeException( "hashSize", "hashSize must be contained within SpookyHashV2.ValidHashSizes." );
+                throw new ArgumentOutOfRangeException( nameof(hashSize), "hashSize must be contained within SpookyHashV2.ValidHashSizes." );
             }
 
             _InitVal1 = initVal1;
@@ -98,15 +98,15 @@ namespace System.Data.HashFunction {
         /// <exception cref="System.InvalidOperationException">HashSize set to an invalid value.</exception>
         /// <inheritdoc/>
         protected override Byte[] ComputeHashInternal( UnifiedData data ) {
-            UInt32 a = 0xdeadbeef + ( UInt32 )data.Length + InitVal1;
-            UInt32 b = 0xdeadbeef + ( UInt32 )data.Length + InitVal1;
-            UInt32 c = 0xdeadbeef + ( UInt32 )data.Length + InitVal1;
+            var a = 0xdeadbeef + ( UInt32 )data.Length + InitVal1;
+            var b = 0xdeadbeef + ( UInt32 )data.Length + InitVal1;
+            var c = 0xdeadbeef + ( UInt32 )data.Length + InitVal1;
 
             if ( HashSize == 64 ) {
                 c += this.InitVal2;
             }
 
-            Int32 dataCount = 0;
+            var dataCount = 0;
 
             data.ForEachGroup( 12,
                 ( dataGroup, position, length ) => {
@@ -140,15 +140,15 @@ namespace System.Data.HashFunction {
         /// <exception cref="System.InvalidOperationException">HashSize set to an invalid value.</exception>
         /// <inheritdoc/>
         protected override async Task<Byte[]> ComputeHashAsyncInternal( UnifiedData data ) {
-            UInt32 a = 0xdeadbeef + ( UInt32 )data.Length + InitVal1;
-            UInt32 b = 0xdeadbeef + ( UInt32 )data.Length + InitVal1;
-            UInt32 c = 0xdeadbeef + ( UInt32 )data.Length + InitVal1;
+            var a = 0xdeadbeef + ( UInt32 )data.Length + InitVal1;
+            var b = 0xdeadbeef + ( UInt32 )data.Length + InitVal1;
+            var c = 0xdeadbeef + ( UInt32 )data.Length + InitVal1;
 
             if ( HashSize == 64 ) {
                 c += this.InitVal2;
             }
 
-            Int32 dataCount = 0;
+            var dataCount = 0;
 
             await data.ForEachGroupAsync( 12,
                 ( dataGroup, position, length ) => {
@@ -184,7 +184,7 @@ namespace System.Data.HashFunction {
         [MethodImpl( MethodImplOptions.AggressiveInlining )]
 #endif
         private static void ProcessGroup( ref UInt32 a, ref UInt32 b, ref UInt32 c, ref Int32 dataCount, Byte[] dataGroup, Int32 position, Int32 length ) {
-            for ( Int32 x = position; x < position + length; x += 12 ) {
+            for ( var x = position; x < position + length; x += 12 ) {
 
                 // Mix at beginning of subsequent group to handle special case of length <= 12
                 if ( dataCount > 0 || x > position ) {

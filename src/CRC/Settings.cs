@@ -85,7 +85,7 @@ namespace System.Data.HashFunction {
                 Int32 bits, UInt64 polynomial, UInt64 initialValue,
                 Boolean reflectIn, Boolean reflectOut, UInt64 xOrOut ) {
                 if ( bits < 1 || bits > 64 ) {
-                    throw new ArgumentOutOfRangeException( "bits", "bitLength must be in the range [1, 64]." );
+                    throw new ArgumentOutOfRangeException( nameof(bits), "bitLength must be in the range [1, 64]." );
                 }
 
                 CheckInput( "polynomial", polynomial, bits );

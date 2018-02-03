@@ -46,7 +46,7 @@ namespace System.Data.HashFunction {
         };
 
         private class InternalState {
-            public Int32 BufferFilled = 0;
+            public Int32 BufferFilled;
             public readonly Byte[] Buffer = new Byte[128];
 
             public readonly UInt64[] H = new UInt64[8];
@@ -136,11 +136,11 @@ namespace System.Data.HashFunction {
         public Blake2B( Int32 hashSize, IEnumerable<Byte> key = null, IEnumerable<Byte> salt = null, IEnumerable<Byte> personalization = null )
             : base( hashSize ) {
             if ( hashSize < MinHashSizeBits || hashSize > MaxHashSizeBits ) {
-                throw new ArgumentOutOfRangeException( "hashSize", hashSize, String.Format( "Expected: {0} >= hashSize <= {1}", MinHashSizeBits, MaxHashSizeBits ) );
+                throw new ArgumentOutOfRangeException( nameof(hashSize), hashSize, String.Format( "Expected: {0} >= hashSize <= {1}", MinHashSizeBits, MaxHashSizeBits ) );
             }
 
             if ( hashSize % 8 != 0 ) {
-                throw new ArgumentOutOfRangeException( "hashSize", hashSize, "The hash size must be a multiple of 8" );
+                throw new ArgumentOutOfRangeException( nameof(hashSize), hashSize, "The hash size must be a multiple of 8" );
             }
 
             var keyArray = ( key ?? new Byte[0] ).ToArray();
@@ -148,15 +148,15 @@ namespace System.Data.HashFunction {
             var personalizationArray = ( personalization ?? new Byte[16] ).ToArray();
 
             if ( keyArray.Length > MaxKeySizeBytes ) {
-                throw new ArgumentOutOfRangeException( "key", key, String.Format( "Expected: key.Length <= {0}", MaxKeySizeBytes ) );
+                throw new ArgumentOutOfRangeException( nameof(key), key, String.Format( "Expected: key.Length <= {0}", MaxKeySizeBytes ) );
             }
 
             if ( saltArray.Length != SaltSizeBytes ) {
-                throw new ArgumentOutOfRangeException( "salt", salt, String.Format( "Expected: salt.Length == {0}", SaltSizeBytes ) );
+                throw new ArgumentOutOfRangeException( nameof(salt), salt, String.Format( "Expected: salt.Length == {0}", SaltSizeBytes ) );
             }
 
             if ( personalizationArray.Length != PersonalizationSizeBytes ) {
-                throw new ArgumentOutOfRangeException( "personalization", personalization, String.Format( "Expected: personalization.Length == {0}", PersonalizationSizeBytes ) );
+                throw new ArgumentOutOfRangeException( nameof(personalization), personalization, String.Format( "Expected: personalization.Length == {0}", PersonalizationSizeBytes ) );
             }
 
             _originalKeyLength = ( UInt32 )keyArray.Length;
@@ -205,7 +205,7 @@ namespace System.Data.HashFunction {
 #endif
 
         private static void ProcessBytes( InternalState internalState, Byte[] array, Int32 start, Int32 count ) {
-            Int32 bufferRemaining = BlockSizeBytes - internalState.BufferFilled;
+            var bufferRemaining = BlockSizeBytes - internalState.BufferFilled;
 
             if ( internalState.BufferFilled > 0 && count > bufferRemaining ) {
                 Array.Copy(
@@ -247,15 +247,15 @@ namespace System.Data.HashFunction {
             internalState.Counter += ( UInt32 )internalState.BufferFilled;
             internalState.FinalizationFlags[0] = UInt64.MaxValue;
 
-            for ( Int32 i = internalState.BufferFilled; i < internalState.Buffer.Length; i++ ) {
+            for ( var i = internalState.BufferFilled; i < internalState.Buffer.Length; i++ ) {
                 internalState.Buffer[i] = 0;
             }
 
             Compress( internalState, internalState.Buffer, 0 );
 
-            Byte[] hash = new Byte[64];
+            var hash = new Byte[64];
 
-            for ( Int32 i = 0; i < 8; ++i ) {
+            for ( var i = 0; i < 8; ++i ) {
                 Array.Copy(
                     BitConverter.GetBytes( internalState.H[i] ), 0,
                     hash, i * 8,

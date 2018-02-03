@@ -133,7 +133,7 @@ namespace System.Data.HashFunction {
 #endif
             : base( hashSize ) {
             if ( !ValidHashSizes.Contains( hashSize ) ) {
-                throw new ArgumentOutOfRangeException( "hashSize", "hashSize must be contained within BuzHashBase.ValidHashSizes." );
+                throw new ArgumentOutOfRangeException( nameof(hashSize), "hashSize must be contained within BuzHashBase.ValidHashSizes." );
             }
 
             _Rtab = rtab;
@@ -149,7 +149,7 @@ namespace System.Data.HashFunction {
 
             switch ( HashSize ) {
                 case 8: {
-                        Byte h = ( Byte )InitVal;
+                        var h = ( Byte )InitVal;
 
                         data.ForEachRead( ( dataBytes, position, length ) => {
                             ProcessBytes( ref h, dataBytes, position, length );
@@ -160,7 +160,7 @@ namespace System.Data.HashFunction {
                     }
 
                 case 16: {
-                        UInt16 h = ( UInt16 )InitVal;
+                        var h = ( UInt16 )InitVal;
 
                         data.ForEachRead( ( dataBytes, position, length ) => {
                             ProcessBytes( ref h, dataBytes, position, length );
@@ -171,7 +171,7 @@ namespace System.Data.HashFunction {
                     }
 
                 case 32: {
-                        UInt32 h = ( UInt32 )InitVal;
+                        var h = ( UInt32 )InitVal;
 
                         data.ForEachRead( ( dataBytes, position, length ) => {
                             ProcessBytes( ref h, dataBytes, position, length );
@@ -182,7 +182,7 @@ namespace System.Data.HashFunction {
                     }
 
                 case 64: {
-                        UInt64 h = InitVal;
+                        var h = InitVal;
 
                         data.ForEachRead( ( dataBytes, position, length ) => {
                             ProcessBytes( ref h, dataBytes, position, length );
@@ -205,7 +205,7 @@ namespace System.Data.HashFunction {
 
             switch ( HashSize ) {
                 case 8: {
-                        Byte h = ( Byte )InitVal;
+                        var h = ( Byte )InitVal;
 
                         await data.ForEachReadAsync( ( dataBytes, position, length ) => {
                             ProcessBytes( ref h, dataBytes, position, length );
@@ -216,7 +216,7 @@ namespace System.Data.HashFunction {
                     }
 
                 case 16: {
-                        UInt16 h = ( UInt16 )InitVal;
+                        var h = ( UInt16 )InitVal;
 
                         await data.ForEachReadAsync( ( dataBytes, position, length ) => {
                             ProcessBytes( ref h, dataBytes, position, length );
@@ -227,7 +227,7 @@ namespace System.Data.HashFunction {
                     }
 
                 case 32: {
-                        UInt32 h = ( UInt32 )InitVal;
+                        var h = ( UInt32 )InitVal;
 
                         await data.ForEachReadAsync( ( dataBytes, position, length ) => {
                             ProcessBytes( ref h, dataBytes, position, length );
@@ -238,7 +238,7 @@ namespace System.Data.HashFunction {
                     }
 
                 case 64: {
-                        UInt64 h = InitVal;
+                        var h = InitVal;
 
                         await data.ForEachReadAsync( ( dataBytes, position, length ) => {
                             ProcessBytes( ref h, dataBytes, position, length );

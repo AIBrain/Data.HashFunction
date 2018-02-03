@@ -84,7 +84,7 @@ namespace System.Data.HashFunction {
         public SpookyHashV2( Int32 hashSize, UInt64 initVal1, UInt64 initVal2 )
             : base( hashSize ) {
             if ( !ValidHashSizes.Contains( hashSize ) ) {
-                throw new ArgumentOutOfRangeException( "hashSize", "hashSize must be contained within SpookyHashV2.ValidHashSizes." );
+                throw new ArgumentOutOfRangeException( nameof(hashSize), "hashSize must be contained within SpookyHashV2.ValidHashSizes." );
             }
 
             _InitVal1 = initVal1;
@@ -94,7 +94,7 @@ namespace System.Data.HashFunction {
         /// <exception cref="System.InvalidOperationException">HashSize set to an invalid value.</exception>
         /// <inheritdoc/>
         protected override Byte[] ComputeHashInternal( UnifiedData data ) {
-            UInt64[] h = new UInt64[12];
+            var h = new UInt64[12];
 
             h[0] = h[3] = h[6] = h[9] = InitVal1;
             h[1] = h[4] = h[7] = h[10] = ( HashSize == 128 ? InitVal2 : InitVal1 );
@@ -144,7 +144,7 @@ namespace System.Data.HashFunction {
         /// <exception cref="System.InvalidOperationException">HashSize set to an invalid value.</exception>
         /// <inheritdoc/>
         protected override async Task<Byte[]> ComputeHashAsyncInternal( UnifiedData data ) {
-            UInt64[] h = new UInt64[12];
+            var h = new UInt64[12];
 
             h[0] = h[3] = h[6] = h[9] = InitVal1;
             h[1] = h[4] = h[7] = h[10] = ( HashSize == 128 ? InitVal2 : InitVal1 );
@@ -206,7 +206,7 @@ namespace System.Data.HashFunction {
         [MethodImpl( MethodImplOptions.AggressiveInlining )]
 #endif
         private static void Mix( UInt64[] h, Byte[] data, Int32 position, Int32 length ) {
-            for ( Int32 x = position; x < position + length; x += 96 ) {
+            for ( var x = position; x < position + length; x += 96 ) {
                 for ( var i = 0; i < 12; ++i ) {
                     h[i] += BitConverter.ToUInt64( data, x + ( i * 8 ) );
                     h[( i + 2 ) % 12] ^= h[( i + 10 ) % 12];
@@ -232,7 +232,7 @@ namespace System.Data.HashFunction {
         [MethodImpl( MethodImplOptions.AggressiveInlining )]
 #endif
         private static void EndPartial( UInt64[] h ) {
-            for ( Int32 i = 0; i < 12; ++i ) {
+            for ( var i = 0; i < 12; ++i ) {
                 h[( i + 11 ) % 12] += h[( i + 1 ) % 12];
                 h[( i + 2 ) % 12] ^= h[( i + 11 ) % 12];
                 h[( i + 1 ) % 12] = h[( i + 1 ) % 12].RotateLeft( _EndPartialRotationParameters[i] );
@@ -244,7 +244,7 @@ namespace System.Data.HashFunction {
         [MethodImpl( MethodImplOptions.AggressiveInlining )]
 #endif
         private static void End( UInt64[] h, Byte[] data, Int32 position ) {
-            for ( Int32 i = 0; i < 12; ++i ) {
+            for ( var i = 0; i < 12; ++i ) {
                 h[i] += BitConverter.ToUInt64( data, position + ( i * 8 ) );
             }
 

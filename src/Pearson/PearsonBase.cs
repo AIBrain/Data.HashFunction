@@ -73,15 +73,15 @@ namespace System.Data.HashFunction {
 #endif
             : base( hashSize ) {
             if ( t == null ) {
-                throw new ArgumentNullException( "t" );
+                throw new ArgumentNullException( nameof(t) );
             }
 
             if ( t.Count != 256 || t.Distinct().Count() != 256 ) {
-                throw new ArgumentException( "t must be a permutation of [0, 255].", "t" );
+                throw new ArgumentException( "t must be a permutation of [0, 255].", nameof(t) );
             }
 
             if ( hashSize <= 0 || hashSize % 8 != 0 ) {
-                throw new ArgumentOutOfRangeException( "hashSize", "hashSize must be a positive integer that is divisible by 8." );
+                throw new ArgumentOutOfRangeException( nameof(hashSize), "hashSize must be a positive integer that is divisible by 8." );
             }
 
             _T = t;
@@ -90,7 +90,7 @@ namespace System.Data.HashFunction {
         /// <inheritdoc/>
         protected override Byte[] ComputeHashInternal( UnifiedData data ) {
             var h = new Byte[HashSize / 8];
-            Boolean firstByte = true;
+            var firstByte = true;
 
             data.ForEachRead( ( dataBytes, position, length ) => {
                 ProcessBytes( ref h, ref firstByte, dataBytes, position, length );
@@ -104,7 +104,7 @@ namespace System.Data.HashFunction {
         /// <inheritdoc/>
         protected override async Task<Byte[]> ComputeHashAsyncInternal( UnifiedData data ) {
             var h = new Byte[HashSize / 8];
-            Boolean firstByte = true;
+            var firstByte = true;
 
             await data.ForEachReadAsync( ( dataBytes, position, length ) => {
                 ProcessBytes( ref h, ref firstByte, dataBytes, position, length );
@@ -117,7 +117,7 @@ namespace System.Data.HashFunction {
 
         private void ProcessBytes( ref Byte[] h, ref Boolean firstByte, Byte[] dataBytes, Int32 position, Int32 length ) {
             for ( var x = position; x < position + length; ++x ) {
-                for ( Int32 y = 0; y < HashSize / 8; ++y ) {
+                for ( var y = 0; y < HashSize / 8; ++y ) {
                     if ( !firstByte ) {
                         h[y] = this.T[h[y] ^ dataBytes[x]];
                     }

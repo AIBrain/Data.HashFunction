@@ -25,7 +25,7 @@ namespace System.Data.HashFunction {
         /// <inheritdoc/>
         public virtual async Task<Byte[]> ComputeHashAsync( Stream data ) {
             if ( !data.CanRead ) {
-                throw new ArgumentException( "Stream \"data\" must be readable.", "data" );
+                throw new ArgumentException( "Stream \"data\" must be readable.", nameof(data) );
             }
 
             if ( !data.CanSeek && RequiresSeekableStream ) {

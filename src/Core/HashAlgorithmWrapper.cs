@@ -15,7 +15,7 @@ namespace System.Data.HashFunction {
 
         private readonly Object SyncRoot = new Object();
 
-        private Boolean _disposed = false;
+        private Boolean _disposed;
 
         /// <remarks>
         /// Assumes ownership of the <see cref="HashAlgorithm"/> instance and disposes it when the
@@ -97,7 +97,7 @@ namespace System.Data.HashFunction {
 
         private readonly Object SyncRoot = new Object();
 
-        private Boolean _disposed = false;
+        private Boolean _disposed;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="HashAlgorithmWrapper{HashAlgorithmT}"/> class.

@@ -20,7 +20,7 @@
         /// </exception>
         public static Byte[] ToBytes( this Byte value, Int32 bitLength ) {
             if ( bitLength <= 0 || bitLength > 8 ) {
-                throw new ArgumentOutOfRangeException( "bitLength", "bitLength but be in the range [1, 8]." );
+                throw new ArgumentOutOfRangeException( nameof(bitLength), "bitLength but be in the range [1, 8]." );
             }
 
             value &= ( Byte )( Byte.MaxValue >> ( 8 - bitLength ) );
@@ -36,14 +36,14 @@
         /// <inheritdoc cref="ToBytes(byte, int)"/>
         public static Byte[] ToBytes( this UInt16 value, Int32 bitLength ) {
             if ( bitLength <= 0 || bitLength > 16 ) {
-                throw new ArgumentOutOfRangeException( "bitLength", "bitLength but be in the range [1, 16]." );
+                throw new ArgumentOutOfRangeException( nameof(bitLength), "bitLength but be in the range [1, 16]." );
             }
 
             value &= ( UInt16 )( UInt16.MaxValue >> ( 16 - bitLength ) );
 
             var valueBytes = new Byte[( bitLength + 7 ) / 8];
 
-            for ( Int32 x = 0; x < valueBytes.Length; ++x ) {
+            for ( var x = 0; x < valueBytes.Length; ++x ) {
                 valueBytes[x] = ( Byte )value;
                 value >>= 8;
             }
@@ -57,14 +57,14 @@
         /// <inheritdoc cref="ToBytes(byte, int)"/>
         public static Byte[] ToBytes( this UInt32 value, Int32 bitLength ) {
             if ( bitLength <= 0 || bitLength > 32 ) {
-                throw new ArgumentOutOfRangeException( "bitLength", "bitLength but be in the range [1, 32]." );
+                throw new ArgumentOutOfRangeException( nameof(bitLength), "bitLength but be in the range [1, 32]." );
             }
 
             value &= ( UInt32.MaxValue >> ( 32 - bitLength ) );
 
             var valueBytes = new Byte[( bitLength + 7 ) / 8];
 
-            for ( Int32 x = 0; x < valueBytes.Length; ++x ) {
+            for ( var x = 0; x < valueBytes.Length; ++x ) {
                 valueBytes[x] = ( Byte )value;
                 value >>= 8;
             }
@@ -78,14 +78,14 @@
         /// <inheritdoc cref="ToBytes(byte, int)"/>
         public static Byte[] ToBytes( this UInt64 value, Int32 bitLength ) {
             if ( bitLength <= 0 || bitLength > 64 ) {
-                throw new ArgumentOutOfRangeException( "bitLength", "bitLength but be in the range [1, 64]." );
+                throw new ArgumentOutOfRangeException( nameof(bitLength), "bitLength but be in the range [1, 64]." );
             }
 
             value &= ( UInt64.MaxValue >> ( 64 - bitLength ) );
 
             var valueBytes = new Byte[( bitLength + 7 ) / 8];
 
-            for ( Int32 x = 0; x < valueBytes.Length; ++x ) {
+            for ( var x = 0; x < valueBytes.Length; ++x ) {
                 valueBytes[x] = ( Byte )value;
                 value >>= 8;
             }

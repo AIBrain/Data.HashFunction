@@ -99,7 +99,7 @@ namespace System.Data.HashFunction {
             : base( hashSize ) {
             if ( !ValidHashSizes.Contains( hashSize ) ) {
                 throw new ArgumentOutOfRangeException(
-                    "hashSize",
+                    nameof(hashSize),
                     "hashSize must be contained within FNV1Base.ValidHashSizes, no hash parameters for that length specified." );
             }
 

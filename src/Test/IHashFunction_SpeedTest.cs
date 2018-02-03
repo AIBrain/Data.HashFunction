@@ -110,7 +110,7 @@ namespace System.Data.HashFunction.Test {
             IHashFunction_SpeedTest_MultipleItems( ( sw, testHashFunction, count, testBytes ) => {
                 sw.Start();
 
-                for ( Int32 x = 0; x < count; ++x ) {
+                for ( var x = 0; x < count; ++x ) {
                     testHashFunction.ComputeHash( testBytes );
                 }
 
@@ -126,7 +126,7 @@ namespace System.Data.HashFunction.Test {
                 using ( var ms = new NonSeekableMemoryStream( testBytes ) ) {
                     sw.Start();
 
-                    for ( Int32 x = 0; x < count; ++x ) {
+                    for ( var x = 0; x < count; ++x ) {
                         testHashFunction.ComputeHash( ms );
 
                         ms.Real_Seek( 0, SeekOrigin.Begin );
@@ -145,7 +145,7 @@ namespace System.Data.HashFunction.Test {
                 using ( var ms = new MemoryStream( testBytes ) ) {
                     sw.Start();
 
-                    for ( Int32 x = 0; x < count; ++x ) {
+                    for ( var x = 0; x < count; ++x ) {
                         testHashFunction.ComputeHash( ms );
 
                         ms.Seek( 0, SeekOrigin.Begin );
@@ -170,7 +170,7 @@ namespace System.Data.HashFunction.Test {
                 using ( var ms = new NonSeekableMemoryStream( testBytes ) ) {
                     sw.Start();
 
-                    for ( Int32 x = 0; x < count; ++x ) {
+                    for ( var x = 0; x < count; ++x ) {
                         testHashFunctionAsync.ComputeHashAsync( ms )
                             .Wait();
 
@@ -196,7 +196,7 @@ namespace System.Data.HashFunction.Test {
                 using ( var ms = new MemoryStream( testBytes ) ) {
                     sw.Start();
 
-                    for ( Int32 x = 0; x < count; ++x ) {
+                    for ( var x = 0; x < count; ++x ) {
                         testHashFunctionAsync.ComputeHashAsync( ms )
                             .Wait();
 

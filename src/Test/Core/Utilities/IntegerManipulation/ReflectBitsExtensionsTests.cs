@@ -87,7 +87,7 @@ namespace System.Data.HashFunction.Test.Core.Utilities.IntegerManipulation {
 
         [Fact]
         public void ReflectBits_UInt32_Works() {
-            UInt32 value = 0x9df3404c;
+            var value = 0x9df3404c;
             var expectedValues = new Dictionary<Int32, UInt32>() {
                 {  1, 0x0000 },       { 17, 0x00006405 },
                 {  2, 0x0000 },       { 18, 0x0000c80b },
@@ -128,7 +128,7 @@ namespace System.Data.HashFunction.Test.Core.Utilities.IntegerManipulation {
 
         [Fact]
         public void ReflectBits_UInt64_Works() {
-            UInt64 value = 0xf2faab56cb0b277f;
+            var value = 0xf2faab56cb0b277f;
             var expectedValues = new Dictionary<Int32, UInt64>() {
                 {  1, 0x0001 },       { 17, 0x0001fdc9 },       { 33, 0x0001fdc9a1a6 },       { 49, 0x0001fdc9a1a6d5aa },
                 {  2, 0x0003 },       { 18, 0x0003fb93 },       { 34, 0x0003fb93434d },       { 50, 0x0003fb93434dab55 },

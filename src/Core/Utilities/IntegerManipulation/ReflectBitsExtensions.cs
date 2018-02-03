@@ -17,12 +17,12 @@
         /// </exception>
         public static Byte ReflectBits( this Byte value, Int32 bitLength ) {
             if ( bitLength <= 0 || bitLength > 8 ) {
-                throw new ArgumentOutOfRangeException( "bitLength", "bitLength must be in the range [1, 8]." );
+                throw new ArgumentOutOfRangeException( nameof(bitLength), "bitLength must be in the range [1, 8]." );
             }
 
             Byte reflectedValue = 0;
 
-            for ( Int32 x = 0; x < bitLength; ++x ) {
+            for ( var x = 0; x < bitLength; ++x ) {
                 reflectedValue <<= 1;
 
                 reflectedValue |= ( Byte )( value & 1 );
@@ -39,12 +39,12 @@
         /// <inheritdoc cref="ReflectBits(byte, int)"/>
         public static UInt16 ReflectBits( this UInt16 value, Int32 bitLength ) {
             if ( bitLength <= 0 || bitLength > 16 ) {
-                throw new ArgumentOutOfRangeException( "bitLength", "bitLength must be in the range [1, 16]." );
+                throw new ArgumentOutOfRangeException( nameof(bitLength), "bitLength must be in the range [1, 16]." );
             }
 
             UInt16 reflectedValue = 0;
 
-            for ( Int32 x = 0; x < bitLength; ++x ) {
+            for ( var x = 0; x < bitLength; ++x ) {
                 reflectedValue <<= 1;
 
                 reflectedValue |= ( UInt16 )( value & 1 );
@@ -61,12 +61,12 @@
         /// <inheritdoc cref="ReflectBits(byte, int)"/>
         public static UInt32 ReflectBits( this UInt32 value, Int32 bitLength ) {
             if ( bitLength <= 0 || bitLength > 32 ) {
-                throw new ArgumentOutOfRangeException( "bitLength", "bitLength must be in the range [1, 32]." );
+                throw new ArgumentOutOfRangeException( nameof(bitLength), "bitLength must be in the range [1, 32]." );
             }
 
-            UInt32 reflectedValue = 0U;
+            var reflectedValue = 0U;
 
-            for ( Int32 x = 0; x < bitLength; ++x ) {
+            for ( var x = 0; x < bitLength; ++x ) {
                 reflectedValue <<= 1;
 
                 reflectedValue |= ( value & 1 );
@@ -83,12 +83,12 @@
         /// <inheritdoc cref="ReflectBits(byte, int)"/>
         public static UInt64 ReflectBits( this UInt64 value, Int32 bitLength ) {
             if ( bitLength <= 0 || bitLength > 64 ) {
-                throw new ArgumentOutOfRangeException( "bitLength", "bitLength must be in the range [1, 64]." );
+                throw new ArgumentOutOfRangeException( nameof(bitLength), "bitLength must be in the range [1, 64]." );
             }
 
-            UInt64 reflectedValue = 0UL;
+            var reflectedValue = 0UL;
 
-            for ( Int32 x = 0; x < bitLength; ++x ) {
+            for ( var x = 0; x < bitLength; ++x ) {
                 reflectedValue <<= 1;
 
                 reflectedValue |= ( value & 1 );

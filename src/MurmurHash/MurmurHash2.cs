@@ -73,7 +73,7 @@ namespace System.Data.HashFunction {
         public MurmurHash2( Int32 hashSize, UInt64 seed )
             : base( hashSize ) {
             if ( !ValidHashSizes.Contains( hashSize ) ) {
-                throw new ArgumentOutOfRangeException( "hashSize", "hashSize must be contained within MurmurHash2.ValidHashSizes." );
+                throw new ArgumentOutOfRangeException( nameof(hashSize), "hashSize must be contained within MurmurHash2.ValidHashSizes." );
             }
 
             _Seed = seed;
@@ -88,7 +88,7 @@ namespace System.Data.HashFunction {
                 case 32: {
                         const UInt32 m = unchecked(( UInt32 )MixConstant);
 
-                        UInt32 h = ( UInt32 )Seed ^ ( UInt32 )data.Length;
+                        var h = ( UInt32 )Seed ^ ( UInt32 )data.Length;
 
                         data.ForEachGroup( 4,
                             ( dataGroup, position, length ) => {
@@ -111,7 +111,7 @@ namespace System.Data.HashFunction {
                 case 64: {
                         const UInt64 m = MixConstant;
 
-                        UInt64 h = Seed ^ ( ( UInt64 )data.Length * m );
+                        var h = Seed ^ ( ( UInt64 )data.Length * m );
 
                         data.ForEachGroup( 8,
                             ( dataGroup, position, length ) => {
@@ -144,7 +144,7 @@ namespace System.Data.HashFunction {
                 case 32: {
                         const UInt32 m = unchecked(( UInt32 )MixConstant);
 
-                        UInt32 h = ( UInt32 )Seed ^ ( UInt32 )data.Length;
+                        var h = ( UInt32 )Seed ^ ( UInt32 )data.Length;
 
                         await data.ForEachGroupAsync( 4,
                             ( dataGroup, position, length ) => {
@@ -167,7 +167,7 @@ namespace System.Data.HashFunction {
                 case 64: {
                         const UInt64 m = MixConstant;
 
-                        UInt64 h = Seed ^ ( ( UInt64 )data.Length * m );
+                        var h = Seed ^ ( ( UInt64 )data.Length * m );
 
                         await data.ForEachGroupAsync( 8,
                             ( dataGroup, position, length ) => {
@@ -197,7 +197,7 @@ namespace System.Data.HashFunction {
 #endif
         private static void ProcessGroup( ref UInt32 h, UInt32 m, Byte[] dataGroup, Int32 position, Int32 length ) {
             for ( var x = position; x < position + length; x += 4 ) {
-                UInt32 k = BitConverter.ToUInt32( dataGroup, x );
+                var k = BitConverter.ToUInt32( dataGroup, x );
 
                 k *= m;
                 k ^= k >> 24;
@@ -214,7 +214,7 @@ namespace System.Data.HashFunction {
 #endif
         private static void ProcessGroup( ref UInt64 h, UInt64 m, Byte[] dataGroup, Int32 position, Int32 length ) {
             for ( var x = position; x < position + length; x += 8 ) {
-                UInt64 k = BitConverter.ToUInt64( dataGroup, x );
+                var k = BitConverter.ToUInt64( dataGroup, x );
 
                 k *= m;
                 k ^= k >> 47;

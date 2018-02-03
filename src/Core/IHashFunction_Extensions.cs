@@ -380,7 +380,7 @@ namespace System.Data.HashFunction {
             var hashesNeeded = ( desiredHashSize + ( hashFunction.HashSize - 1 ) ) / hashFunction.HashSize;
 
             // Compute as many hashes as needed
-            for ( Int32 x = 0; x < Math.Max( hashesNeeded, 1 ); ++x ) {
+            for ( var x = 0; x < Math.Max( hashesNeeded, 1 ); ++x ) {
                 Byte[] currentData;
 
                 if ( x != 0 ) {

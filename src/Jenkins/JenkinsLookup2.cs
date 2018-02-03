@@ -43,11 +43,11 @@ namespace System.Data.HashFunction {
 
         /// <inheritdoc/>
         protected override Byte[] ComputeHashInternal( UnifiedData data ) {
-            UInt32 a = 0x9e3779b9;
-            UInt32 b = 0x9e3779b9;
-            UInt32 c = InitVal;
+            var a = 0x9e3779b9;
+            var b = 0x9e3779b9;
+            var c = InitVal;
 
-            Int32 dataCount = 0;
+            var dataCount = 0;
 
             data.ForEachGroup( 12,
                 ( dataGroup, position, length ) => {
@@ -72,11 +72,11 @@ namespace System.Data.HashFunction {
 
         /// <inheritdoc/>
         protected override async Task<Byte[]> ComputeHashAsyncInternal( UnifiedData data ) {
-            UInt32 a = 0x9e3779b9;
-            UInt32 b = 0x9e3779b9;
-            UInt32 c = InitVal;
+            var a = 0x9e3779b9;
+            var b = 0x9e3779b9;
+            var c = InitVal;
 
-            Int32 dataCount = 0;
+            var dataCount = 0;
 
             await data.ForEachGroupAsync( 12,
                 ( dataGroup, position, length ) => {

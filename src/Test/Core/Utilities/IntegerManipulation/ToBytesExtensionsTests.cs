@@ -88,7 +88,7 @@ namespace System.Data.HashFunction.Test.Core.Utilities.IntegerManipulation {
 
         [Fact]
         public void ToBytes_UInt32_Works() {
-            UInt32 value = 0x9df3404c;
+            var value = 0x9df3404c;
             var expectedValues = new Dictionary<Int32, UInt32>() {
                 {  1, 0x0000 },       { 17, 0x0001404c },
                 {  2, 0x0000 },       { 18, 0x0003404c },
@@ -129,7 +129,7 @@ namespace System.Data.HashFunction.Test.Core.Utilities.IntegerManipulation {
 
         [Fact]
         public void ToBytes_UInt64_Works() {
-            UInt64 value = 0xaf9363cc7e0d89eb;
+            var value = 0xaf9363cc7e0d89eb;
             var expectedValues = new Dictionary<Int32, UInt64>() {
                 {  1, 0x0001 },       { 17, 0x000189eb },       { 33, 0x00007e0d89eb },       { 49, 0x000163cc7e0d89eb },
                 {  2, 0x0003 },       { 18, 0x000189eb },       { 34, 0x00007e0d89eb },       { 50, 0x000363cc7e0d89eb },
